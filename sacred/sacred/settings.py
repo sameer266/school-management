@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lvvwz1&6vy5s=f@^bnn)tiu6*jvr$b8)v#0@l7#$zodm@1y$#s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'customuser',
+    'accounts',
+    'attendence',
+    'classes',
+    'exams',
+    'homeworks',
+    'library',
+    'notifications',
+    'staff',
+    'students',
+    'subjects',
+    'adminHOD',
+    'notice',
+   
+    
+    'rest_framework',
+    'corsheaders'
+    
 ]
 
 MIDDLEWARE = [
@@ -117,7 +136,35 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#  To store   files and images
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'customuser.CustomUser'
+
+
+
+
+
+# Django REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React app URL
+]
