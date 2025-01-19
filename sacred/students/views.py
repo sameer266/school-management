@@ -11,14 +11,6 @@ from classes.models import ClassModel
 from attendence.models import Attendence
 from students.models import Students, LeaveReportStudent
 from accounts.models import Bill
-from homeworks.models import Homework, HomeworkSubmission
-
-# ==== Helper function to fetch student by user name =====
-def get_student_by_user(user):
-    try:
-        return Students.objects.get(name=user)
-    except Students.DoesNotExist:
-        return None
 
 
 
@@ -26,12 +18,27 @@ def get_student_by_user(user):
 # ==== Student Home Page =========
 class StudentHomePage(APIView):
     def get(self, request):
-        user = request.user
-        student = get_student_by_user(user)
-        if student:
+        try:
+           
+            user = request.user
+            student = Students.objects.get(name=user)
+            total_attendance = Attendence.objects.filter(student=student).count()
+
+            total_leaves = LeaveReportStudent.objects.filter(student=student).count()  
             serializer = StudentsSerializer(student)
-            return Response({"success": True, "message": serializer.data}, status=200)
-        return Response({"success": False, "message": "Student profile not found."}, status=404)
+            return Response({
+                "success": True,
+                "message": serializer.data,
+                "total_attendance": total_attendance,
+                "total_leaves": total_leaves
+            }, status=200)
+
+        except Students.DoesNotExist:
+            return Response({"success": False, "message": "Student profile not found."}, status=400)
+        
+        except Exception as e:
+            # If an error occurs, return the error message
+            return Response({"success": False, "message": str(e)}, status=400)
 
 
 
@@ -39,7 +46,7 @@ class StudentHomePage(APIView):
 class StudentAttendance(APIView):
     def get(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             attendance = Attendence.objects.filter(student=student)
             serializer = AttendenceSerializer(attendance, many=True)
@@ -55,7 +62,7 @@ class StudentAttendance(APIView):
         except (ValueError, TypeError):
             return Response({"success": False, "message": "Invalid date format. Use YYYY-MM-DD."}, status=400)
 
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             attendance_records = Attendence.objects.filter(student=student, attendence_date=date_obj)
             serializer = AttendenceSerializer(attendance_records, many=True)
@@ -74,7 +81,7 @@ class StudentApplyLeave(APIView):
         if not message:
             return Response({"success": False, "message": "Message is required."}, status=400)
 
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             leave_application = LeaveReportStudent.objects.create(name=student, message=message)
             serializer = LeaveReportStudentSerializer(leave_application)
@@ -87,7 +94,7 @@ class StudentApplyLeave(APIView):
 class StudentProfile(APIView):
     def get(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             serializer = StudentsSerializer(student)
             return Response({"success": True, "data": serializer.data}, status=200)
@@ -95,7 +102,7 @@ class StudentProfile(APIView):
 
     def post(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             student.gender = request.data.get('gender', student.gender)
             student.profile_picture = request.FILES.get('profile_picture', student.profile_picture)
@@ -124,7 +131,7 @@ class ResultView(APIView):
         exam_id = request.data.get('exam_id')
         class_id = request.data.get('class_id')
 
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             try:
                 exam = Exam.objects.get(id=exam_id, class_id=class_id)
@@ -163,7 +170,7 @@ class StudentNotice(APIView):
 class StudentBill(APIView):
     def get(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             bills = Bill.objects.filter(student=student).order_by('date_due')
             serializer = BillSerializer(bills, many=True)
@@ -179,7 +186,7 @@ class StudentHomework(APIView):
 
     def get(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             homework = Homework.objects.filter(class_id=student.class_id)
             serializer = HomeworkSerializer(homework, many=True)
@@ -188,7 +195,7 @@ class StudentHomework(APIView):
 
     def post(self, request):
         user = request.user
-        student = get_student_by_user(user)
+        student = Students.objects.get(name=user)
         if student:
             homework_id = request.data.get('homework_id')
             submission_file = request.FILES.get('submission_file')
