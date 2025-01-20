@@ -18,7 +18,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomUser
-        fields = ['username','first_name','user_type']
+        fields = ['username','first_name','last_name','user_type']
 
 # ClassModel Serializer
 class ClassModelSerializer(serializers.ModelSerializer):
@@ -42,11 +42,35 @@ class ExamResultSerializer(serializers.ModelSerializer):
 
 # Students Serializer
 class StudentsSerializer(serializers.ModelSerializer):
-    name=CustomUserSerializer()
+    name = CustomUserSerializer()
+    class_id=ClassModelSerializer()
+
     class Meta:
         model = Students
         fields = '__all__'
+    
+    def create(self, validated_data):
+        name_data=validated_data.pop('name')
+        class_data=validated_data.pop('class_id')
+        user=CustomUser.objects.create(**name_data)
+        class_id=ClassModel.objects.get(name=class_data.get('name'))
+        
+        student=Students.objects.create(name=user,class_id=class_id,**validated_data)
+        return student
+        
+        
+    def update(self, instance, data):
+        # Handle nested 'name' field (CustomUser)
+        name_data = data.pop('name', None)
+        if name_data:
+            # Update related CustomUser instance (instance.name refers to the CustomUser instance)
+            instance.name.username = name_data.get('username', instance.name.username)
+            instance.name.first_name = name_data.get('first_name', instance.name.first_name)
+            instance.name.last_name = name_data.get('last_name', instance.name.last_name)
+            instance.name.save()
 
+        # Update the remaining fields of the Students instance
+        return super().update(instance, data)
 
 
 # NotificationStudent Serializer
@@ -59,9 +83,37 @@ class NotificationStudentSerializer(serializers.ModelSerializer):
 
 # Staffs Serializer
 class StaffsSerializer(serializers.ModelSerializer):
+    name=CustomUserSerializer()
     class Meta:
         model = Staffs
         fields = '__all__'
+        
+    def create(self, validated_data):
+        name_data=validated_data.pop('name')
+        user=CustomUser.objects.create(**name_data)
+        staff=Staffs.objects.create(name=user,**validated_data)
+        return staff
+        
+        
+    def update(self,instance,data):
+        name_data=data.pop('name',None)
+        
+        if name_data:
+            username=name_data.get('username',instance.name.username)
+            first_name=name_data.get('first_name',instance.name.first_name)
+            last_name=name_data.get('last_name',instance.name.last_name)
+            
+            instance.name.username=username
+            instance.name.first_name=first_name
+            instance.name.last_name=last_name
+            instance.name.save()
+        
+        # Update the remaining fields of the Staffs instance and return the updated instance
+        return super().update(instance,data)
+            
+            
+        
+    
 
 # LeaveReportStaff Serializer
 class LeaveReportStaffSerializer(serializers.ModelSerializer):
@@ -84,6 +136,9 @@ class LeaveReportStudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = LeaveReportStudent
         fields = '__all__'
+        
+    
+        
 
 # Subjects Serializer
 class SubjectsSerializer(serializers.ModelSerializer):
@@ -114,6 +169,14 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = '__all__'
+    
+    def create(self, validated_data):
+        student=validated_data.pop('student')
+        user=Students.objects.get(**student)
+        bill=Bill.objects.create(student=user,**validated_data)
+        return bill
+    
+    
 
 # Fee Serializer
 class FeeSerializer(serializers.ModelSerializer):
@@ -122,6 +185,16 @@ class FeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fee
         fields = '__all__'
+        
+    def create(self, validated_data):
+        student=validated_data.pop('student')
+        user=Students.objects.get(**student)
+        fee=Fee.objects.create(student=user,**validated_data)
+        return fee
+    
+    
+        
+      
 
 # Notice Serializer
 class NoticeSerializer(serializers.ModelSerializer):
@@ -150,9 +223,20 @@ class HomeworkSubmissionSerializer(serializers.ModelSerializer):
 
 # Library Serializer
 class LibrarySerializer(serializers.ModelSerializer):
+    uploaded_by=CustomUserSerializer()
     class Meta:
         model = Library
         fields = '__all__'
+    
+    def create(self,validate_data):
+        uploaded_by_data=validate_data.pop('uploaded_by')
+        user=CustomUser.objects.get(**uploaded_by_data)
+        library=Library.objects.create(uploaded_by=user,**validate_data)
+        return library
+        
+  
+            
+        
 
 # NotificationStaff Serializer
 class NotificationStaffSerializer(serializers.ModelSerializer):

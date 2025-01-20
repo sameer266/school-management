@@ -154,6 +154,7 @@ AUTH_USER_MODEL = 'customuser.CustomUser'
 
 
 # Django REST Framework settings
+
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
@@ -161,7 +162,12 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',  # Use Basic Authentication
+    ],
+  
 }
+
 
 
 
