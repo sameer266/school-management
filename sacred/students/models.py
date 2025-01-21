@@ -7,7 +7,7 @@ from classes.models import ClassModel
 class Students(models.Model):
     name=models.OneToOneField('customuser.CustomUser',on_delete=models.CASCADE)
     gender=models.CharField(max_length=10)
-    profile_picture=models.TextField()
+    profile_picture=models.ImageField(upload_to="student_img/",default="student_img/avatar.jpg")
     address=models.TextField()
     class_id=models.ForeignKey(ClassModel,on_delete=models.DO_NOTHING)
     contact_number=models.CharField(max_length=10)

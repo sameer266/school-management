@@ -1,0 +1,25 @@
+footer {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+footer a svg {
+  margin-right: 0.25rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
