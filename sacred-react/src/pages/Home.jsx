@@ -2,6 +2,11 @@ import React from 'react';
 import '../style/pages_css/home.css'; // Import CSS file
 
 import Home_Img from '../images/school_photo.jpg'; // Replace with your hero image
+import img1 from '../images/img1.jpg';
+import img2 from '../images/img2.jpg';
+import img3 from '../images/img3.jpg';
+import img5 from '../images/img5.jpg';
+import img6 from '../images/img6.jpg';
 
 function Home() {
   return (
@@ -64,12 +69,20 @@ function Home() {
       </div>
 
       {/* Gallery Section */}
-      <div className="gallery">
-        {/* Replace these with real images */}
-        <img src="gallery1.jpg" alt="Gallery 1" className="gallery-item" />
-        <img src="gallery2.jpg" alt="Gallery 2" className="gallery-item" />
-        <img src="gallery3.jpg" alt="Gallery 3" className="gallery-item" />
+      <div className="gallery-container">
+        <h2 className="gallery-title">Gallery</h2>
+        <div className="gallery">
+          <img src={img1} alt="Gallery 1" className="gallery-item" />
+          <img src={img2} alt="Gallery 2" className="gallery-item" />
+          <img src={img3} alt="Gallery 3" className="gallery-item" />
+          <img src={img5} alt="Gallery 4" className="gallery-item" />
+          <img src={img6} alt="Gallery 5" className="gallery-item" />
+        </div>
       </div>
+
+
+     
+
     </div>
   );
 }

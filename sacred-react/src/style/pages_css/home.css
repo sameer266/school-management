@@ -1,311 +1,377 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+}
 
-  
-  /* Home Container */
-  .home {
-    width: 100%;
-    overflow-x: hidden;
-    font-family: 'Arial', sans-serif;
+/* Home Container */
+.home {
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #7ef310, #2575fc, #ff512f, #f90f79);
+  background-size: 400% 400%;
+  animation: gradientBackground 8s ease infinite;
+}
+
+/* Background Gradient Animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
   }
-  
- /* Hero Section */
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Hero Section */
 .hero-section {
-    position: relative;
-    height: 100vh; /* Full viewport height */
-    width: 100%;
-    overflow: hidden;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 100, 65, 0.7), rgba(255, 99, 71, 0));
+  background-size: 200% 200%;
+  animation: gradientAnimation 8s ease infinite;
+  opacity: 0.8;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the area */
-    position: absolute;
-    top: 0;
-    left: 0;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(255, 100, 65, 0.563), rgba(255, 99, 71, 0));
+  100% {
+    background-position: 0% 50%;
   }
+}
+
 /* Hero Text */
 .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    overflow: hidden; /* Ensure the text is hidden initially */
-    padding: 0 20px; /* Ensure text doesn't touch the edges */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  display: inline-block;
+  opacity: 0;
+  max-width: 0;
+  animation: typing 3s steps(6) 0.5s forwards;
+  letter-spacing: 2px;
+}
+
+@keyframes typing {
+  0% {
+    max-width: 0;
+    opacity: 1;
   }
-  
-  /* Typing Effect for Heading */
+  100% {
+    max-width: 100%;
+    opacity: 1;
+  }
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: fadeIn 2s 4s forwards ease-out;
+  letter-spacing: 1px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text h1,
+.hero-text p {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive Hero Text */
+@media (max-width: 768px) {
   .hero-text h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    white-space: nowrap;
-    display: inline-block;
-    opacity: 0; /* Initially hide */
-    max-width: 0; /* Initially hide the full width */
-    animation: typing 3s steps(6) 0.5s forwards; /* Smooth typing */
-    letter-spacing: 2px; /* Add space between characters */
+    font-size: 2.5rem;
   }
-  
-  /* Typing Animation Keyframes */
-  @keyframes typing {
-    0% {
-      max-width: 0;
-      opacity: 1;
-    }
-    100% {
-      max-width: 100%; /* Reveal full width */
-      opacity: 1;
-    }
-  }
-  
-  /* Typing Effect for Paragraph */
+
   .hero-text p {
-    font-size: 1.5rem;
-    opacity: 0; /* Initially invisible */
-    animation: fadeIn 2s 4s forwards ease-out; /* Fade in after the heading with smoother timing */
-    letter-spacing: 1px; /* Adds subtle space between letters */
+    font-size: 1.2rem;
   }
-  
-  /* Fade-In Effect for Paragraph */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px); /* Slight upward movement when fading in */
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+
+/* Gallery Section */
+.gallery-container {
+  padding: 60px 10%;
+  background-color: #f9f9f9;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.gallery-item {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover::before {
+  opacity: 1;
+}
+
+.gallery-item:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.15);
+}
+
+/* Responsive Gallery */
+@media (max-width: 768px) {
+  .gallery-container {
+    padding: 40px 5%;
   }
-  
-  /* Add a subtle shadow to the text for better visibility on various backgrounds */
-  .hero-text h1, .hero-text p {
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+
+  .gallery-title {
+    font-size: 2rem;
   }
-  
-  /* Improve responsiveness for smaller screens */
-  @media (max-width: 768px) {
-    .hero-text h1 {
-      font-size: 2.5rem;
-    }
-  
-    .hero-text p {
-      font-size: 1.2rem;
-    }
-  }
-  
-  
-  /* Gallery Section */
-  .gallery {
-    display: flex;
-    justify-content: space-between;
-    margin: 30px 0;
-    padding: 0 20px;
-    flex-wrap: wrap; /* Allow images to wrap on smaller screens */
-  }
-  
+
   .gallery-item {
-    width: 32%; /* Adjust width for three images in a row */
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 200px;
   }
-  
-  .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .hero-text h1 {
-      font-size: 2.5rem;
-    }
-  
-    .hero-text p {
-      font-size: 1.2rem;
-    }
-  
-    .gallery {
-      flex-direction: column; /* Stack gallery images vertically */
-      align-items: center;
-    }
-  
-    .gallery-item {
-      width: 80%; /* Make gallery items take up more space on small screens */
-      margin: 10px 0;
-    }
-  }
-  
+}
+
 /* School Overview */
 .school-overview {
-    padding: 60px 30px;
-    text-align: center;
-    background-color: #fafafa;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 30px;
+  text-align: center;
+  background-color: #fafafa;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .school-overview h2 {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #333;
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #333;
 }
 
 .school-overview p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #666;
-    max-width: 900px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #666;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 /* Mission and Vision */
 .mission-vision {
-    display: flex;
-    justify-content: space-between;
-    padding: 60px 30px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  padding: 60px 30px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mission, .vision {
-    width: 48%;
+  width: 48%;
 }
 
 .mission h3, .vision h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 .mission p, .vision p {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #7f8c8d;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #7f8c8d;
 }
 
 /* Facilities */
 .facilities {
-    padding: 60px 30px;
-    background-color: #fafafa;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 30px;
+  background-color: #fafafa;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .facilities h2 {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-    font-weight: bold;
-    color: #333;
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #333;
 }
 
 .facilities ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .facilities li {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 15px;
-    padding-left: 25px;
-    position: relative;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
 }
 
 .facilities li::before {
-    content: '✔';
-    position: absolute;
-    left: 0;
-    color: #3498db;
-    font-size: 1.5rem;
-    top: 0;
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: #3498db;
+  font-size: 1.5rem;
+  top: 0;
 }
 
 /* Achievements */
 .achievements {
-    padding: 60px 30px;
-    background-color: #e7e7e7;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 60px 30px;
+  background-color: #e7e7e7;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .achievements h2 {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-    font-weight: bold;
-    color: #333;
+  font-size: 2.4rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: #333;
 }
 
 .achievements ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .achievements li {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: #555;
-    margin-bottom: 15px;
-    padding-left: 25px;
-    position: relative;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
 }
 
 .achievements li::before {
-    content: '🏆';
-    position: absolute;
-    left: 0;
-    color: #f39c12;
-    font-size: 1.5rem;
-    top: 0;
+  content: '🏆';
+  position: absolute;
+  left: 0;
+  color: #f39c12;
+  font-size: 1.5rem;
+  top: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .mission-vision {
-        flex-direction: column;
-        align-items: center;
-    }
+  .mission-vision {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .mission, .vision {
-        width: 100%;
-        margin-bottom: 30px;
-    }
+  .mission, .vision {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 
-    .school-overview, .facilities, .achievements {
-        padding: 40px 20px;
-    }
+  .school-overview, .facilities, .achievements {
+    padding: 40px 20px;
+  }
 
-    .school-overview p {
-        max-width: 100%;
-    }
+  .school-overview p {
+    max-width: 100%;
+  }
 }

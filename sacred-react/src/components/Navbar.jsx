@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../style/comp_css/navbar.css'; // Import your CSS file
+import {Link} from "react-router-dom"
 
+import '../style/comp_css/navbar.css'; // Import your CSS file
 import Logo from "../images/logo.jpg"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,19 +62,32 @@ const Navbar = () => {
         <div className="logo">
           <img src={Logo} alt="Logo" />
         </div>
+
+    
+
         <button className="mobile-nav-toggle" aria-label="Toggle navigation" onClick={toggleMenu}>
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </button>
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about" >About Us</Link></li>
+          <li><Link to="/programs" >Programs</Link></li>
+          <li><Link to="/news-events" >News/Events</Link></li>
+          <li><Link to="/contact">Contact Us</Link></li>
         </ul>
+
+        
+         {/* ------- Login Button --------- */}
+  <div className='login-button'>
+        <Link to="/login">Login</Link>
       </div>
+
+      </div>
+
+ 
+     
 
       <div className={`overlay ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}></div>
     </nav>
