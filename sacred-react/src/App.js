@@ -7,6 +7,9 @@ import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import Programs from "./pages/Programs";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
+import AdminHod from "./pages/dashboard/AdminHod";
+import Staff from "./pages/dashboard/Staff";
+import Student from "./pages/dashboard/Student";
 
 
 function App() {
@@ -23,6 +26,11 @@ function App() {
     <Route path='/programs' element={<Programs/>}/>
     <Route path='/contact' element={<ContactUs/>}/>
     <Route path='/login' element={<Login/>} />
+
+{/* ========== Dashboard ============ */}
+    <Route path="/adminHod-dashboard" element={<AdminHod/>}/>
+    <Route path="/staff-dashboard" element={<Staff/>}/>
+    <Route path="/student-dashboard" element={<Student/>} />
 
 
   </Routes>

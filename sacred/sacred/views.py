@@ -10,15 +10,18 @@ class Home(APIView):
 
 
 class Login(APIView):
-    authentication_classes=[BasicAuthentication]
 
     def post(self, request):
         try:
+            print(request.data)
             username = request.data.get('username')
             password = request.data.get('password')
 
             # Authenticate user
             user = authenticate(username=username, password=password)
+            if user is None:
+                return Response({"success":False,"message":"Invalid Username or Password"},status=401)
+            
 
             if user is None:
                 return Response(
@@ -28,7 +31,7 @@ class Login(APIView):
             else:
                 login(request, user)
                 return Response(
-                    {"success": True, "message": "Login successful","user":user.username},
+                    {"success": True, "message": "Login successful","user":user.first_name,"user_type":user.user_type},
                     status=200,
                 )
         except Exception as e:

@@ -1,94 +1,95 @@
 /* About Us Page Styles */
 .about-us-container {
-    margin-top: 60px;
-    padding: 50px;
-    background-color: #ffffff;
-  }
-  
-  .about-us-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .about-us-header h1 {
-    font-size: 2.5rem;
-    color: #333;
-  }
-  
-  .about-us-header p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .about-us-content {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .about-us-description, .about-us-mission, .about-us-vision {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about-us-description h2, .about-us-mission h2, .about-us-vision h2 {
-    font-size: 1.8rem;
-    color: #6a11cb;
-  }
-  
-  .about-us-description p, .about-us-mission p, .about-us-vision p {
-    font-size: 1rem;
-    color: #444;
-    line-height: 1.6;
-  }
-  
-  .about-us-footer {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .about-us-footer p {
-    font-size: 1.1rem;
-    color: #333;
-  }
-  
+  margin-top: 60px;
+  padding: 50px;
+  background-color: #ffffff;
+}
 
-  /* Animation for elements appearing from the bottom */
-@keyframes slideInFromBottom {
-    0% {
-      transform: translateY(20px);
+.about-us-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-us-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.about-us-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.about-us-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.about-us-description, .about-us-mission, .about-us-vision {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-description h2, .about-us-mission h2, .about-us-vision h2 {
+  font-size: 1.8rem;
+  color: #6a11cb;
+}
+
+.about-us-description p, .about-us-mission p, .about-us-vision p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.about-us-footer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.about-us-footer p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Simple fade-in animation */
+@keyframes fadeIn {
+  0% {
       opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
+  }
+  100% {
       opacity: 1;
-    }
   }
-  
-  .about-us-header h1, .about-us-header p, 
-  .about-us-description, .about-us-mission, .about-us-vision, .about-us-footer {
-    animation: slideInFromBottom 1s ease-out forwards;
-  }
-  
-  /* Add different delays for various elements */
-  .about-us-header h1 {
-    animation-delay: 0.2s;
-  }
-  .about-us-header p {
-    animation-delay: 0.4s;
-  }
-  .about-us-description {
-    animation-delay: 0.6s;
-  }
-  .about-us-mission {
-    animation-delay: 0.8s;
-  }
-  .about-us-vision {
-    animation-delay: 1s;
-  }
-  .about-us-footer {
-    animation-delay: 1.2s;
-  }
-  
+}
+
+/* Apply fade-in animation to all elements */
+.about-us-header h1,
+.about-us-header p,
+.about-us-description,
+.about-us-mission,
+.about-us-vision,
+.about-us-footer {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* Add different delays for various elements */
+.about-us-header h1 {
+  animation-delay: 0.2s;
+}
+.about-us-header p {
+  animation-delay: 0.4s;
+}
+.about-us-description {
+  animation-delay: 0.6s;
+}
+.about-us-mission {
+  animation-delay: 0.8s;
+}
+.about-us-vision {
+  animation-delay: 1s;
+}
+.about-us-footer {
+  animation-delay: 1.2s;
+}
