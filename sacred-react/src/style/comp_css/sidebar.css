@@ -1,221 +1,71 @@
 /* Sidebar Styles */
-.main-sidebar {
-    background-color: #343a40; /* Dark background */
-    height: 100vh;
+.sidebar {
+    padding-top: 100px;
     width: 250px;
+    background: linear-gradient(135deg, #2c3e50, #4a69bd);
+    color: #ecf0f1;
+    height: 100vh;
     position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 50px;
-    z-index: 1050; /* Ensure sidebar is always in front of content */
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); /* Soft shadow on the right */
-    transition: all 0.3s ease; /* Smooth transition for expanding */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow-y: auto;
+    transition: width 0.3s ease, background 0.3s ease;
 }
 
-/* Logo Section */
-.brand-link {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.brand-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover; /* Keeps logo aspect ratio intact */
-}
-
-.brand-text {
-    font-size: 22px;
+.sidebar a {
+    text-decoration: none;
     color: #fff;
-    font-weight: 600;
+    padding: 15px 20px;
     display: block;
-    margin-top: 10px;
-    letter-spacing: 1px;
-}
-
-/* User Info Section */
-.user-panel {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 20px;
-    color: #fff;
-    background-color: #495057; /* Slightly lighter background */
-    border-radius: 5px;
-}
-
-.user-panel .image img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 2px solid #fff; /* Border around the avatar */
-}
-
-.user-panel .info {
-    margin-left: 15px;
-}
-
-.user-panel .info .d-block {
-    font-size: 18px;
-    font-weight: 600;
-    color: #f8f9fa;
-}
-
-/* Navigation Menu */
-.nav-sidebar {
-    padding-left: 0;
-    margin-top: 20px;
-}
-
-.nav-sidebar .nav-item {
-    padding: 12px 20px;
-    border-radius: 5px;
-    margin: 5px 0;
-    transition: background-color 0.2s ease;
-}
-
-.nav-sidebar .nav-link {
-    color: #c2c7d0;
-    display: flex;
-    align-items: center;
     font-size: 16px;
-    transition: color 0.2s ease;
+    transition: background-color 0.3s ease, padding-left 0.3s ease, color 0.3s ease;
+    border-radius: 4px;
+    margin: 5px 10px;
 }
 
-.nav-sidebar .nav-link:hover {
-    background-color: #495057;
-    color: #fff;
-    transition: all 0.3s ease-in-out;
+.sidebar a:hover {
+    background-color: #34495e;
+    padding-left: 30px;
+    color: #ecf0f1;
 }
 
-.nav-sidebar .nav-link i {
-    margin-right: 15px;
-    font-size: 18px; /* Larger icons */
+.sidebar a::before {
+    content: '•';
+    color: #ecf0f1;
+    margin-right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.nav-sidebar .nav-link.active {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
+.sidebar a:hover::before {
+    opacity: 1;
 }
 
-.nav-item .nav-link p {
-    margin: 0;
-    font-weight: 600;
-}
-
-/* Hover Effects */
-.nav-sidebar .nav-item:hover {
-    background-color: #4e555b;
-    transform: translateX(10px); /* Subtle hover movement */
-}
-
-/* Footer Section */
-.footer-text {
-    color: #fff;
-    margin-top: 30px;
-    text-align: center;
-    font-size: 14px;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .main-sidebar {
-        width: 200px;
-    }
-
-    .main-sidebar:hover {
-        width: 200px;
-    }
-
-    .brand-image {
-        width: 40px;
-        height: 40px;
-    }
-
-    .brand-text {
-        font-size: 18px;
-    }
-
-    .user-panel .image img {
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Collapsible Sidebar for Small Screens */
-    .main-sidebar.collapsed {
-        width: 80px;
-    }
-
-    .main-sidebar.collapsed .brand-link,
-    .main-sidebar.collapsed .user-panel .info {
-        display: none; /* Hide brand and user info when collapsed */
-    }
-
-    .main-sidebar.collapsed .nav-sidebar .nav-item .nav-link {
-        justify-content: center; /* Center icons in collapsed mode */
-    }
-}
-
-/* For Small Screens, Content Will Adjust when Sidebar is Collapsed */
-.main-sidebar.collapsed + .content-wrapper {
-    margin-left: 80px;
-}
-
-/* Mobile View (Max-width: 768px) */
+/* Responsive Sidebar for smaller screens */
 @media (max-width: 768px) {
-    .main-sidebar {
-        width: 0;
-        visibility: hidden;
+    .sidebar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        box-shadow: none;
+        padding-top: 0;
     }
 
-    .main-sidebar.show {
-        visibility: visible;
-        width: 250px;
-    }
-
-    /* Sidebar open state */
-    .main-sidebar.show + .content-wrapper {
-        margin-left: 250px;
-        transition: margin-left 0.3s ease-in-out;
-    }
-
-    .main-sidebar .nav-link {
+    .sidebar a {
+        flex: 1;
+        text-align: center;
+        padding: 10px;
         font-size: 14px;
-    }
-
-    .main-sidebar .nav-link i {
-        font-size: 20px;
-    }
-
-    .brand-text {
-        font-size: 20px;
-    }
-
-    .user-panel .image img {
-        width: 35px;
-        height: 35px;
+        margin: 0;
     }
 }
-
-/* Button to toggle sidebar visibility */
-.sidebar-toggle-btn {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    display: none;
-    font-size: 18px;
-    background: transparent;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-/* Display sidebar toggle button for mobile */
-@media (max-width: 768px) {
-    .sidebar-toggle-btn {
-        display: block;
-    }
-}
-

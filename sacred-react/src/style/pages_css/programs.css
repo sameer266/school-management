@@ -1,5 +1,5 @@
 /* ========================
-   Program Page Styles
+  Program Page Styles
 ========================= */
 
 :root {
@@ -7,12 +7,16 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --border: 1px solid rgba(255, 255, 255, 0.1);
   --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --primary-color: #ff3366;
+  --secondary-color: #4e4e4e;
+  --text-color: #555;
+  --background-color: #f0f0f0;
 }
 
 /* Program Container */
 .program-container {
   margin-top: 100px;
-  background: #f0f0f0;
+  background: var(--background-color);
   min-height: 100vh;
   padding: 40px 10%;
   transition: all 0.3s ease;
@@ -29,8 +33,11 @@
 
 .program-header h1 {
   font-size: 3rem;
-  color: #4e4e4e;
+  color: var(--secondary-color);
   transition: color 0.3s ease;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .program-header p {
@@ -50,24 +57,25 @@
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeIn 1s ease-out forwards;
   animation-delay: 0.4s;
 }
 
 .program-item h2 {
   font-size: 2rem;
-  color: #4e4e4e;
+  color: var(--secondary-color);
 }
 
 .program-item p {
   font-size: 1rem;
-  color: #555;
+  color: var(--text-color);
 }
 
 .program-item:hover {
-  transform: translateY(-10px); /* Adds a hover effect */
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Button Styling */
@@ -75,12 +83,12 @@
   display: inline-block;
   padding: 12px 24px;
   font-size: 1rem;
-  background-color: #ff3366;
+  background-color: var(--primary-color);
   color: white;
   border-radius: 50px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   text-decoration: none;
   animation: fadeIn 1s ease-out forwards;
   animation-delay: 0.6s;
@@ -88,6 +96,7 @@
 
 .button:hover {
   background-color: #ff3f7e;
+  transform: scale(1.05);
 }
 
 /* Footer Section */
@@ -105,38 +114,38 @@
 
 /* Scroll Effect */
 .program-container.scrolled .program-header h1 {
-  color: white; /* Changes color to white when scrolled */
+  color: white;
 }
 
 .program-container.scrolled .program-item h2 {
-  color: white; /* Changes color to white when scrolled */
+  color: white;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .program-container {
-      padding: 20px 5%;
+   padding: 20px 5%;
   }
 
   .program-header h1 {
-      font-size: 2.5rem;
+   font-size: 2.5rem;
   }
 
   .program-item {
-      padding: 20px;
+   padding: 20px;
   }
 
   .program-item h2 {
-      font-size: 1.8rem;
+   font-size: 1.8rem;
   }
 }
 
 /* Simple fade-in animation */
 @keyframes fadeIn {
   0% {
-      opacity: 0;
+   opacity: 0;
   }
   100% {
-      opacity: 1;
+   opacity: 1;
   }
 }

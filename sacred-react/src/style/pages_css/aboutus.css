@@ -2,7 +2,9 @@
 .about-us-container {
   margin-top: 60px;
   padding: 50px;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .about-us-header {
@@ -13,11 +15,14 @@
 .about-us-header h1 {
   font-size: 2.5rem;
   color: #333;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
 }
 
 .about-us-header p {
   font-size: 1.2rem;
   color: #666;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .about-us-content {
@@ -27,21 +32,30 @@
 }
 
 .about-us-description, .about-us-mission, .about-us-vision {
-  background-color: #fff;
+  background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us-description:hover, .about-us-mission:hover, .about-us-vision:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .about-us-description h2, .about-us-mission h2, .about-us-vision h2 {
   font-size: 1.8rem;
   color: #6a11cb;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
 }
 
 .about-us-description p, .about-us-mission p, .about-us-vision p {
   font-size: 1rem;
   color: #444;
   line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .about-us-footer {
@@ -52,15 +66,18 @@
 .about-us-footer p {
   font-size: 1.1rem;
   color: #333;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* Simple fade-in animation */
 @keyframes fadeIn {
   0% {
       opacity: 0;
+      transform: translateY(20px);
   }
   100% {
       opacity: 1;
+      transform: translateY(0);
   }
 }
 

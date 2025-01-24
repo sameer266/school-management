@@ -27,8 +27,8 @@ const Navbar = () => {
   const handleOnLogout = () => {
 
     localStorage.clear();
-    window.location.reload();
     navigate("/");
+    window.location.reload();
   };
 
 
@@ -121,11 +121,11 @@ const Navbar = () => {
 
         {/* Login button  and Logout*/}
         {isAuthenticated ? (
-          <div className="login-button">
+          <div className="login-button" style={{cursor:"pointer"}}>
             <a onClick={handleOnLogout}>Logout</a>
           </div>
         ) : (
-          <div className="login-button">
+          <div className="login-button" >
             <Link to="/login">Login</Link>
           </div>
         )}

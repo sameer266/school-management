@@ -1,13 +1,21 @@
-/* General Styles */
-body {
-  font-family: 'Arial', sans-serif;
+/* Variables */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --accent-color: #f39c12;
+  --light-color: #fafafa;
+  --dark-color: #333;
+  --text-color: #555;
+  --background-gradient: linear-gradient(135deg, #7ef310, #2575fc, #ff512f, #f90f79);
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition: 0.3s ease;
 }
 
 /* Home Container */
 .home {
   width: 100%;
   overflow-x: hidden;
-  background: linear-gradient(135deg, #7ef310, #2575fc, #ff512f, #f90f79);
+  background: var(--background-gradient);
   background-size: 400% 400%;
   animation: gradientBackground 8s ease infinite;
 }
@@ -40,6 +48,17 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  filter: brightness(0.5);
+  animation: brightenImage 2s forwards;
+}
+
+@keyframes brightenImage {
+  0% {
+    filter: brightness(0.5);
+  }
+  100% {
+    filter: brightness(1);
+  }
 }
 
 .hero-overlay {
@@ -48,21 +67,17 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(255, 100, 65, 0.7), rgba(255, 99, 71, 0));
-  background-size: 200% 200%;
-  animation: gradientAnimation 8s ease infinite;
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.247);
+  opacity: 0;
+  animation: fadeInOverlay 2s forwards;
 }
 
-@keyframes gradientAnimation {
+@keyframes fadeInOverlay {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    opacity: 0;
   }
   100% {
-    background-position: 0% 50%;
+    opacity: 1;
   }
 }
 
@@ -138,7 +153,7 @@ body {
 /* Gallery Section */
 .gallery-container {
   padding: 60px 10%;
-  background-color: #f9f9f9;
+  background-color: var(--light-color);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -147,7 +162,7 @@ body {
 .gallery-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #333;
+  color: var(--dark-color);
   margin-bottom: 40px;
   position: relative;
   display: inline-block;
@@ -166,7 +181,7 @@ body {
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
   position: relative;
   overflow: hidden;
   background-color: #fff;
@@ -181,7 +196,7 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition);
 }
 
 .gallery-item:hover::before {
@@ -199,7 +214,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform var(--transition), filter var(--transition);
 }
 
 .gallery-item:hover img {
@@ -226,17 +241,17 @@ body {
 .school-overview {
   padding: 60px 30px;
   text-align: center;
-  background-color: #fafafa;
+  background-color: var(--light-color);
   margin-bottom: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 .school-overview h2 {
   font-size: 2.4rem;
   margin-bottom: 20px;
   font-weight: bold;
-  color: #333;
+  color: var(--dark-color);
 }
 
 .school-overview p {
@@ -255,7 +270,7 @@ body {
   padding: 60px 30px;
   background-color: #f0f0f0;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 .mission, .vision {
@@ -266,7 +281,7 @@ body {
   font-size: 2rem;
   margin-bottom: 15px;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--secondary-color);
 }
 
 .mission p, .vision p {
@@ -278,17 +293,17 @@ body {
 /* Facilities */
 .facilities {
   padding: 60px 30px;
-  background-color: #fafafa;
+  background-color: var(--light-color);
   margin-bottom: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 .facilities h2 {
   font-size: 2.4rem;
   margin-bottom: 25px;
   font-weight: bold;
-  color: #333;
+  color: var(--dark-color);
 }
 
 .facilities ul {
@@ -300,7 +315,7 @@ body {
 .facilities li {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #555;
+  color: var(--text-color);
   margin-bottom: 15px;
   padding-left: 25px;
   position: relative;
@@ -310,7 +325,7 @@ body {
   content: '✔';
   position: absolute;
   left: 0;
-  color: #3498db;
+  color: var(--primary-color);
   font-size: 1.5rem;
   top: 0;
 }
@@ -321,14 +336,14 @@ body {
   background-color: #e7e7e7;
   margin-bottom: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 .achievements h2 {
   font-size: 2.4rem;
   margin-bottom: 25px;
   font-weight: bold;
-  color: #333;
+  color: var(--dark-color);
 }
 
 .achievements ul {
@@ -340,7 +355,7 @@ body {
 .achievements li {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #555;
+  color: var(--text-color);
   margin-bottom: 15px;
   padding-left: 25px;
   position: relative;
@@ -350,7 +365,7 @@ body {
   content: '🏆';
   position: absolute;
   left: 0;
-  color: #f39c12;
+  color: var(--accent-color);
   font-size: 1.5rem;
   top: 0;
 }

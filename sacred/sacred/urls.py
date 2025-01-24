@@ -28,7 +28,7 @@ urlpatterns = [
     path('forget_password/',views.ForgetPassword.as_view()),
     path('student/',include('students.urls')),
     path('staff/',include('staff.urls')),
-    path('adminHOD/',include('adminHOD.urls')),
+    path('adminHod/',include('adminHOD.urls')),
     
     
   

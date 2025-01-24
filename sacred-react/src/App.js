@@ -7,9 +7,9 @@ import { BrowserRouter as Router,Route,Routes } from "react-router-dom";
 import Programs from "./pages/Programs";
 import ContactUs from "./pages/ContactUs";
 import Login from "./pages/Login";
-import AdminHod from "./pages/dashboard/AdminHod";
-import Staff from "./pages/dashboard/Staff";
-import Student from "./pages/dashboard/Student";
+import AdminHod from "./pages/dashboard/adminHod/AdminHod";
+import Staff from "./pages/dashboard/staff/Staff";
+import Student from "./pages/dashboard/student/Student";
 
 
 function App() {

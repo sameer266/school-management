@@ -1,7 +1,8 @@
 import React from 'react';
 import '../style/pages_css/home.css'; // Import CSS file
 
-import Home_Img from '../images/school_photo.jpg'; // Replace with your hero image
+// Import images
+import Home_Img from '../images/school_photo.jpg';
 import img1 from '../images/img1.jpg';
 import img2 from '../images/img2.jpg';
 import img3 from '../images/img3.jpg';
@@ -79,10 +80,6 @@ function Home() {
           <img src={img6} alt="Gallery 5" className="gallery-item" />
         </div>
       </div>
-
-
-     
-
     </div>
   );
 }
