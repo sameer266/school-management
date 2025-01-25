@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lvvwz1&6vy5s=f@^bnn)tiu6*jvr$b8)v#0@l7#$zodm@1y$#s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','192.168.254.30']
 
 
 # Application definition
@@ -126,11 +126,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# settings.py
+
+TIME_ZONE = 'Asia/Kathmandu'  # Nepal's timezone
+USE_TZ = True  # Enable timezone-aware datetime
+TIME_FORMAT = 'h:i A'
 
 USE_I18N = True
 
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -155,37 +158,25 @@ AUTH_USER_MODEL = 'customuser.CustomUser'
 
 
 
-# Django REST Framework settings
-
-REST_FRAMEWORK = {
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',  # Use Basic Authentication
-    ],
-  
-}
-
 
 
 # CORS Headers settings
 # --------Cors header-------
+
+# --------Cors header-------
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    # Add other allowed origins here
-]
-
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
+    "http://192.168.254.30:3000",
+    
 ]
+
+
+
+
+
 

@@ -1,0 +1,128 @@
+/* Bill Page Container */
+.bill-page-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 100px auto;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.bill-page-container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Bill List */
+.bill-list {
+    margin-top: 30px;
+}
+
+/* Bill Item */
+.bill-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.bill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Bill Header */
+.bill-item h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.bill-item p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #7f8c8d;
+}
+
+.bill-item p strong {
+    font-weight: 600;
+}
+
+/* Bill Amount */
+.bill-item .amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #27ae60; /* Green for positive amount */
+}
+
+/* Paid Status */
+.bill-item .paid-status {
+    font-weight: 600;
+}
+
+.bill-item .paid-status.true {
+    color: #27ae60; /* Green */
+}
+
+.bill-item .paid-status.false {
+    color: #e74c3c; /* Red */
+}
+
+/* Payment Date */
+.bill-item .payment-date {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2980b9;
+}
+
+/* Back Button */
+.back-button-container {
+    margin-bottom: 20px;
+}
+
+/* Mobile Responsive Styling */
+@media (max-width: 768px) {
+    .bill-page-container {
+        padding: 15px;
+    }
+
+    .bill-item {
+        padding: 15px;
+    }
+
+    .bill-item h3 {
+        font-size: 1.6rem;
+    }
+
+    .bill-item p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bill-page-container {
+        padding: 10px;
+    }
+
+    .bill-item {
+        padding: 10px;
+    }
+
+    .bill-item h3 {
+        font-size: 1.4rem;
+    }
+
+    .bill-item p {
+        font-size: 0.8rem;
+    }
+}

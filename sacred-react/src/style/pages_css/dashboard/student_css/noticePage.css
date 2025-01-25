@@ -1,0 +1,181 @@
+/* noticePage.css */
+
+/* Variables */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #222;
+    --background-color: #f5f7fa;
+    --text-color: #444;
+    --error-color: #e74c3c;
+    --font-family: 'Arial', sans-serif;
+    --font-size-large: 2.2rem;
+    --font-size-medium: 1.6rem;
+    --font-size-small: 1.1rem;
+    --font-size-xsmall: 1rem;
+}
+
+/* General Styles */
+.notice-page {
+    margin-top: 100px;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+.notice-page h2 {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-size: var(--font-size-large);
+    font-weight: bold;
+}
+
+.notice-page .notice-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+.notice-page .error-message {
+    color: var(--error-color);
+    font-size: var(--font-size-xsmall);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Filter Section */
+.notice-page .filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.notice-page .filter-section label {
+    font-size: var(--font-size-small);
+    color: var(--text-color);
+}
+
+.notice-page .filter-section select {
+    padding: 10px;
+    font-size: var(--font-size-xsmall);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.notice-page .filter-section select:focus {
+    border-color: var(--primary-color);
+    background-color: #fff;
+}
+
+/* Notice Item */
+.notice-page .notice-item {
+    background: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notice-page .notice-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notice-page .notice-item h3 {
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    font-size: var(--font-size-medium);
+    font-weight: bold;
+}
+
+.notice-page .notice-item p {
+    margin: 8px 0;
+    color: #555;
+    line-height: 1.6;
+}
+
+.notice-page .notice-item p strong {
+    color: var(--secondary-color);
+}
+
+/* Notice Image */
+.notice-page .notice-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.notice-page .notice-image:hover {
+    transform: scale(1.02);
+}
+
+/* No Notices Message */
+.notice-page .no-notices {
+    text-align: center;
+    color: #999;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/* In noticePage.css */
+.status {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .status span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .status span svg {
+    margin-right: 8px;
+  }
+  
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .notice-page h2 {
+        font-size: 1.8rem;
+    }
+
+    .notice-page .notice-container {
+        padding: 15px;
+    }
+
+    .notice-page .notice-item {
+        padding: 15px;
+    }
+
+    .notice-page .notice-item h3 {
+        font-size: 1.4rem;
+    }
+
+    .notice-page .filter-section {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notice-page .notice-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .notice-page .notice-item p {
+        font-size: 0.95rem;
+    }
+}

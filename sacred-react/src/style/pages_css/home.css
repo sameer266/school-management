@@ -5,8 +5,9 @@
   --accent-color: #f39c12;
   --light-color: #fafafa;
   --dark-color: #333;
-  --text-color: #555;
-  --background-gradient: linear-gradient(135deg, #7ef310, #2575fc, #ff512f, #f90f79);
+  --text-color: #ffffff;  /* Change text color to white */
+  --background-color: #222;  /* Change background to #222 */
+  --background-gradient: #222;
   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --transition: 0.3s ease;
 }
@@ -18,6 +19,7 @@
   background: var(--background-gradient);
   background-size: 400% 400%;
   animation: gradientBackground 8s ease infinite;
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 /* Background Gradient Animation */
@@ -39,6 +41,7 @@
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 .hero-image {
@@ -139,21 +142,11 @@
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* Responsive Hero Text */
-@media (max-width: 768px) {
-  .hero-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero-text p {
-    font-size: 1.2rem;
-  }
-}
-
 /* Gallery Section */
 .gallery-container {
   padding: 60px 10%;
-  background-color: var(--light-color);
+  background-color: var(--background-color);  /* Background changed to dark color */
+  color: var(--text-color);  /* Ensure text is white */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -162,7 +155,7 @@
 .gallery-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--dark-color);
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 40px;
   position: relative;
   display: inline-block;
@@ -222,26 +215,12 @@
   filter: brightness(1.15);
 }
 
-/* Responsive Gallery */
-@media (max-width: 768px) {
-  .gallery-container {
-    padding: 40px 5%;
-  }
-
-  .gallery-title {
-    font-size: 2rem;
-  }
-
-  .gallery-item {
-    height: 200px;
-  }
-}
-
 /* School Overview */
 .school-overview {
   padding: 60px 30px;
   text-align: center;
-  background-color: var(--light-color);
+  background-color: var(--background-color);  /* Background changed to dark color */
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 40px;
   border-radius: 8px;
   box-shadow: var(--box-shadow);
@@ -251,13 +230,13 @@
   font-size: 2.4rem;
   margin-bottom: 20px;
   font-weight: bold;
-  color: var(--dark-color);
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 .school-overview p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #666;
+  color: var(--text-color);  /* Ensure text is white */
   max-width: 900px;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -268,7 +247,8 @@
   display: flex;
   justify-content: space-between;
   padding: 60px 30px;
-  background-color: #f0f0f0;
+  background-color: var(--background-color);  /* Background changed to dark color */
+  color: var(--text-color);  /* Ensure text is white */
   border-radius: 8px;
   box-shadow: var(--box-shadow);
 }
@@ -281,19 +261,20 @@
   font-size: 2rem;
   margin-bottom: 15px;
   font-weight: bold;
-  color: var(--secondary-color);
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 .mission p, .vision p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #7f8c8d;
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 /* Facilities */
 .facilities {
   padding: 60px 30px;
-  background-color: var(--light-color);
+  background-color: var(--background-color);  /* Background changed to dark color */
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 40px;
   border-radius: 8px;
   box-shadow: var(--box-shadow);
@@ -303,7 +284,7 @@
   font-size: 2.4rem;
   margin-bottom: 25px;
   font-weight: bold;
-  color: var(--dark-color);
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 .facilities ul {
@@ -315,7 +296,7 @@
 .facilities li {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: var(--text-color);
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 15px;
   padding-left: 25px;
   position: relative;
@@ -333,7 +314,8 @@
 /* Achievements */
 .achievements {
   padding: 60px 30px;
-  background-color: #e7e7e7;
+  background-color: var(--background-color);  /* Background changed to dark color */
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 40px;
   border-radius: 8px;
   box-shadow: var(--box-shadow);
@@ -343,7 +325,7 @@
   font-size: 2.4rem;
   margin-bottom: 25px;
   font-weight: bold;
-  color: var(--dark-color);
+  color: var(--text-color);  /* Ensure text is white */
 }
 
 .achievements ul {
@@ -355,7 +337,7 @@
 .achievements li {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: var(--text-color);
+  color: var(--text-color);  /* Ensure text is white */
   margin-bottom: 15px;
   padding-left: 25px;
   position: relative;

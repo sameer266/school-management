@@ -12,8 +12,16 @@ from attendence.models import Attendence
 from students.models import Students, LeaveReportStudent
 from accounts.models import Bill
 
+
+from  rest_framework.authentication import BasicAuthentication,SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+
 # ==== Student Home Page =========
 class StudentHomePage(APIView):
+    authentication_classes = [BasicAuthentication,SessionAuthentication]
+    permission_classes=[IsAuthenticated]
+    
     def get(self, request):
         """
         Retrieve student profile, total attendance, and total leaves.
@@ -21,6 +29,7 @@ class StudentHomePage(APIView):
         try:
             user = request.user
             student = Students.objects.get(name=user)
+            total_absence = Attendence.objects.filter(student=student, status=False).count()
             total_attendance = Attendence.objects.filter(student=student).count()
             total_leaves = LeaveReportStudent.objects.filter(student=student).count()
             serializer = StudentsSerializer(student)
@@ -28,7 +37,8 @@ class StudentHomePage(APIView):
                 "success": True,
                 "message": serializer.data,
                 "total_attendance": total_attendance,
-                "total_leaves": total_leaves
+                "total_leaves": total_leaves,
+                "total_absence": total_absence
             }, status=200)
         except Students.DoesNotExist:
             return Response({"success": False, "message": "Student profile not found."}, status=400)
@@ -37,11 +47,15 @@ class StudentHomePage(APIView):
 
 # ======== To fetch student attendance and display data by date ========
 class StudentAttendance(APIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes=[IsAuthenticated]
+    
     def get(self, request):
         """
         Retrieve all attendance records for the logged-in student.
         """
         user = request.user
+        print("User",user)
         try:
             student = Students.objects.get(name=user)
             attendance = Attendence.objects.filter(student=student)
@@ -69,6 +83,19 @@ class StudentAttendance(APIView):
         except Students.DoesNotExist:
             return Response({"success": False, "message": "Student profile not found."}, status=404)
 
+
+# ======== To fetch student leave report ========
+class StudentLeaveReport(APIView):
+    def get(self,request):
+        user=request.user
+        try:
+            student=Students.objects.get(name=user)
+            leave_report=LeaveReportStudent.objects.filter(student=student).order_by('-updated_at')
+            serializer=LeaveReportStudentSerializer(leave_report,many=True)
+            return Response({"success":True,"data":serializer.data},status=200)
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+
 # ======== Apply for Leave ========
 class StudentApplyLeave(APIView):
     def post(self, request):
@@ -76,14 +103,17 @@ class StudentApplyLeave(APIView):
         Submit a leave application for the logged-in student.
         """
         user = request.user
-        message = request.data.get('message')
-
-        if not message:
-            return Response({"success": False, "message": "Message is required."}, status=400)
+        leave_message = request.data.get('leave_message')
+        start_date=request.data.get('leave_start_date')
+        end_date=request.data.get('leave_end_date')
+        
+        leave_start_date=datetime.strptime(start_date,'%Y-%m-%d').date()
+        leave_end_date=datetime.strptime(end_date,'%Y-%m-%d').date()
 
         try:
             student = Students.objects.get(name=user)
-            leave_application = LeaveReportStudent.objects.create(name=student, message=message)
+            
+            leave_application = LeaveReportStudent.objects.create(student=student,leave_start_date=leave_start_date,leave_end_date=leave_end_date, leave_message=leave_message)
             serializer = LeaveReportStudentSerializer(leave_application)
             return Response({"success": True, "data": serializer.data, "message": "Leave application submitted."}, status=201)
         except Students.DoesNotExist:
@@ -180,7 +210,7 @@ class StudentBill(APIView):
         user = request.user
         try:
             student = Students.objects.get(name=user)
-            bills = Bill.objects.filter(student=student).order_by('date_due')
+            bills = Bill.objects.filter(student=student).order_by('due_date')
             serializer = BillSerializer(bills, many=True)
             return Response({"success": True, "data": serializer.data}, status=200)
         except Students.DoesNotExist:
@@ -188,13 +218,13 @@ class StudentBill(APIView):
 
 # ======== Students Homework ========
 class StudentHomework(APIView):
-    parser_classes = [MultiPartParser, FormParser]
-
+   
     def get(self, request):
         """
         Retrieve all homework for the class of the logged-in student.
         """
         user = request.user
+        print(user)
         try:
             student = Students.objects.get(name=user)
             homework = Homework.objects.filter(class_id=student.class_id)

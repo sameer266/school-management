@@ -14,7 +14,7 @@ class Staffs(models.Model):
     )
     address = models.TextField()
     contact_number = models.CharField(max_length=10)
-    profile_picture = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to="staff_img/",blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -8,7 +8,7 @@ from subjects.models import Subjects
 
 class Exam(models.Model):
     class_id=models.OneToOneField(ClassModel,on_delete=models.CASCADE)
-    image=models.TextField()
+    image=models.ImageField(upload_to='exam_img',blank=True,null=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateField(auto_now=True)
     
@@ -20,7 +20,7 @@ class ExamResult(models.Model):
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)  # Subject for the marks
     marks_obtained = models.FloatField()  # Marks scored by the student in the subject
     grade = models.CharField(max_length=2, blank=True, null=True)  # Grade based on marks (e.g., A, B, C, etc.)
-    image=models.TextField(null=True,blank=True) #optional
+    image=models.ImageField(upload_to="result_img/",null=True,blank=True) #optional
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

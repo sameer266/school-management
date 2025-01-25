@@ -3,17 +3,19 @@ import axios from "axios";
 // Base URL for the API
 const baseUrl = "http://127.0.0.1:8000";
 
-// Extract CSRF token from cookies
-const csrfToken = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("csrftoken"))
-    ?.split("=")[1];
+
+// Retrieve CSRF token
+const csrfToken =  document.cookie.match(/csrftoken=([^;]+)/)?.[1];
 
 // Function to fetch student home data
 const Student_Home = async () => {
     try {
         const response = await axios.get(`${baseUrl}/student/`, {
-            withCredentials: true,
+            headers: {
+                "X-CSRFToken": csrfToken,
+                "Content-Type": "application/json"
+            },
+            withCredentials: true
         });
         return response.data;
     } catch (error) {
@@ -40,7 +42,7 @@ const Student_Update_Profile = async (data) => {
 // Function to view student attendance
 const Student_View_Attendance = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/student/attendance`, {
+        const response = await axios.get(`${baseUrl}/student/student_view_attendance`, {
             withCredentials: true,
         });
         return response.data;
@@ -76,7 +78,7 @@ const Student_View_Bill = async () => {
 // Function to view student library data
 const Student_View_Library = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/student_view_library`, {
+        const response = await axios.get(`${baseUrl}/student/student_view_library`, {
             withCredentials: true,
         });
         return response.data;
@@ -86,7 +88,7 @@ const Student_View_Library = async () => {
 };
 
 // Function to fetch student notices
-const student_Notice = async () => {
+const Student_Notice = async () => {
     try {
         const response = await axios.get(`${baseUrl}/student/student_notice`, {
             withCredentials: true,
@@ -97,13 +99,29 @@ const student_Notice = async () => {
     }
 };
 
+
+// Function to get  Student leave report
+const Student_Leave_Report = async () => {
+    try{
+        const response = await axios.get(`${baseUrl}/student/student_leave_report`, {
+            withCredentials: true,
+        });
+        return response.data;
+    }
+catch (error) {
+    console.error("Error in fetching student leave report", error.response?.data?.message);
+    }
+}
+
 // Function to apply for leave
 const Student_Apply_Leave = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/student/student_apply_leave`, data, {
+        const response = await axios.post(`${baseUrl}/student/student_apply_leave/`, 
+            data,
+             {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application/json",
+                
             },
             withCredentials: true,
         });
@@ -116,7 +134,7 @@ const Student_Apply_Leave = async (data) => {
 // Function to view student homework
 const Student_View_HomeWork = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/student/student_view_homework`, {
+        const response = await axios.get(`${baseUrl}/student/student_view_homework/`, {
             withCredentials: true,
         });
         return response.data;
@@ -124,6 +142,8 @@ const Student_View_HomeWork = async () => {
         console.error("Error in fetching student homework data", error.response?.data?.message);
     }
 };
+
+
 
 // Function to submit student homework
 const Student_Submit_HomeWork = async (data) => {
@@ -149,7 +169,8 @@ export {
     Student_View_Result,
     Student_View_Bill,
     Student_View_Library,
-    student_Notice,
+    Student_Notice,
+    Student_Leave_Report,
     Student_Apply_Leave,
     Student_View_HomeWork,
     Student_Submit_HomeWork,

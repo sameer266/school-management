@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from  rest_framework.authentication import BasicAuthentication
+from  rest_framework.authentication import BasicAuthentication,SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class Home(APIView):
@@ -10,7 +11,8 @@ class Home(APIView):
 
 
 class Login(APIView):
-
+    authentication_classes = [BasicAuthentication,SessionAuthentication]
+    
     def post(self, request):
         try:
             print(request.data)

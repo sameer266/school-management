@@ -5,15 +5,16 @@ from students.models import Students
 from classes.models import ClassModel
 # Create your models here.
 class Homework(models.Model):
-    title=models.CharField(max_length=255)
+    subject=models.CharField(max_length=100)
     description=models.TextField()
+    image=models.ImageField(upload_to="hw_img/",null=True,blank=True)
     class_id=models.ForeignKey(ClassModel,on_delete=models.CASCADE)
     due_date=models.DateTimeField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"Homework: {self.title} for Class {self.class_id}"
+        return f"Homework: {self.subject} Subject for Class {self.class_id.name}"
     
     
 status_choice=[('pending','Pending'), ('submitted','Submitted')]
@@ -21,7 +22,7 @@ class HomeworkSubmission(models.Model):
     student=models.ForeignKey(Students,on_delete=models.CASCADE)
     homework=models.ForeignKey(Homework,on_delete=models.CASCADE)
     submssion_date=models.DateTimeField(default=datetime.now())
-    submssion_file=models.TextField()
+    image=models.ImageField(upload_to="hw_submitted_img/",null=True,blank=True)
     status=models.CharField(max_length=10,choices=status_choice,default='pending')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

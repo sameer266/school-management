@@ -1,0 +1,152 @@
+/* General Container */
+.homework-container {
+  padding: 2.5rem;
+  max-width: 90%;
+  margin:100px 3rem auto;
+  font-family: 'Roboto', sans-serif;
+  background: #f4f7fa;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.homework-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Homework Card */
+.homework-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.homework-card:hover {
+  transform: translateY(-0.625rem);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.homework-card h3 {
+  font-size: 1.6rem;
+  color: #4e4e4e;
+  margin-bottom: 1rem;
+}
+
+.homework-card p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.homework-card img {
+  width: 100%;
+  max-width: 25rem;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1.25rem;
+}
+
+/* Textarea Styling */
+.homework-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.homework-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button Styling */
+.submit-homework-button,
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  margin-top: 0.625rem;
+}
+
+.submit-homework-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.submit-homework-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-0.125rem);
+}
+
+.submit-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:enabled {
+  background-color: #218838;
+  transform: translateY(-0.125rem);
+}
+
+/* Loading / No Homework Found */
+.no-homework-message {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #888;
+  margin-top: 1.25rem;
+  font-style: italic;
+}
+
+/* Due Date Styling */
+.homework-card .due-date {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .homework-container {
+    margin-top: 100px;
+    padding: 1.5rem;
+  }
+
+  .homework-card {
+    padding: 1rem;
+  }
+
+  .homework-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .homework-card p {
+    font-size: 0.9rem;
+  }
+
+  .submit-homework-button,
+  .submit-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}

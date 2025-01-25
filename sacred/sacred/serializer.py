@@ -204,8 +204,8 @@ class NoticeSerializer(serializers.ModelSerializer):
 
 # Homework Serializer
 class HomeworkSerializer(serializers.ModelSerializer):
-    subject = SubjectsSerializer()  # Include nested subject data
-
+    
+    class_id=ClassModelSerializer()
     class Meta:
         model = Homework
         fields = '__all__'

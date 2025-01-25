@@ -10,7 +10,9 @@ urlpatterns = [
     path('student_view_attendance/', views.StudentAttendance.as_view(), name='student_view_attendance'),  # View student attendance
     path('student_view_attendance_post/', views.StudentAttendance.as_view(), name='student_view_attendance_post'),  # Get attendance for selected date
 
+
     # ==== Student Leave Application ====
+    path('student_leave_report/', views.StudentLeaveReport.as_view(), name='syudent_leave_report'),  # View student leave report
     path('student_apply_leave/', views.StudentApplyLeave.as_view(), name='student_apply_leave'),  # Apply for leave
 
     # ==== Student Profile ====
@@ -27,7 +29,7 @@ urlpatterns = [
     path('student_notice/', views.StudentNotice.as_view(), name='student_notice'),  # Get active notices
     
     # ==== Student Bills ====
-    path('student_bill/', views.StudentNotice.as_view(), name='student_bill'),  # View student bills (Notice class used for now)
+    path('student_bill/', views.StudentBill.as_view(), name='student_bill'),  # View student bills (Notice class used for now)
     
     # ==== Student Homework ====
     path('student_view_homework/', views.StudentHomework.as_view(), name='student_view_homework'),  # View homework assignments

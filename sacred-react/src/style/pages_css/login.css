@@ -142,3 +142,11 @@
     text-decoration: underline;
   }
   
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full-screen height for loader */
+  }
+  

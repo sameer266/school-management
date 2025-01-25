@@ -14,23 +14,27 @@
     transition: width 0.3s ease, background 0.3s ease;
 }
 
+/* Style for sidebar links */
 .sidebar a {
     text-decoration: none;
     color: #fff;
     padding: 15px 20px;
-    display: block;
+    display: flex;
+    align-items: center;
     font-size: 16px;
     transition: background-color 0.3s ease, padding-left 0.3s ease, color 0.3s ease;
     border-radius: 4px;
     margin: 5px 10px;
 }
 
+/* Sidebar link hover effect */
 .sidebar a:hover {
     background-color: #34495e;
     padding-left: 30px;
     color: #ecf0f1;
 }
 
+/* Add dot before link on hover */
 .sidebar a::before {
     content: '•';
     color: #ecf0f1;
@@ -41,6 +45,19 @@
 
 .sidebar a:hover::before {
     opacity: 1;
+}
+
+/* Style for the sidebar icons */
+.sidebar-icon {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+/* Icon color change on hover */
+.sidebar a:hover .sidebar-icon {
+    color: #3498db;  /* Change to a light blue on hover */
 }
 
 /* Responsive Sidebar for smaller screens */
@@ -67,5 +84,9 @@
         padding: 10px;
         font-size: 14px;
         margin: 0;
+    }
+
+    .sidebar .sidebar-icon {
+        font-size: 1.1rem; /* Smaller icons for smaller screens */
     }
 }
