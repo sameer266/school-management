@@ -3,6 +3,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import '../../../style/pages_css/dashboard/student_css/applyLeave.css'; // Custom styling
 import BackButton from '../../../components/BackButton';
 import { Student_Leave_Report, Student_Apply_Leave } from '../../../api_Data/student_api';
+import { FaCalendarAlt, FaCheckCircle, FaTimesCircle, FaInfoCircle } from 'react-icons/fa'; // Icons for better UI
+import { Sidebar } from 'lucide-react';
+
 
 function ApplyLeave() {
   // State for form data
@@ -57,8 +60,8 @@ function ApplyLeave() {
       setTimeout(() => {
         // Reload the page to show saved data (this will call the useEffect hook to fetch new data)
         window.location.reload();
-      }, 4000);  // 4 seconds delay
-      notify("Leave Report Submit Successfully");
+      }, 4000); // 4 seconds delay
+      notify("Leave application submitted successfully!");
       setFormData({
         leave_start_date: '',
         leave_end_date: '',
@@ -70,12 +73,18 @@ function ApplyLeave() {
   return (
     <>
       <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
-      <BackButton />
+      <BackButton/>
       <div className="apply-leave-container">
-        <h2 className="apply-leave-title">Apply for Leave</h2>
+        <h2 className="apply-leave-title">
+          <FaCalendarAlt /> Apply for Leave
+        </h2>
+
+        {/* Leave Application Form */}
         <form className="leave-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="startDate">Start Date</label>
+            <label htmlFor="startDate">
+              <FaCalendarAlt /> Start Date
+            </label>
             <input
               type="date"
               id="startDate"
@@ -86,7 +95,9 @@ function ApplyLeave() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="endDate">End Date</label>
+            <label htmlFor="endDate">
+              <FaCalendarAlt /> End Date
+            </label>
             <input
               type="date"
               id="endDate"
@@ -97,7 +108,9 @@ function ApplyLeave() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="reason">Reason for Leave</label>
+            <label htmlFor="reason">
+              <FaInfoCircle /> Reason for Leave
+            </label>
             <textarea
               id="reason"
               name="leave_message"
@@ -134,7 +147,21 @@ function ApplyLeave() {
                     <td>{leave.leave_start_date}</td>
                     <td>{leave.leave_end_date}</td>
                     <td>{leave.leave_message}</td>
-                    <td>{leave.leave_status}</td>
+                    <td>
+                      {leave.leave_status === 'approved' ? (
+                        <span className="status-approved">
+                          <FaCheckCircle /> Approved
+                        </span>
+                      ) : leave.leave_status === 'pending' ? (
+                        <span className="status-pending">
+                          <FaInfoCircle /> Pending
+                        </span>
+                      ) : (
+                        <span className="status-rejected">
+                          <FaTimesCircle /> Rejected
+                        </span>
+                      )}
+                    </td>
                     <td>{new Date(leave.created_at).toLocaleString()}</td>
                   </tr>
                 ))}

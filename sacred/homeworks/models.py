@@ -17,13 +17,13 @@ class Homework(models.Model):
         return f"Homework: {self.subject} Subject for Class {self.class_id.name}"
     
     
-status_choice=[('pending','Pending'), ('submitted','Submitted')]
+
 class HomeworkSubmission(models.Model):
     student=models.ForeignKey(Students,on_delete=models.CASCADE)
     homework=models.ForeignKey(Homework,on_delete=models.CASCADE)
     submssion_date=models.DateTimeField(default=datetime.now())
     image=models.ImageField(upload_to="hw_submitted_img/",null=True,blank=True)
-    status=models.CharField(max_length=10,choices=status_choice,default='pending')
+    status=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     

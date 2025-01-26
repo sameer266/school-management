@@ -1,205 +1,164 @@
-/* General Styling */
+/* General Styles */
 .attendance-container {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
+  
+    max-width: 1200px;
+    margin:100px auto 0 auto;
     padding: 20px;
-    gap: 20px; /* Space between child elements */
-}
-
-.attendance-container .section-title {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .attendance-container h2 {
     text-align: center;
+    font-size: 2.5rem;
+    color: #2575fc;
     margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #2c3e50; /* Darker color for the title */
-}
-
-.attendance-container h2{
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #2c3e50; /* Darker color for the title */
-}
-.react-calendar__navigation{
-    font-size: 35px;
-}
-
-/* Calendar Section */
-.calendar-section {
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.calendar-section .calendar-title {
+  }
+  
+  /* Calendar Section */
+  .calendar-section {
+    margin-bottom: 40px;
+  }
+  
+  .calendar-section h3 {
     font-size: 1.5rem;
+    color: #333;
     margin-bottom: 15px;
-    font-weight: 500;
-    color: #34495e; /* Slightly muted color */
-}
-
-/* Attendance Summary Section */
-.attendance-summary {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.attendance-summary .status-card {
-    background-color: #ecf0f1;
-    border-radius: 12px;
+  }
+  
+  .custom-calendar {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.attendance-summary .status-card h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.attendance-summary .present {
-    color: green;
-    font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 5px;
-    background-color: #dff0d8;
-}
-
-.attendance-summary .absent {
-    color: red;
-    font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 5px;
-    background-color: #f2dede;
-}
-
-.attendance-summary .absences-summary {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #7f8c8d;
-}
-
-/* Calendar Tile Styling */
-.attendance-tile {
-    color: #780000;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Attendance Tile */
+  .attendance-tile {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.attendance-tile .holiday {
-    color: #000000;
-    font-weight: bold;
-}
-
-/* Status (Present and Absent) Styling */
-.attendance-tile .status {
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 8px;
-}
-
-.attendance-tile .status.present {
-    background-color: #dff0d8;
+    height: 100%;
+  }
+  
+  .present {
     color: green;
-}
-
-.attendance-tile .status.absent {
-    background-color: #f2dede;
+  }
+  
+  .absent {
     color: red;
-}
-
-/* Hover Effects for Tiles */
-.attendance-tile:hover {
-    background-color: #eaeaea;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-/* Hover Effects */
-.attendance-summary .status-card:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    transition: box-shadow 0.3s ease;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .attendance-container {
-        padding: 15px;
+  }
+  
+  .holiday {
+    color: #ff9800;
+  }
+  
+  .present-text,
+  .absent-text {
+    font-weight: bold;
+  }
+  
+  /* Attendance Summary */
+  .attendance-summary {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .attendance-summary h3 {
+    font-size: 1.8rem;
+    color: #2575fc;
+    margin-bottom: 20px;
+  }
+  
+  .status-card {
+    margin-bottom: 20px;
+  }
+  
+  .status-card h4 {
+    font-size: 1.5rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .status-card .present {
+    color: green;
+  }
+  
+  .status-card .absent {
+    color: red;
+  }
+  
+  .remarks {
+    font-size: 1.1rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .absences-summary {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .attendance-container h2 {
+      font-size: 2rem;
     }
-
-    .attendance-container .section-title {
-        font-size: 1.8rem;
+  
+    .calendar-section h3 {
+      font-size: 1.3rem;
     }
-
-    .calendar-section .calendar-title {
-        font-size: 1.3rem;
+  
+    .attendance-summary h3 {
+      font-size: 1.5rem;
     }
-
-    .attendance-summary .status-card h4 {
-        font-size: 1.3rem;
+  
+    .status-card h4 {
+      font-size: 1.3rem;
     }
-
-    .attendance-summary .absences-summary {
-        font-size: 1.1rem;
+  
+    .remarks {
+      font-size: 1rem;
     }
-}
-
-@media (max-width: 768px) {
-    .attendance-container {
-        padding: 10px;
+  
+    .absences-summary {
+      font-size: 1.1rem;
     }
-
-    .attendance-container .section-title {
-        font-size: 1.6rem;
+  }
+  
+  @media (max-width: 480px) {
+    .attendance-container h2 {
+      font-size: 1.8rem;
     }
-
-    .calendar-section .calendar-title {
-        font-size: 1.2rem;
+  
+    .calendar-section h3 {
+      font-size: 1.2rem;
     }
-
-    .attendance-summary .status-card h4 {
-        font-size: 1.2rem;
+  
+    .attendance-summary h3 {
+      font-size: 1.3rem;
     }
-
-    .attendance-summary .absences-summary {
-        font-size: 1rem;
+  
+    .status-card h4 {
+      font-size: 1.1rem;
     }
-}
-
-@media (max-width: 480px) {
-    .attendance-container {
-        padding: 5px;
+  
+    .remarks {
+      font-size: 0.9rem;
     }
-
-    .attendance-container .section-title {
-        font-size: 1.4rem;
+  
+    .absences-summary {
+      font-size: 1rem;
     }
-
-    .calendar-section .calendar-title {
-        font-size: 1rem;
-    }
-
-    .attendance-summary .status-card h4 {
-        font-size: 1rem;
-    }
-
-    .attendance-summary .absences-summary {
-        font-size: 0.9rem;
-    }
-}
+  }

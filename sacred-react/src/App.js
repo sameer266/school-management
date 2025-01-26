@@ -17,6 +17,7 @@ import LibraryPage from "./pages/dashboard/student/LibraryPage";
 import ApplyLeave from "./pages/dashboard/student/ApplyLeave";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NewsEvent from "./pages/NewsEvents";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/news-events" element={<NewsEvent/>}/>
           <Route path="/login" element={<Login />} />
 
           {/* Dashboard routes */}

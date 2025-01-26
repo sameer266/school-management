@@ -228,31 +228,40 @@ class StudentHomework(APIView):
         try:
             student = Students.objects.get(name=user)
             homework = Homework.objects.filter(class_id=student.class_id)
-            serializer = HomeworkSerializer(homework, many=True)
-            return Response({"success": True, "data": serializer.data}, status=200)
+            data=[]
+            
+            for hw in homework:
+                homework_submit = HomeworkSubmission.objects.filter(student=student, homework=hw).first()
+                isSubmitted = homework_submit.status if homework_submit else False
+               
+                serializer_data=HomeworkSerializer(hw).data
+                serializer_data['isSubmitted']=isSubmitted
+                data.append(serializer_data)
+                
+
+            return Response({"success": True, "message": data}, status=200)
         except Students.DoesNotExist:
             return Response({"success": False, "message": "Student profile not found."}, status=404)
 
-    def post(self, request):
+    def post(self, request,id):
         """
         Submit homework for the logged-in student.
         """
         user = request.user
         try:
+            print("ID is" + id)
+            print(request.FILES)
             student = Students.objects.get(name=user)
-            homework_id = request.data.get('homework_id')
+            homework_id = id
             submission_file = request.FILES.get('submission_file')
-
-            if not homework_id or not submission_file:
-                return Response({"success": False, "message": "Homework ID and submission file are required."}, status=400)
 
             try:
                 homework = Homework.objects.get(id=homework_id, class_id=student.class_id)
                 submission = HomeworkSubmission.objects.create(
                     student=student,
                     homework=homework,
-                    submission_file=submission_file,
-                    status='submitted'
+                    image=submission_file,
+                    status=True
                 )
                 serializer = HomeworkSubmissionSerializer(submission)
                 return Response({"success": True, "data": serializer.data, "message": "Homework submitted successfully."}, status=201)
@@ -260,3 +269,34 @@ class StudentHomework(APIView):
                 return Response({"success": False, "message": "Homework not found."}, status=404)
         except Students.DoesNotExist:
             return Response({"success": False, "message": "Student profile not found."}, status=404)
+
+
+class StudentHomeworkSubmit(APIView):
+    
+    def post(self, request,id):
+        """
+        Submit homework for the logged-in student.
+        """
+        user = request.user
+        try:
+            print("ID is" + id)
+            print(request.FILES)
+            student = Students.objects.get(name=user)
+            homework_id = id
+            submission_file = request.FILES.get('submission_file')
+
+            try:
+                homework = Homework.objects.get(id=homework_id, class_id=student.class_id)
+                submission = HomeworkSubmission.objects.create(
+                    student=student,
+                    homework=homework,
+                    image=submission_file,
+                    status=True
+                )
+                serializer = HomeworkSubmissionSerializer(submission)
+                return Response({"success": True, "data": serializer.data, "message": "Homework submitted successfully."}, status=201)
+            except Homework.DoesNotExist:
+                return Response({"success": False, "message": "Homework not found."}, status=404)
+        except Students.DoesNotExist:
+            return Response({"success": False, "message": "Student profile not found."}, status=404)
+

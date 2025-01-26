@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../style/pages_css/contact.css';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -25,48 +26,72 @@ function ContactUs() {
   return (
     <div className="contact-container">
       <h1 className="contact-header">Contact Us</h1>
-      <p className="contact-description">We are here to assist you with any questions or feedback regarding our school management system.</p>
-      <form onSubmit={handleSubmit} className="contact-form">
-        <label htmlFor="name">Full Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-          placeholder="Enter your name"
-          required
-        />
+      <p className="contact-description">
+        We are here to assist you with any questions or feedback regarding our school management system.
+      </p>
 
-        <label htmlFor="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="Enter your email"
-          required
-        />
+      <div className="contact-content">
+        {/* Contact Form */}
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
 
-        <label htmlFor="message">Message</label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleInputChange}
-          placeholder="Your message"
-          required
-        ></textarea>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
 
-        <button type="submit">Submit</button>
-      </form>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              placeholder="Your message"
+              required
+            ></textarea>
+          </div>
 
-      <div className="contact-info">
-        <p>Or contact us directly at:</p>
-        <p>Phone: +123 456 789</p>
-        <p>Email: support@schoolmanagement.com</p>
-        <p>Address: 123 School Road, City, Country</p>
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+        </form>
+
+        {/* Contact Information */}
+        <div className="contact-info">
+          <h2>Contact Information</h2>
+          <div className="info-item">
+            <FaPhone className="info-icon" />
+            <p>+123 456 789</p>
+          </div>
+          <div className="info-item">
+            <FaEnvelope className="info-icon" />
+            <p>support@schoolmanagement.com</p>
+          </div>
+          <div className="info-item">
+            <FaMapMarkerAlt className="info-icon" />
+            <p>123 School Road, City, Country</p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -33,6 +33,6 @@ urlpatterns = [
     
     # ==== Student Homework ====
     path('student_view_homework/', views.StudentHomework.as_view(), name='student_view_homework'),  # View homework assignments
-    path('student_submit_homework/', views.StudentHomework.as_view(), name='student_submit_homework'),  # Submit homework assignments
+    path('student_submit_homework/<id>/', views.StudentHomeworkSubmit.as_view(), name='student_submit_homework'),  # Submit homework assignments
     
 ]

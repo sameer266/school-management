@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Student_Home } from "../../../api_Data/student_api";
-import '../../../style/pages_css/dashboard/student_css/profilestudent.css'
+import '../../../style/pages_css/dashboard/student_css/profilestudent.css';
 import BackButton from "../../../components/BackButton";
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaVenusMars, FaGraduationCap, FaCalendarAlt, FaEdit } from 'react-icons/fa'; // Icons for better UI
 
 // Component to display student profile
 function ProfileStudent() {
@@ -33,14 +34,14 @@ function ProfileStudent() {
                         <div className="profile-header">
                             <div className="profile-picture">
                                 <img
-                                    src={` http://127.0.0.1:8000${studentData.image}`}
+                                    src={`http://127.0.0.1:8000${studentData.image}`}
                                     alt="Student Profile"
                                     className="profile-img"
                                 />
                             </div>
                             <div className="profile-name">
                                 <h1>
-                                    {studentData.name.first_name} {studentData.name.last_name}
+                                    <FaUser /> {studentData.name.first_name} {studentData.name.last_name}
                                 </h1>
                                 <p><strong>Username:</strong> {studentData.name.username}</p>
                             </div>
@@ -50,10 +51,18 @@ function ProfileStudent() {
                         <div className="profile-section">
                             <h2>Personal Information</h2>
                             <div className="profile-details">
-                                <p><strong>Email:</strong> {studentData.name.username}</p>
-                                <p><strong>Phone:</strong> {studentData.contact_number}</p>
-                                <p><strong>Address:</strong> {studentData.address}</p>
-                                <p><strong>Gender:</strong> {studentData.gender}</p>
+                                <p>
+                                    <FaEnvelope /> <strong>Email:</strong> {studentData.name.username}
+                                </p>
+                                <p>
+                                    <FaPhone /> <strong>Phone:</strong> {studentData.contact_number}
+                                </p>
+                                <p>
+                                    <FaMapMarkerAlt /> <strong>Address:</strong> {studentData.address}
+                                </p>
+                                <p>
+                                    <FaVenusMars /> <strong>Gender:</strong> {studentData.gender}
+                                </p>
                             </div>
                         </div>
 
@@ -61,8 +70,12 @@ function ProfileStudent() {
                         <div className="profile-section">
                             <h2>Academic Details</h2>
                             <div className="profile-details">
-                                <p><strong>Class:</strong> {studentData.class_id.name}</p>
-                                <p><strong>Class ID:</strong> {studentData.class_id.id}</p>
+                                <p>
+                                    <FaGraduationCap /> <strong>Class:</strong> {studentData.class_id.name}
+                                </p>
+                                <p>
+                                    <FaGraduationCap /> <strong>Class ID:</strong> {studentData.class_id.id}
+                                </p>
                             </div>
                         </div>
 
@@ -70,19 +83,24 @@ function ProfileStudent() {
                         <div className="profile-section">
                             <h2>Other Information</h2>
                             <div className="profile-details">
-                                <p><strong>Created At:</strong> {new Date(studentData.created_at).toDateString()}</p>
-                                <p><strong>Updated At:</strong> {new Date(studentData.updated_at).toDateString()}</p>
+                                <p>
+                                    <FaCalendarAlt /> <strong>Created At:</strong> {new Date(studentData.created_at).toDateString()}
+                                </p>
+                                <p>
+                                    <FaCalendarAlt /> <strong>Updated At:</strong> {new Date(studentData.updated_at).toDateString()}
+                                </p>
                             </div>
                         </div>
 
                         {/* Update Button */}
                         <div className="update-button-container">
-                            <button className="update-btn">Update Profile</button>
+                            <button className="update-btn">
+                                <FaEdit /> Update Profile
+                            </button>
                         </div>
-
                     </>
                 ) : (
-                    <p>Loading...</p> // Show loading message while data is being fetched
+                    <p className="loading-message">Loading...</p> // Show loading message while data is being fetched
                 )}
             </div>
         </>

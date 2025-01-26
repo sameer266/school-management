@@ -1,140 +1,226 @@
-/* Main Content Styles */
+/* General Styles */
 .main-content {
-    margin-left: 250px;
+    margin-top: 100px;
+    margin-left: 250px; /* Adjust based on sidebar width */
     padding: 20px;
-    padding-top: 100px;
-    width: calc(100% - 250px);
-    transition: margin-left 0.3s ease;
-    background: linear-gradient(to right, #f8f9fa, #e9ecef);
-}
-
-.main-content h1 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
+  }
+  
+  .dashboard-title {
+    font-size: 2.5rem;
+    color: #2575fc;
     margin-bottom: 20px;
-    font-size: 28px;
-    color: #2c3e50;
-    text-align: center;
-}
-
-/* Metric Cards */
-.metric-cards {
-    display: flex;
+  }
+  
+  /* Metric Cards */
+  .metric-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-    justify-content: space-evenly;
-}
-
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 200px;
-    max-width: 250px;
+    margin-bottom: 40px;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
+  }
+  
+  .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card h2 {
-    font-size: 20px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    color: #2575fc;
+    margin-bottom: 10px;
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 1.8rem;
+    color: #555;
     margin-bottom: 15px;
-    color: #2c3e50;
-}
-
-.card p {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-.card button {
-    background-color: #3498db;
-    color: #fff;
+  }
+  
+  .info-button {
+    background: #2575fc;
+    color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 6px;
+    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.card button:hover {
-    background-color: #2980b9;
-}
-
-/* Charts Section */
-.charts {
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .info-button:hover {
+    background: #1a5bbf;
+    transform: translateY(-2px);
+  }
+  
+  /* Charts Section */
+  .charts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-}
-
-.chart-container {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+  
+  .chart-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.chart-container h2 {
-    font-size: 20px;
+  }
+  
+  .chart-container h2 {
+    font-size: 1.5rem;
+    color: #333;
     margin-bottom: 20px;
-    color: #2c3e50;
-}
-
-canvas {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
+  }
+  
+  /* Additional Content */
+  .additional-content {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .additional-content h2 {
+    font-size: 1.8rem;
+    color: #2575fc;
+    margin-bottom: 15px;
+  }
+  
+  .additional-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .additional-content ul li {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
     .main-content {
-        margin-left: 200px;
-        width: calc(100% - 200px);
+      margin-left: 60px; /* Adjust for collapsed sidebar */
     }
-}
-
-@media (max-width: 768px) {
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px;
-        padding-top: 70px; /* Adjust padding-top to ensure h1 is visible */
+  
+    .dashboard-title {
+      font-size: 2rem; /* Smaller font size for medium screens */
     }
-
+  
     .metric-cards {
-        flex-direction: column;
-        align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust card size */
     }
-
-    .card {
-        width: 100%;
-        max-width: 300px;
+  
+    .card h2 {
+      font-size: 1.3rem; /* Smaller heading for medium screens */
     }
-}
-
-@media (max-width: 576px) {
-    .main-content {
-        margin-top: 90px;
-        padding: 15px;
-        padding-top: 70px; /* Adjust padding-top to ensure h1 is visible */
+  
+    .card p {
+      font-size: 1.5rem; /* Smaller text for medium screens */
     }
-
+  
     .charts {
-        grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust chart size */
     }
-
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 0; /* Full width for small screens */
+      padding: 10px; /* Reduce padding for small screens */
+    }
+  
+    .dashboard-title {
+      font-size: 1.8rem; /* Smaller font size for small screens */
+    }
+  
+    .metric-cards {
+      grid-template-columns: 1fr; /* Single column for small screens */
+    }
+  
     .card {
-        width: 100%;
+      padding: 15px; /* Reduce padding for small screens */
     }
-}
+  
+    .card h2 {
+      font-size: 1.2rem; /* Smaller heading for small screens */
+    }
+  
+    .card p {
+      font-size: 1.4rem; /* Smaller text for small screens */
+    }
+  
+    .charts {
+      grid-template-columns: 1fr; /* Single column for small screens */
+    }
+  
+    .chart-container {
+      padding: 15px; /* Reduce padding for small screens */
+    }
+  
+    .additional-content {
+      padding: 15px; /* Reduce padding for small screens */
+    }
+  
+    .additional-content h2 {
+      font-size: 1.5rem; /* Smaller heading for small screens */
+    }
+  
+    .additional-content ul li {
+      font-size: 1rem; /* Smaller text for small screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-title {
+      font-size: 1.5rem; /* Smaller font size for extra small screens */
+    }
+  
+    .card h2 {
+      font-size: 1.1rem; /* Smaller heading for extra small screens */
+    }
+  
+    .card p {
+      font-size: 1.3rem; /* Smaller text for extra small screens */
+    }
+  
+    .info-button {
+      padding: 8px 16px; /* Smaller button for extra small screens */
+      font-size: 0.9rem;
+    }
+  
+    .additional-content h2 {
+      font-size: 1.3rem; /* Smaller heading for extra small screens */
+    }
+  
+    .additional-content ul li {
+      font-size: 0.9rem; /* Smaller text for extra small screens */
+    }
+  }

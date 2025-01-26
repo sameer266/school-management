@@ -4,6 +4,7 @@ import "../style/comp_css/navbar.css";
 import Logo from "../images/logo.jpg";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { FaHome, FaInfoCircle, FaBook, FaNewspaper, FaEnvelope, FaSignInAlt, FaSignOutAlt, FaBars, FaTimes, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,14 +16,13 @@ const Navbar = () => {
 
   // Navigate to the appropriate dashboard based on user type
   const handleDashboardClick = () => {
-   
-      const dashboardRoutes = {
-        "1": "/adminHod-dashboard",
-        "2": "/staff-dashboard",
-        "3": "/student-dashboard",
-      };
-      navigate(dashboardRoutes[user_type]);
-    
+    const dashboardRoutes = {
+      "1": "/adminHod-dashboard",
+      "2": "/staff-dashboard",
+      "3": "/student-dashboard",
+    };
+    navigate(dashboardRoutes[user_type]);
+    closeMenu(); // Close the menu after navigation
   };
 
   // Handle user logout
@@ -50,10 +50,16 @@ const Navbar = () => {
     document.body.style.overflow = isMenuOpen ? "" : "hidden";
   };
 
+  // Close mobile menu
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    document.body.style.overflow = "";
+  };
+
   // Close menu on Escape key press
   useEffect(() => {
     const handleEscapeKey = (e) => {
-      if (e.key === "Escape" && isMenuOpen) toggleMenu();
+      if (e.key === "Escape" && isMenuOpen) closeMenu();
     };
     window.addEventListener("keydown", handleEscapeKey);
     return () => window.removeEventListener("keydown", handleEscapeKey);
@@ -62,7 +68,7 @@ const Navbar = () => {
   // Close menu on window resize if width is greater than 768px
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 768 && isMenuOpen) toggleMenu();
+      if (window.innerWidth > 768 && isMenuOpen) closeMenu();
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -72,7 +78,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="logo">
-          <Link to="/">
+          <Link to="/" onClick={closeMenu}>
             <img src={Logo} alt="Logo" />
           </Link>
         </div>
@@ -81,37 +87,57 @@ const Navbar = () => {
           aria-label="Toggle navigation"
           onClick={toggleMenu}
         >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          {isMenuOpen ? <FaTimes className="icon" /> : <FaBars className="icon" />}
         </button>
         <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/programs">Programs</Link></li>
-          <li><Link to="/news-events">News/Events</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
+          <li>
+            <Link to="/" onClick={closeMenu}>
+              <FaHome className="nav-icon" /> Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={closeMenu}>
+              <FaInfoCircle className="nav-icon" /> About Us
+            </Link>
+          </li>
+          <li>
+            <Link to="/programs" onClick={closeMenu}>
+              <FaBook className="nav-icon" /> Programs
+            </Link>
+          </li>
+          <li>
+            <Link to="/news-events" onClick={closeMenu}>
+              <FaNewspaper className="nav-icon" /> News/Events
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" onClick={closeMenu}>
+              <FaEnvelope className="nav-icon" /> Contact Us
+            </Link>
+          </li>
           {isAuthenticated && (
             <li>
               <a style={{ cursor: "pointer" }} onClick={handleDashboardClick}>
-                Dashboard
+                <FaUser className="nav-icon" /> Dashboard
               </a>
             </li>
           )}
         </ul>
-        <div className="login-button" style={{ cursor: "pointer" }}>
+        <div className="login-button">
           {isAuthenticated ? (
-            <a onClick={handleOnLogout}>Logout</a>
+            <a onClick={handleOnLogout} style={{ cursor: "pointer" }}>
+              <FaSignOutAlt className="nav-icon" /> Logout
+            </a>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/login" onClick={closeMenu} style={{ cursor: "pointer" }}>
+              <FaSignInAlt className="nav-icon" /> Login
+            </Link>
           )}
         </div>
       </div>
-   
-     
       <div
         className={`overlay ${isMenuOpen ? "active" : ""}`}
-        onClick={toggleMenu}
+        onClick={closeMenu}
       ></div>
     </nav>
   );

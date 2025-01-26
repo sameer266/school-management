@@ -1,76 +1,91 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "../../../style/pages_css/dashboard/student_css/hwPage.css"; // Import the external CSS file
-import { Student_View_HomeWork } from "../../../api_Data/student_api";
-import BackButton from "../../../components/BackButton";
+import toast, { Toaster } from 'react-hot-toast';
+import { FiCheckCircle, FiXCircle, FiUpload, FiFile } from "react-icons/fi"; // Importing icons
+import "../../../style/pages_css/dashboard/student_css/hwPage.css"; // Import CSS for styling
+import { Student_View_HomeWork, Student_Submit_HomeWork } from "../../../api_Data/student_api"; // Import API functions
+import BackButton from "../../../components/BackButton"; // Import BackButton component
 
 function HomeworkPage() {
-  const [homeworks, setHomeworks] = useState([]); // State to store homework data
-  const [submissionText, setSubmissionText] = useState(""); // State to store submission text
-  const [selectedHomework, setSelectedHomework] = useState(null); // State to track selected homework
-  const [selectedFiles, setSelectedFiles] = useState([]); // State to store selected files
+  // State hooks to manage homework data, submission text, selected homework, and files
+  const [homeworks, setHomeworks] = useState([]);
+  const [selectedHomework, setSelectedHomework] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [filePreviews, setFilePreviews] = useState([]);
 
+  // ==== Notification ==========
+  const notifySuccess = (msg) => toast.success(msg);
+  const notifyError = (msg) => toast.error(msg);
+
+  // Fetch homework data when the component mounts
   useEffect(() => {
-    // Fetch homework data when the component mounts
     const fetchHomework = async () => {
       try {
-        const response = await Student_View_HomeWork();
+        const response = await Student_View_HomeWork(); // API call to fetch homework
         if (response?.success) {
-          setHomeworks(response.data);
+          setHomeworks(response.message); // Update homework state with fetched data
         } else {
-          alert("Failed to fetch homework.");
+          notifyError("Failed to fetch homework.");
         }
       } catch (error) {
         console.error("Error fetching homework:", error);
+        notifyError("An error occurred while fetching homework.");
       }
     };
     fetchHomework();
-  }, []);
+  }, []); // Empty array ensures this effect runs once when the component mounts
 
+  // Handle file selection for submission
   const handleFileChange = (e) => {
-    setSelectedFiles(e.target.files);
+    const files = Array.from(e.target.files);
+    setSelectedFiles(files);
+
+    // Generate file previews
+    const previews = files.map((file) => ({
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+    setFilePreviews(previews);
   };
 
+  // Handle homework submission
   const handleSubmit = async (homeworkId) => {
-    // Prepare submission data
-    const formData = new FormData();
-    formData.append("student_id", 1); // Replace with the logged-in student's ID
-    formData.append("homework_id", homeworkId);
-    formData.append("submission_text", submissionText);
-    formData.append("status", "submitted");
-
-    // Append selected files to formData
-    for (let i = 0; i < selectedFiles.length; i++) {
-      formData.append("files", selectedFiles[i]);
+    if (selectedFiles.length === 0) {
+      notifyError("Please select at least one file to submit.");
+      return;
     }
 
     try {
-      const response = await axios.post("/api/submit-homework/", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      if (response.status === 200) {
-        alert("Homework submitted successfully!");
-        setSubmissionText("");
+      const response = await Student_Submit_HomeWork(homeworkId, selectedFiles);
+
+      // Check if submission was successful and reset form states
+      if (response.success) {
+        notifySuccess("Homework submitted successfully!");
         setSelectedHomework(null);
         setSelectedFiles([]);
+        setFilePreviews([]);
+
+        // Update the homework list to reflect submission status
+        const updatedHomework = homeworks.map((hw) =>
+          hw.id === homeworkId ? { ...hw, isSubmitted: true } : hw
+        );
+        setHomeworks(updatedHomework);
       } else {
-        alert("Failed to submit homework.");
+        notifyError("Failed to submit homework.");
       }
     } catch (error) {
       console.error("Error submitting homework:", error);
-      alert("An error occurred while submitting.");
+      notifyError("An error occurred while submitting homework.");
     }
   };
 
   return (
     <>
+      <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       <BackButton /> {/* Back button component */}
 
       <div className="homework-container">
         <h2>Assigned Homework</h2>
-        <div>
+        <div className="homework-list">
           {homeworks.map((hw) => (
             <div key={hw.id} className="homework-card">
               <h3>Subject: {hw.subject}</h3>
@@ -78,39 +93,65 @@ function HomeworkPage() {
               {hw.image && (
                 <img alt="Homework visual" className="homework-image" src={hw.img} />
               )}
-              <p>
-                <strong>Created:</strong> {new Date(hw.created_at).toLocaleDateString()}
-              </p>
-              <p>
-                <strong>Due Date:</strong> {new Date(hw.due_date).toLocaleDateString()}
-              </p>
+              <p><strong>Created:</strong> {new Date(hw.created_at).toLocaleDateString()}</p>
+              <p><strong>Due Date:</strong> {new Date(hw.due_date).toLocaleDateString()}</p>
+
+              {/* Display submission status with icons */}
+              <div className="submission-status">
+                {hw.isSubmitted ? (
+                  <span className="submitted">
+                    <FiCheckCircle color="green" /> Submitted
+                  </span>
+                ) : (
+                  <span className="not-submitted">
+                    <FiXCircle color="red" /> Not Submitted
+                  </span>
+                )}
+              </div>
+
+              {/* Show input form if homework is selected for submission */}
               {selectedHomework === hw.id ? (
-                <div>
-                  <textarea
-                    rows="3"
-                    placeholder="Write your submission here..."
-                    value={submissionText}
-                    onChange={(e) => setSubmissionText(e.target.value)}
-                    className="homework-textarea"
-                  ></textarea>
-                  <input
-                    type="file"
-                    multiple
-                    onChange={handleFileChange}
-                    className="file-input"
-                  />
+                <div className="submission-form">
+                  <div className="file-input-container">
+                    <label htmlFor="file-upload" className="file-upload-label">
+                      <FiUpload className="upload-icon" /> Choose Files
+                    </label>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      multiple
+                      onChange={handleFileChange}
+                      className="file-input"
+                      required
+                    />
+                  </div>
+
+                  {/* File Previews */}
+                  {filePreviews.length > 0 && (
+                    <div className="file-previews">
+                      {filePreviews.map((file, index) => (
+                        <div key={index} className="file-preview">
+                          <FiFile className="file-icon" />
+                          <span>{file.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   <button
                     onClick={() => handleSubmit(hw.id)}
                     className="submit-button"
-                    disabled={!submissionText.trim() && selectedFiles.length === 0}
+                    disabled={selectedFiles.length === 0}
                   >
                     Submit
                   </button>
                 </div>
               ) : (
+                // Show "Submit Homework" button if not yet submitted
                 <button
                   onClick={() => setSelectedHomework(hw.id)}
                   className="submit-homework-button"
+                  disabled={hw.isSubmitted}
                 >
                   Submit Homework
                 </button>

@@ -1,128 +1,140 @@
-/* Bill Page Container */
+/* General Styles */
 .bill-page-container {
+    max-width: 1200px;
+    margin:100px auto 0 auto;
     padding: 20px;
-    max-width: 800px;
-    margin: 100px auto;
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Heading */
-.bill-page-container h2 {
+    color: #333;
+  }
+  
+  .bill-page-container h2 {
     text-align: center;
     font-size: 2.5rem;
+    color: #2575fc;
     margin-bottom: 20px;
-    color: #2c3e50;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Bill List */
-.bill-list {
-    margin-top: 30px;
-}
-
-/* Bill Item */
-.bill-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Bill List */
+  .bill-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .bill-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff;
-}
-
-.bill-item:hover {
+  }
+  
+  .bill-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Bill Header */
-.bill-item h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #34495e;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .bill-item h3 {
+    font-size: 1.5rem;
+    color: #2575fc;
     margin-bottom: 10px;
-    font-family: 'Roboto', sans-serif;
-}
-
-.bill-item p {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    color: #7f8c8d;
-}
-
-.bill-item p strong {
-    font-weight: 600;
-}
-
-/* Bill Amount */
-.bill-item .amount {
+  }
+  
+  .bill-item p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .amount {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #27ae60; /* Green for positive amount */
-}
-
-/* Paid Status */
-.bill-item .paid-status {
-    font-weight: 600;
-}
-
-.bill-item .paid-status.true {
-    color: #27ae60; /* Green */
-}
-
-.bill-item .paid-status.false {
-    color: #e74c3c; /* Red */
-}
-
-/* Payment Date */
-.bill-item .payment-date {
+    color: #28a745;
+  }
+  
+  .paid-status {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .paid-status.true {
+    color: green;
+  }
+  
+  .paid-status.false {
+    color: red;
+  }
+  
+  .paid-status .paid {
+    color: green;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .paid-status .unpaid {
+    color: red;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .payment-date {
     font-size: 1rem;
-    font-weight: 500;
-    color: #2980b9;
-}
-
-/* Back Button */
-.back-button-container {
-    margin-bottom: 20px;
-}
-
-/* Mobile Responsive Styling */
-@media (max-width: 768px) {
-    .bill-page-container {
-        padding: 15px;
+    color: #555;
+  }
+  
+  .no-bills {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .bill-page-container h2 {
+      font-size: 2rem;
     }
-
-    .bill-item {
-        padding: 15px;
+  
+    .bill-list {
+      grid-template-columns: 1fr;
     }
-
+  
     .bill-item h3 {
-        font-size: 1.6rem;
+      font-size: 1.3rem;
     }
-
+  
     .bill-item p {
-        font-size: 0.9rem;
+      font-size: 1rem;
     }
-}
-
-@media (max-width: 480px) {
-    .bill-page-container {
-        padding: 10px;
+  
+    .amount {
+      font-size: 1.1rem;
     }
-
-    .bill-item {
-        padding: 10px;
+  }
+  
+  @media (max-width: 480px) {
+    .bill-page-container h2 {
+      font-size: 1.8rem;
     }
-
+  
     .bill-item h3 {
-        font-size: 1.4rem;
+      font-size: 1.2rem;
     }
-
+  
     .bill-item p {
-        font-size: 0.8rem;
+      font-size: 0.9rem;
     }
-}
+  
+    .amount {
+      font-size: 1rem;
+    }
+  }

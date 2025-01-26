@@ -1,0 +1,109 @@
+/* General Styles */
+.news-events-container {
+    max-width: 1200px;
+    margin:100px auto 0 auto;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .news-events-header {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #2575fc;
+  }
+  
+  .news-events-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  /* News & Events Grid */
+  .news-events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  /* News Event Card */
+  .news-event-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .news-event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2575fc;
+  }
+  
+  .card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .detail-icon {
+    font-size: 1rem;
+    color: #2575fc;
+  }
+  
+  .card-description {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .card-button {
+    background: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background: #1a5bbf;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .news-events-grid {
+      grid-template-columns: 1fr;
+    }
+  }

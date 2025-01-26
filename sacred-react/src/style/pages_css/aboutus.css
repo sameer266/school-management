@@ -1,112 +1,209 @@
-/* About Us Page Styles */
+/* General Styles */
 .about-us-container {
-  margin-top: 60px;
-  padding: 50px;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+ 
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.about-us-header {
-  text-align: center;
+/* Hero Section */
+.about-us-hero {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 50px;
+  border-radius: 10px;
   margin-bottom: 40px;
 }
 
-.about-us-header h1 {
-  font-size: 2.5rem;
-  color: #333;
-  font-family: 'Roboto', sans-serif;
+.hero-content h1 {
+  font-size: 3rem;
   margin-bottom: 10px;
 }
 
-.about-us-header p {
+.hero-content p {
   font-size: 1.2rem;
-  color: #666;
-  font-family: 'Open Sans', sans-serif;
+  opacity: 0.9;
 }
 
+.hero-image .school-icon {
+  font-size: 8rem;
+  opacity: 0.8;
+}
+
+/* Content Sections */
 .about-us-content {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.about-us-description, .about-us-mission, .about-us-vision {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.about-us-section {
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.about-us-description:hover, .about-us-mission:hover, .about-us-vision:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.about-us-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.about-us-description h2, .about-us-mission h2, .about-us-vision h2 {
-  font-size: 1.8rem;
-  color: #6a11cb;
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 10px;
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.about-us-description p, .about-us-mission p, .about-us-vision p {
-  font-size: 1rem;
-  color: #444;
+.section-icon {
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #2575fc;
+}
+
+.about-us-section h2 {
+  font-size: 2rem;
+  color: #2575fc;
+  margin: 0;
+}
+
+.about-us-section p {
+  font-size: 1.1rem;
   line-height: 1.6;
-  font-family: 'Open Sans', sans-serif;
+  color: #555;
 }
 
+/* Call to Action Section */
+.about-us-cta {
+  text-align: center;
+  padding: 50px;
+  background: #2575fc;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.about-us-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.about-us-cta p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background: white;
+  color: #2575fc;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}
+
+/* Footer Section */
 .about-us-footer {
   text-align: center;
-  margin-top: 50px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .about-us-footer p {
   font-size: 1.1rem;
-  color: #333;
-  font-family: 'Open Sans', sans-serif;
+  color: #666;
 }
 
-/* Simple fade-in animation */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: translateY(20px);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-us-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
   }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
+
+  .hero-image .school-icon {
+    font-size: 6rem;
+    margin-top: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .about-us-section {
+    padding: 20px;
+  }
+
+  .about-us-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-us-section p {
+    font-size: 1rem;
+  }
+
+  .about-us-cta {
+    padding: 30px;
+  }
+
+  .about-us-cta h2 {
+    font-size: 2rem;
+  }
+
+  .about-us-cta p {
+    font-size: 1rem;
   }
 }
 
-/* Apply fade-in animation to all elements */
-.about-us-header h1,
-.about-us-header p,
-.about-us-description,
-.about-us-mission,
-.about-us-vision,
-.about-us-footer {
-  animation: fadeIn 1s ease-out forwards;
-}
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
 
-/* Add different delays for various elements */
-.about-us-header h1 {
-  animation-delay: 0.2s;
-}
-.about-us-header p {
-  animation-delay: 0.4s;
-}
-.about-us-description {
-  animation-delay: 0.6s;
-}
-.about-us-mission {
-  animation-delay: 0.8s;
-}
-.about-us-vision {
-  animation-delay: 1s;
-}
-.about-us-footer {
-  animation-delay: 1.2s;
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .about-us-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-us-section p {
+    font-size: 0.9rem;
+  }
+
+  .about-us-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-us-cta p {
+    font-size: 0.9rem;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
 }

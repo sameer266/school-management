@@ -1,14 +1,23 @@
-import { FaUser, FaCalendarCheck, FaBook, FaMoneyBill, FaBell } from 'react-icons/fa';
+import {
+  FaUser,
+  FaCalendarAlt,
+  FaBook,
+  FaMoneyBillWave,
+  FaBell,
+  FaBookOpen,
+  FaFileAlt,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 
-// Define student navigation links with icons directly
+// Define student navigation links with more relatable icons
 const studentNavigationLink = [
-  { to: "/student-profile", label: "Profile", icon: <FaUser /> },
-  { to: "/view-attendance", label: "View Attendance", icon: <FaCalendarCheck /> },
-  { to: "/view-homework", label: "View Homework", icon: <FaBook /> },
-  { to: "/view-notice", label: "View Notice", icon: <FaBell /> },
-  { to: "/view-bill", label: "View Bill", icon: <FaMoneyBill /> },
-  { to: "/view-library", label: "View Library", icon: <FaBook /> },
-  { to:"/apply-leave", label: "Apply Leave", icon: <FaCalendarCheck /> },
+  { to: "/student-profile", label: "Profile", icon: <FaUser /> }, // User profile
+  { to: "/view-attendance", label: "View Attendance", icon: <FaCalendarAlt /> }, // Calendar for attendance
+  { to: "/view-homework", label: "View Homework", icon: <FaFileAlt /> }, // File for homework
+  { to: "/view-notice", label: "View Notice", icon: <FaBell /> }, // Bell for notices
+  { to: "/view-bill", label: "View Bill", icon: <FaMoneyBillWave /> }, // Money bill for fees
+  { to: "/view-library", label: "View Library", icon: <FaBookOpen /> }, // Open book for library
+  { to: "/apply-leave", label: "Apply Leave", icon: <FaSignOutAlt /> }, // Sign out for leave
 ];
 
 export default studentNavigationLink;

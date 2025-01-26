@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css"; // Import default calendar styles
 import "../../../style/pages_css/dashboard/student_css/attendancePage.css";
 import { Student_View_Attendance } from "../../../api_Data/student_api";
-import { studentNavigationLink } from '../student/Links';
-import Sidebar from "../../../components/Sidebar";
 import BackButton from "../../../components/BackButton";
+import { FaCheckCircle, FaTimesCircle, FaInfoCircle } from "react-icons/fa"; // Icons for status
 
 const AttendancePage = () => {
   const [attendanceData, setAttendanceData] = useState({});
@@ -69,7 +69,7 @@ const AttendancePage = () => {
     if (view === "month") {
       // Check if the day is Saturday and mark it as a holiday
       const isSaturday = date.getDay() === 6;
-      
+
       return (
         <div className="attendance-tile">
           {/* Show "Holiday" for Saturdays */}
@@ -77,7 +77,10 @@ const AttendancePage = () => {
             <span className="holiday">Holiday</span>
           ) : (
             <span className={status !== undefined ? (status ? "present" : "absent") : "absent"}>
-              {status !== undefined ? (status ? "P" : "A") : "A"}
+              {/* Render P for present and A for absent */}
+              <span className={status !== undefined ? (status ? "present-text" : "absent-text") : "absent-text"}>
+                {status !== undefined ? (status ? "P" : "A") : "A"}
+              </span>
             </span>
           )}
         </div>
@@ -99,25 +102,39 @@ const AttendancePage = () => {
             onChange={onDateChange}
             value={selectedDate}
             tileContent={tileContent}
+            className="custom-calendar"
           />
         </div>
 
         <div className="attendance-summary">
           <h3>Attendance Details for {selectedDate.toDateString()}</h3>
 
-          {/* Display attendance status with colors */}
+          {/* Display attendance status with icons */}
           <div className="status-card">
-            <h4>Status: {attendanceData[selectedDate.toISOString().split("T")[0]] !== undefined
-              ? attendanceData[selectedDate.toISOString().split("T")[0]]
-                ? <span className="present">Present</span>
-                : <span className="absent">Absent</span>
-              : <span className="absent">Absent</span>}
+            <h4>
+              Status:{" "}
+              {attendanceData[selectedDate.toISOString().split("T")[0]] !== undefined ? (
+                attendanceData[selectedDate.toISOString().split("T")[0]] ? (
+                  <span className="present">
+                    <FaCheckCircle /> Present
+                  </span>
+                ) : (
+                  <span className="absent">
+                    <FaTimesCircle /> Absent
+                  </span>
+                )
+              ) : (
+                <span className="absent">
+                  <FaTimesCircle /> Absent
+                </span>
+              )}
             </h4>
 
             {/* Display remarks */}
-            <p>Remarks: {remarksData[selectedDate.toISOString().split("T")[0]]
-              ? remarksData[selectedDate.toISOString().split("T")[0]]
-              : "No remarks"}</p>
+            <p className="remarks">
+              <FaInfoCircle /> Remarks:{" "}
+              {remarksData[selectedDate.toISOString().split("T")[0]] || "No remarks"}
+            </p>
           </div>
 
           {/* Show total absences for the current month */}

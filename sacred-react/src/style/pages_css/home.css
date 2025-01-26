@@ -1,47 +1,22 @@
-/* Variables */
-:root {
-  --primary-color: #3498db;
-  --secondary-color: #2c3e50;
-  --accent-color: #f39c12;
-  --light-color: #fafafa;
-  --dark-color: #333;
-  --text-color: #ffffff;  /* Change text color to white */
-  --background-color: #222;  /* Change background to #222 */
-  --background-gradient: #222;
-  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --transition: 0.3s ease;
-}
-
-/* Home Container */
+/* General Styles */
 .home {
-  width: 100%;
-  overflow-x: hidden;
-  background: var(--background-gradient);
-  background-size: 400% 400%;
-  animation: gradientBackground 8s ease infinite;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-/* Background Gradient Animation */
-@keyframes gradientBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin:100px auto 0 auto;
+  padding: 20px;
 }
 
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 100vh;
-  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  color: var(--text-color);  /* Ensure text is white */
+  border-radius: 10px;
+  margin-bottom: 40px;
 }
 
 .hero-image {
@@ -51,17 +26,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  filter: brightness(0.5);
-  animation: brightenImage 2s forwards;
-}
-
-@keyframes brightenImage {
-  0% {
-    filter: brightness(0.5);
-  }
-  100% {
-    filter: brightness(1);
-  }
+  z-index: 1;
 }
 
 .hero-overlay {
@@ -70,66 +35,51 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.247);
-  opacity: 0;
-  animation: fadeInOverlay 2s forwards;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 
-@keyframes fadeInOverlay {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Hero Text */
 .hero-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 3;
   text-align: center;
   color: white;
-  overflow: hidden;
-  padding: 0 20px;
 }
 
 .hero-text h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  white-space: nowrap;
-  display: inline-block;
-  opacity: 0;
-  max-width: 0;
-  animation: typing 3s steps(6) 0.5s forwards;
-  letter-spacing: 2px;
-}
-
-@keyframes typing {
-  0% {
-    max-width: 0;
-    opacity: 1;
-  }
-  100% {
-    max-width: 100%;
-    opacity: 1;
-  }
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  animation: fadeInDown 1.5s ease-out; /* Animation for title */
 }
 
 .hero-text p {
   font-size: 1.5rem;
-  opacity: 0;
-  animation: fadeIn 2s 4s forwards ease-out;
-  letter-spacing: 1px;
+  margin-bottom: 20px;
+  animation: fadeInUp 1.5s ease-out; /* Animation for subtitle */
 }
 
-@keyframes fadeIn {
+.cta-button {
+  background: #2575fc;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  animation: fadeIn 2s ease-out; /* Animation for button */
+}
+
+.cta-button:hover {
+  background: #1a5bbf;
+  transform: scale(1.05);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(-50px);
   }
   100% {
     opacity: 1;
@@ -137,238 +87,294 @@
   }
 }
 
-.hero-text h1,
-.hero-text p {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* School Overview Section */
+.school-overview {
+  background: #f9f9f9;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.overview-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section-tag {
+  display: inline-block;
+  background: #2575fc;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.overview-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.overview-grid {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.overview-text p {
+  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.stats-container {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2575fc;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Mission & Vision Section */
+.mission-vision {
+  padding: 50px 20px;
+  margin-bottom: 40px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.mv-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission, .vision {
+  flex: 1;
+  text-align: center;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mission:hover, .vision:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2575fc;
+}
+
+.mission h3, .vision h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.mission p, .vision p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Facilities Section */
+.facilities {
+  padding: 50px 20px;
+  margin-bottom: 40px;
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.facility-item {
+  text-align: center;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facility-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.facility-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #2575fc;
+}
+
+.facility-item h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.facility-item p {
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* Gallery Section */
-.gallery-container {
-  padding: 60px 10%;
-  background-color: var(--background-color);  /* Background changed to dark color */
-  color: var(--text-color);  /* Ensure text is white */
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.gallery-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-color);  /* Ensure text is white */
+.gallery-section {
+  padding: 50px 20px;
   margin-bottom: 40px;
-  position: relative;
-  display: inline-block;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  justify-items: center;
 }
 
 .gallery-item {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
-  position: relative;
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.gallery-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-
-.gallery-item:hover::before {
-  opacity: 1;
+  transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
-  transform: scale(1.1) translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1);
-  cursor: pointer;
+  transform: scale(1.05);
 }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition), filter var(--transition);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.15);
-}
-
-/* School Overview */
-.school-overview {
-  padding: 60px 30px;
+/* Call to Action Section */
+.cta-section {
+  background: #2575fc;
+  color: white;
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin-bottom: 40px;
   text-align: center;
-  background-color: var(--background-color);  /* Background changed to dark color */
-  color: var(--text-color);  /* Ensure text is white */
-  margin-bottom: 40px;
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
 }
 
-.school-overview h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-.school-overview p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--text-color);  /* Ensure text is white */
-  max-width: 900px;
-  margin: 0 auto;
+.cta-content h2 {
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-/* Mission and Vision */
-.mission-vision {
-  display: flex;
-  justify-content: space-between;
-  padding: 60px 30px;
-  background-color: var(--background-color);  /* Background changed to dark color */
-  color: var(--text-color);  /* Ensure text is white */
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-}
-
-.mission, .vision {
-  width: 48%;
-}
-
-.mission h3, .vision h3 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  font-weight: bold;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-.mission p, .vision p {
+.cta-content p {
   font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-/* Facilities */
-.facilities {
-  padding: 60px 30px;
-  background-color: var(--background-color);  /* Background changed to dark color */
-  color: var(--text-color);  /* Ensure text is white */
-  margin-bottom: 40px;
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-}
-
-.facilities h2 {
-  font-size: 2.4rem;
-  margin-bottom: 25px;
-  font-weight: bold;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-.facilities ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.facilities li {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--text-color);  /* Ensure text is white */
-  margin-bottom: 15px;
-  padding-left: 25px;
-  position: relative;
-}
-
-.facilities li::before {
-  content: '✔';
-  position: absolute;
-  left: 0;
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  top: 0;
-}
-
-/* Achievements */
-.achievements {
-  padding: 60px 30px;
-  background-color: var(--background-color);  /* Background changed to dark color */
-  color: var(--text-color);  /* Ensure text is white */
-  margin-bottom: 40px;
-  border-radius: 8px;
-  box-shadow: var(--box-shadow);
-}
-
-.achievements h2 {
-  font-size: 2.4rem;
-  margin-bottom: 25px;
-  font-weight: bold;
-  color: var(--text-color);  /* Ensure text is white */
-}
-
-.achievements ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.achievements li {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--text-color);  /* Ensure text is white */
-  margin-bottom: 15px;
-  padding-left: 25px;
-  position: relative;
-}
-
-.achievements li::before {
-  content: '🏆';
-  position: absolute;
-  left: 0;
-  color: var(--accent-color);
-  font-size: 1.5rem;
-  top: 0;
+  margin-bottom: 20px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .mission-vision {
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+
+  .overview-grid {
     flex-direction: column;
-    align-items: center;
   }
 
-  .mission, .vision {
-    width: 100%;
-    margin-bottom: 30px;
+  .mv-container {
+    flex-direction: column;
   }
 
-  .school-overview, .facilities, .achievements {
-    padding: 40px 20px;
+  .facilities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
-  .school-overview p {
-    max-width: 100%;
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .overview-content h2 {
+    font-size: 2rem;
+  }
+
+  .mission h3, .vision h3 {
+    font-size: 1.5rem;
+  }
+
+  .mission p, .vision p {
+    font-size: 1rem;
+  }
+
+  .facility-item h4 {
+    font-size: 1.2rem;
+  }
+
+  .facility-item p {
+    font-size: 1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-content p {
+    font-size: 0.9rem;
   }
 }
