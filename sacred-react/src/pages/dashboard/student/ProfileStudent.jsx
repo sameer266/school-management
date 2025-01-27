@@ -92,12 +92,7 @@ function ProfileStudent() {
                             </div>
                         </div>
 
-                        {/* Update Button */}
-                        <div className="update-button-container">
-                            <button className="update-btn">
-                                <FaEdit /> Update Profile
-                            </button>
-                        </div>
+                      
                     </>
                 ) : (
                     <p className="loading-message">Loading...</p> // Show loading message while data is being fetched

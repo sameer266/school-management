@@ -3,6 +3,9 @@ import { FaArrowLeft } from 'react-icons/fa'; // Importing an arrow icon from re
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 function BackButton() {
+  React.useEffect(() => {
+    addHoverEffect();
+  }, []);
   const navigate = useNavigate(); // Hook to access the navigation functionality
 
   const handleGoBack = () => {
@@ -29,6 +32,7 @@ function BackButton() {
 
 const styles = {
   button: {
+    marginTop:"100px",
     padding: '12px', // Adjusts the size of the icon container
     backgroundColor: '#3498db', // Background color of the icon
     borderRadius: '50%', // Makes it circular
@@ -66,8 +70,6 @@ const addHoverEffect = () => {
 };
 
 // Call the hover effect function after the component mounts
-React.useEffect(() => {
-  addHoverEffect();
-}, []);
+
 
 export default BackButton;

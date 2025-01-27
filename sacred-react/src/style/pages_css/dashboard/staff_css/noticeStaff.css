@@ -1,0 +1,163 @@
+/* General Styles */
+.notice-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .notice-page h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2575fc;
+    margin-bottom: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Filter Section */
+  .filter-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-section label {
+    font-size: 1.1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .filter-section select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .filter-section select:hover {
+    border-color: #2575fc;
+  }
+  
+  .filter-section select:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+  }
+  
+  /* Notice Container */
+  .notice-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .notice-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .notice-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .notice-item h3 {
+    font-size: 1.5rem;
+    color: #2575fc;
+    margin-bottom: 10px;
+  }
+  
+  .notice-item p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .notice-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .notice-details {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .notice-details p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .active-status {
+    color: green;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .inactive-status {
+    color: red;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .no-notices {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .notice-page h2 {
+      font-size: 2rem;
+    }
+  
+    .filter-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .notice-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .notice-page h2 {
+      font-size: 1.8rem;
+    }
+  
+    .notice-item h3 {
+      font-size: 1.3rem;
+    }
+  
+    .notice-item p {
+      font-size: 1rem;
+    }
+  
+    .notice-details {
+      font-size: 0.9rem;
+    }
+  }

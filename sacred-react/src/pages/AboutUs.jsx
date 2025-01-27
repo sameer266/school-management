@@ -1,9 +1,15 @@
 import React from 'react';
 import '../style/pages_css/aboutus.css';
 import { FaHistory, FaBullhorn, FaEye, FaSchool } from 'react-icons/fa';  // Importing icons
+import BackButton from '../components/BackButton';
 
 function AboutUs() {
   return (
+
+    <>
+  
+
+    
     <div className="about-us-container">
       {/* Hero Section */}
       <div className="about-us-hero">
@@ -14,9 +20,7 @@ function AboutUs() {
           </h1>
           <p>Discover our story, mission, and vision for a brighter future.</p>
         </div>
-        <div className="hero-image">
-          <FaSchool className="school-icon" />
-        </div>
+        
       </div>
 
       {/* Content Sections */}
@@ -74,6 +78,7 @@ function AboutUs() {
         <p>Thank you for choosing our school. We are excited to have you on this journey!</p>
       </div>
     </div>
+    </>
   );
 }
 

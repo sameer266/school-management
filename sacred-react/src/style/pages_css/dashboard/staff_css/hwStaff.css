@@ -1,0 +1,129 @@
+/* General Styles */
+.add-homework-page {
+    padding: 20px;
+    max-width: 800px;
+    margin:100px auto  0 auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+ .add-homework-page h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .add-homework-page h2 {
+    color: #34495e;
+    margin-bottom: 15px;
+  }
+  
+  /* Add Homework Form */
+  .add-homework-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #3498db;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .add-button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .add-button:hover {
+    background: #2980b9;
+  }
+  
+  /* Homework List */
+  .homework-list {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .homework-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease;
+  }
+  
+  .homework-item:last-child {
+    border-bottom: none;
+  }
+  
+  .homework-item:hover {
+    background: #f9f9f9;
+  }
+  
+  .homework-details h3 {
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .homework-details p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .delete-button {
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .delete-button:hover {
+    background: #c0392b;
+  }

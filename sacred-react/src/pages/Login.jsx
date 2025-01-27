@@ -71,7 +71,7 @@ function Login() {
           navigate("/student-dashboard");
         }
       } else {
-        setError("Login failed, please check your credentials.");
+        setError("Login failed");
       }
     } catch (err) {
       setError("An error occurred during login. Please try again.");

@@ -1,0 +1,142 @@
+/* General Styles */
+.library-staff-page {
+    padding: 20px;
+    max-width: 1000px;
+    margin:100px auto 0 auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .library-staff-page h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .library-staff-page h2 {
+    color: #34495e;
+    margin-bottom: 15px;
+  }
+  
+  /* Library Form */
+  .library-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #3498db;
+  }
+  
+  .add-button,
+  .save-button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .add-button:hover,
+  .save-button:hover {
+    background: #2980b9;
+  }
+  
+  /* Library List */
+  .library-list {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .library-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease;
+  }
+  
+  .library-item:last-child {
+    border-bottom: none;
+  }
+  
+  .library-item:hover {
+    background: #f9f9f9;
+  }
+  
+  .item-details h3 {
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .item-details p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .item-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .edit-button {
+    background: #f1c40f;
+    color: #fff;
+  }
+  
+  .delete-button {
+    background: #e74c3c;
+    color: #fff;
+  }
+  
+  .edit-button:hover {
+    background: #f39c12;
+  }
+  
+  .delete-button:hover {
+    background: #c0392b;
+  }
