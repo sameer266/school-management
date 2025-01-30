@@ -24,6 +24,7 @@ import LibraryStaff from "./pages/dashboard/staff/LibraryStaff";
 import NoticeStaff from "./pages/dashboard/staff/NoticeStaff";
 import StaffProfile from "./pages/dashboard/staff/StaffProfile";
 import WhiteFadeOverlay from "./components/WhiteFadeOverlay";
+import ChatBot from "./components/ChatBot";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Router>
 
       <WhiteFadeOverlay/>
+      <ChatBot/>
       
         <Navbar />
 

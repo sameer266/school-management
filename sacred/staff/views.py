@@ -66,29 +66,19 @@ class StaffTeachesTotalSubject(APIView):
 class StaffAddAttendanceView(APIView):
     def post(self, request):
         try:
-            attendance_data = request.data.get('attendance', [])
-            if not attendance_data:
-                return Response({"success": False, "message": "No attendance data provided."}, status=status.HTTP_400_BAD_REQUEST)
-
-            for record in attendance_data:
-                student_id = record.get('student_id')
-                status_flag = record.get('status', False)
-                remarks = record.get('remarks', '')
-
-                try:
-                    student = Students.objects.get(id=student_id)
-                except Students.DoesNotExist:
-                    return Response({"success": False, "message": f"Student with ID {student_id} not found."}, status=status.HTTP_404_NOT_FOUND)
-
-                Attendence.objects.update_or_create(
-                    student=student,
-                    defaults={'status': status_flag, 'remarks': remarks}
-                )
-
-            return Response({"success": True, "message": "Attendance updated successfully."}, status=status.HTTP_200_OK)
+            student_id=request.data.get('student_id')
+            student=Students.objects.get(id=student_id)
+            status=request.data.get('status')
+            remarks=request.data.get('remarks','')
+            attendance=Attendence.objects.create(student=student,status=status,remarks=remarks)
+            serializer =AttendenceSerializer(attendance,many=True)
+            return Response({"success":True,"message":"Attendance Created Succesfully","data":serializer.data},status=200)
         except Exception as e:
-            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"success":False,"message":str(e)},status=400)
+            
+         
 
+       
 # ===================== Get Students Attendance by Date Range =====================
 class StaffAttendanceByDateRangeView(APIView):
     def get(self, request):
@@ -204,9 +194,9 @@ class StaffAddExamNotice(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request):
+    def delete(self, request,id):
         try:
-            exam_id = request.query_params.get('exam_id')
+            exam_id = id
             exam = Exam.objects.get(id=exam_id)
             exam.delete()
 
@@ -239,13 +229,10 @@ class StaffAddExamResultView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request):
+    def delete(self, request,id):
         try:
-            exam_id = request.query_params.get('exam_id')
-            student_id = request.query_params.get('student_id')
-            subject_id = request.query_params.get('subject_id')
-
-            exam_result = ExamResult.objects.get(exam_id=exam_id, student_id=student_id, subject_id=subject_id)
+            exam_id =id
+            exam_result = ExamResult.objects.get(exam_id=exam_id)
             exam_result.delete()
 
             return Response({"success": True, "message": "Exam result deleted successfully."}, status=status.HTTP_200_OK)
@@ -276,6 +263,20 @@ class StaffAddLibraryView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 
+    def patch(self,request,id):
+        try:
+            user=request.user
+            staff=Staffs.objects.get(name=user)
+            title=request.data.get('title')
+            pdf_file=request.data.FILES('file')
+            library=Library.objects.update(title=title,pdf_file=pdf_file,uploaded_by=staff)
+            serializer=LibrarySerializer(library,many=True)
+            return Response({"success":True,"message":"Library updated Succesfully","data":serializer.data})
+        except Exception as e:
+            return Response({"success":False,"message":str(e)})
+            
+            
+    
     def delete(self, request, id):
         try:
             library = Library.objects.get(id=id)

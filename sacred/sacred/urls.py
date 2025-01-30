@@ -30,6 +30,6 @@ urlpatterns = [
     path('staff/',include('staff.urls')),
     path('adminHod/',include('adminHOD.urls')),
     
-    
+
   
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

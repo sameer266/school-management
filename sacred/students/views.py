@@ -2,7 +2,7 @@ from datetime import datetime
 from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.parsers import MultiPartParser, FormParser
+
 from sacred.serializer import *
 from notice.models import Notice
 from exams.models import ExamResult, Exam
@@ -50,6 +50,7 @@ class StudentAttendance(APIView):
     authentication_classes = [SessionAuthentication]
     permission_classes=[IsAuthenticated]
     
+    
     def get(self, request):
         """
         Retrieve all attendance records for the logged-in student.
@@ -64,6 +65,7 @@ class StudentAttendance(APIView):
         except Students.DoesNotExist:
             return Response({"success": False, "message": "Student profile not found."}, status=404)
 
+    
     def post(self, request):
         """
         Retrieve attendance records for the logged-in student on a specific date.
@@ -86,6 +88,7 @@ class StudentAttendance(APIView):
 
 # ======== To fetch student leave report ========
 class StudentLeaveReport(APIView):
+    
     def get(self,request):
         user=request.user
         try:

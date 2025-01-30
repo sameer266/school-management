@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*','192.168.254.30']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,10 +52,12 @@ INSTALLED_APPS = [
     'subjects',
     'adminHOD',
     'notice',
+    
    
     
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'channels'
     
 ]
 
@@ -157,9 +160,6 @@ AUTH_USER_MODEL = 'customuser.CustomUser'
 
 
 
-
-
-
 # CORS Headers settings
 # --------Cors header-------
 
@@ -177,6 +177,13 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 
+ASGI_APPLICATION = "sacred.asgi.application"
 
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 

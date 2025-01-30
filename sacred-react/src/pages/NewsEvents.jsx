@@ -2,6 +2,7 @@ import React from 'react';
 import '../style/pages_css/newsevents.css';
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 
+
 function NewsEvents() {
   // Sample data for news and events
   const newsEvents = [
@@ -36,6 +37,7 @@ function NewsEvents() {
 
   return (
     <div className="news-events-container">
+     
       <h1 className="news-events-header">News & Events</h1>
       <p className="news-events-description">
         Stay updated with the latest news and upcoming events at Sacred Heart Academy.

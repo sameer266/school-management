@@ -4,164 +4,37 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
   }
   
   .popup-content {
-    background-image: url('../../images/admission.jpg'); /* Background image */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     padding: 2rem;
-    border-radius: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
     text-align: center;
-    max-width: 90%; /* Flexible width for smaller screens */
-    width: 400px; /* Default width for larger screens */
     position: relative;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    color: #ffffff; /* Text color */
-    overflow: hidden; /* Ensure overlay doesn't overflow */
-  }
-  
-  .popup-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    z-index: 1;
-  }
-  
-  .popup-content h2,
-  .popup-content p,
-  .popup-content .cta-button,
-  .popup-content .close-button {
-    position: relative;
-    z-index: 2; /* Ensure content is above the overlay */
+    color: white;
   }
   
   .popup-content h2 {
     margin-bottom: 1rem;
-    font-size: 1.75rem;
-    color: #ff3030; /* Red text for emphasis */
-    font-weight: 600; /* Bold heading */
+    font-size: 1.5rem;
+    color: #fff;
   }
   
   .popup-content p {
     margin-bottom: 1.5rem;
     font-size: 1rem;
-    color: #ff3030; /* Red text for emphasis */
-    line-height: 1.5; /* Better readability */
-  }
-  
-  .popup-content .cta-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .popup-content .cta-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  .popup-content .cta-button:active {
-    transform: translateY(0); /* Reset on click */
-  }
-  
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .popup-content {
-    background-image: url('../../images/admission.jpg'); /* Background image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 90%; /* Flexible width for smaller screens */
-    width: 400px; /* Default width for larger screens */
-    position: relative;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    color: #ffffff; /* Text color */
-    overflow: hidden; /* Ensure overlay doesn't overflow */
-  }
-  
-  .popup-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    z-index: 1;
-  }
-  
-  .popup-content h2,
-  .popup-content p,
-  .popup-content .cta-button,
-  .popup-content .close-button {
-    position: relative;
-    z-index: 2; /* Ensure content is above the overlay */
-  }
-  
-  .popup-content h2 {
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-    color: #ffffff; /* Red text for emphasis */
-    font-weight: 600; /* Bold heading */
-  }
-  
-  .popup-content p {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-    color: #ffffff; /* Red text for emphasis */
-    line-height: 1.5; /* Better readability */
-  }
-  
-  .popup-content .cta-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .popup-content .cta-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  .popup-content .cta-button:active {
-    transform: translateY(0); /* Reset on click */
+    color: #eee;
   }
   
   .close-button {
@@ -171,108 +44,34 @@
     background: none;
     border: none;
     font-size: 1.5rem;
+    color: white;
     cursor: pointer;
-    color: #fff; /* White close button for better contrast */
   }
   
   .close-button:hover {
-    color: #ff3030; /* Red on hover */
+    color: #ff4d4d;
   }
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .popup-content {
-      padding: 1.5rem;
-      max-width: 95%; /* More width on smaller screens */
-    }
-  
-    .popup-content h2 {
-      font-size: 1.5rem; /* Smaller heading on mobile */
-    }
-  
-    .popup-content p {
-      font-size: 0.9rem; /* Smaller text on mobile */
-    }
-  
-    .popup-content .cta-button {
-      padding: 0.5rem 1rem; /* Smaller button on mobile */
-      font-size: 0.9rem;
-    }
-  
-    .close-button {
-      top: 10px;
-      right: 10px;
-      font-size: 1.25rem; /* Smaller close button on mobile */
-    }
+  .cta-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  @media (max-width: 480px) {
-    .popup-content {
-      padding: 1rem;
-      border-radius: 10px; /* Smaller border radius on very small screens */
-    }
-  
-    .popup-content h2 {
-      font-size: 1.25rem; /* Even smaller heading */
-    }
-  
-    .popup-content p {
-      font-size: 0.8rem; /* Even smaller text */
-    }
-  
-    .popup-content .cta-button {
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-    }
+  .cta-button:hover {
+    background-color: #0056b3;
   }
   
-  .close-button:hover {
-    color: #ff3030; /* Red on hover */
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .popup-content {
-      padding: 1.5rem;
-      max-width: 95%; /* More width on smaller screens */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
     }
-  
-    .popup-content h2 {
-      font-size: 1.5rem; /* Smaller heading on mobile */
-    }
-  
-    .popup-content p {
-      font-size: 0.9rem; /* Smaller text on mobile */
-    }
-  
-    .popup-content .cta-button {
-      padding: 0.5rem 1rem; /* Smaller button on mobile */
-      font-size: 0.9rem;
-    }
-  
-    .close-button {
-      top: 10px;
-      right: 10px;
-      font-size: 1.25rem; /* Smaller close button on mobile */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .popup-content {
-      padding: 1rem;
-      border-radius: 10px; /* Smaller border radius on very small screens */
-    }
-  
-    .popup-content h2 {
-      font-size: 1.25rem; /* Even smaller heading */
-    }
-  
-    .popup-content p {
-      font-size: 0.8rem; /* Even smaller text */
-    }
-  
-    .popup-content .cta-button {
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
+    to {
+      opacity: 1;
     }
   }

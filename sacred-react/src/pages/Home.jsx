@@ -13,6 +13,7 @@ import img6 from '../images/img6.jpg';
 
 import { GraduationCap, BookOpen, Trophy, Target, Users, Music } from 'lucide-react'; // Icons
 import PopUp from '../components/PopUp';
+import ChatBot from '../components/ChatBot';
 
 function Home() {
   // Initialize AOS
@@ -24,6 +25,9 @@ function Home() {
   }, []);
 
   return (
+
+    <>
+  
     <div className="home">
       {/* Admission Popup */}
       <PopUp />
@@ -161,6 +165,7 @@ function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

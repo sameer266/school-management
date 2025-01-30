@@ -28,23 +28,20 @@ urlpatterns = [
     # Route to view the staff profile
     path('staff_profile/', views.StaffProfileView.as_view()),
 
-    # Route to update the staff profile
-    path('staff_profile_update/', views.StaffProfileUpdateView.as_view()),
-
-
+    #
 
     # ===================== Exam Routes ===================== 
     # Route to add an exam notice
     path('staff_add_exam_notice/', views.StaffAddExamNotice.as_view()),
 
     # Route to delete an exam notice
-    path('staff_delete_exam_notice/', views.StaffAddExamNotice.as_view()),  # Same view as 'staff_add_exam_notice' for DELETE request
+    path('staff_delete_exam_notice/<id>/', views.StaffAddExamNotice.as_view()),  # Same view as 'staff_add_exam_notice' for DELETE request
 
     # Route to add exam results
     path('staff_add_exam_result/', views.StaffAddExamResultView.as_view()),
 
     # Route to delete exam results
-    path('staff_delete_exam_result/', views.StaffAddExamResultView.as_view()),  # Same view as 'staff_add_exam_result' for DELETE request
+    path('staff_delete_exam_result/<int:id>/', views.StaffAddExamResultView.as_view()),  # Same view as 'staff_add_exam_result' for DELETE request
 
 
 
@@ -53,7 +50,7 @@ urlpatterns = [
     path('staff_view_library/', views.StaffViewLibraryView.as_view()),
 
     # Route to update the library (add/update details)
-    path('staff_update_library/', views.StaffAddLibraryView.as_view()),
+    path('staff_update_library/<int:id>/', views.StaffAddLibraryView.as_view()),
 
     # Route to delete a specific library item based on its ID
     path('staff_delete_library/<int:id>/', views.StaffAddLibraryView.as_view()),
