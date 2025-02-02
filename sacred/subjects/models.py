@@ -7,10 +7,9 @@ from staff.models import Staffs
 
 
 class Subjects(models.Model):
-    subject_name=models.CharField(max_length=100)
-    class_id=models.ForeignKey(ClassModel,on_delete=models.CASCADE)
-    staff_id=models.ForeignKey(Staffs,on_delete=models.CASCADE)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now=True)
-    
-    
+    subject_name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Subject: {self.subject_name}"

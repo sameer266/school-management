@@ -1,0 +1,192 @@
+/* takeattendance.css */
+.take-attendance {
+ text-align: center;
+  padding: 20px;
+  max-width: 800px;
+  margin:100px auto 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.take-attendance h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.search-bar,
+.date-picker {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input,
+.date-picker input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  margin-left: 8px;
+  width: 100%;
+}
+
+.search-bar .search-icon,
+.date-picker .calendar-icon {
+  color: #888;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.student-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-roll {
+  font-weight: bold;
+  color: #555;
+}
+
+.student-name {
+  color: #333;
+}
+
+.attendance-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+
+.take-attendance 
+.present,
+.absent {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.take-attendance .present {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.take-attendance .present:hover {
+  background-color: #45a049;
+}
+
+.take-attendance .absent {
+  background-color: #f44336;
+  color: white;
+}
+
+.take-attendance .absent:hover {
+  background-color: #e53935;
+}
+
+.take-attendance .present.active,
+.absent.active {
+  opacity: 0.8;
+}
+
+.take-attendance .remarks-section {
+  margin-top: 10px;
+}
+
+.take-attendance .remarks-section textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.remarks-section textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.take-attendance .submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .attendance-header {
+    flex-direction: column;
+  }
+
+  .search-bar,
+  .date-picker {
+    width: 100%;
+  }
+
+  .attendance-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .present,
+  .absent {
+    width: 100%;
+    text-align: center;
+  }
+
+  .submit-button {
+    width: 100%;
+    max-width: none;
+  }
+}

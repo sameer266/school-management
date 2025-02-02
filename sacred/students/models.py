@@ -6,6 +6,7 @@ from classes.models import ClassModel
 
 class Students(models.Model):
     name=models.OneToOneField('customuser.CustomUser',on_delete=models.CASCADE)
+    roll_no=models.IntegerField(null=False, default=0)
     gender=models.CharField(max_length=10)
     image=models.ImageField(upload_to="student_img/",default="student_img/avatar.jpg")
     address=models.TextField()

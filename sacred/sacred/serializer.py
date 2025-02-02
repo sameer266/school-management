@@ -228,10 +228,10 @@ class LibrarySerializer(serializers.ModelSerializer):
         model = Library
         fields = '__all__'
     
-    def create(self,validate_data):
-        uploaded_by_data=validate_data.pop('uploaded_by')
-        user=CustomUser.objects.get(**uploaded_by_data)
-        library=Library.objects.create(uploaded_by=user,**validate_data)
+    def create(self, validated_data):
+        uploaded_by_data = validated_data.pop('uploaded_by')
+        user = CustomUser.objects.get(**uploaded_by_data)
+        library = Library.objects.create(uploaded_by=user, **validated_data)
         return library
         
   

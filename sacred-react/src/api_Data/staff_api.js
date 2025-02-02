@@ -10,7 +10,6 @@ const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
 
 /**
  * Fetch staff home data
- * @returns {Promise<Object>} Staff home data
  */
 const Staff_Home = async () => {
     try {
@@ -25,13 +24,36 @@ const Staff_Home = async () => {
 
 /// ====== Staff Attendance ======
 
+
+/**
+ *  Staff Total Students Data 
+ */
+
+const Staff_Total_StudentsName=async ()=>{
+
+    try {
+        const response= await axios.get(`${baseUrl}/staff/staff_Total_StudentsName/`,
+            {
+                withCredentials:true
+            }
+        );
+        return response.data;
+
+    } catch (error) {
+        console.log("Error in fetching Students data",error.response.data.message)
+        
+    }
+}
+
+
 /**
  * Take student attendance
- * @returns {Promise<Object>} Response data
  */
-const Staff_Take_Student_Attendence = async () => {
+const Staff_Take_Student_Attendence = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/staff/staff_take_attendance/`, {}, {
+        const response = await axios.post(`${baseUrl}/staff/staff_take_attendance/`,
+            data,
+             {
             headers: {
                 "X-CSRFToken": csrfToken,
                 "Content-Type": "application-json"
@@ -46,8 +68,6 @@ const Staff_Take_Student_Attendence = async () => {
 
 /**
  * Update student attendance
- * @param {number} id - Student ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Update_Student_Attendence = async (data, id) => {
     try {
@@ -68,7 +88,6 @@ const Staff_Update_Student_Attendence = async (data, id) => {
 
 /**
  * Apply for leave
- * @returns {Promise<Object>} Response data
  */
 const Staff_Apply_Leave = async () => {
     try {
@@ -88,7 +107,6 @@ const Staff_Apply_Leave = async () => {
 /**
  * Delete leave
  * @param {number} id - Leave ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Delete_Leave = async (id) => {
     try {
@@ -109,7 +127,6 @@ const Staff_Delete_Leave = async (id) => {
 
 /**
  * Fetch staff profile data
- * @returns {Promise<Object>} Staff profile data
  */
 const Staff_Profile = async () => {
     try {
@@ -127,7 +144,6 @@ const Staff_Profile = async () => {
 /**
  * Add exam notice
  * @param {Object} data - Exam data
- * @returns {Promise<Object>} Response data
  */
 const Staff_Add_Exam = async (data) => {
     try {
@@ -147,7 +163,6 @@ const Staff_Add_Exam = async (data) => {
 /**
  * Delete exam notice
  * @param {number} id - Exam notice ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Delete_Exam = async (id) => {
     try {
@@ -169,7 +184,6 @@ const Staff_Delete_Exam = async (id) => {
 /**
  * Add exam result
  * @param {Object} data - Exam result data
- * @returns {Promise<Object>} Response data
  */
 const Staff_Add_Result = async (data) => {
     try {
@@ -189,7 +203,6 @@ const Staff_Add_Result = async (data) => {
 /**
  * Delete exam result
  * @param {number} id - Exam result ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Delete_Result = async (id) => {
     try {
@@ -210,7 +223,6 @@ const Staff_Delete_Result = async (id) => {
 
 /**
  * View library data
- * @returns {Promise<Object>} Library data
  */
 const Staff_View_Libaray = async () => {
     try {
@@ -227,7 +239,6 @@ const Staff_View_Libaray = async () => {
  * Update library data
  * @param {Object} data - Library data
  * @param {string} id - Library ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Update_Library = async (data, id) => {
     try {
@@ -247,7 +258,6 @@ const Staff_Update_Library = async (data, id) => {
 /**
  * Delete library data
  * @param {number} id - Library ID
- * @returns {Promise<Object>} Response data
  */
 const Staff_Delete_Library = async (id) => {
     try {
@@ -264,43 +274,11 @@ const Staff_Delete_Library = async (id) => {
     }
 };
 
-/// ====== Staff Teaches ======
-
-/**
- * Fetch total students taught by staff
- * @returns {Promise<Object>} Total students data
- */
-const Staff_Teaches_TotalStudent = async () => {
-    try {
-        const response = await axios.get(`${baseUrl}/staff/staff_teaches_total_subjects/`, {
-            withCredentials: true
-        });
-        return response.data;
-    } catch (error) {
-        console.log("Error in fetching Staff teaches students", error.response.data.message);
-    }
-};
-
-/**
- * Fetch total subjects taught by staff
- * @returns {Promise<Object>} Total subjects data
- */
-const Staff_Teaches_TotalSubject = async () => {
-    try {
-        const response = await axios.get(`${baseUrl}/staff/staff_teaches-total_subjects/`, {
-            withCredentials: true
-        });
-        return response.data;
-    } catch (error) {
-        console.log("Error in fetching Staff teaches subjects", error.response.data.message);
-    }
-};
 
 /// ====== Staff Notices ======
 
 /**
  * Fetch staff notices
- * @returns {Promise<Object>} Notices data
  */
 const Staff_Notice = async () => {
     try {
@@ -315,6 +293,7 @@ const Staff_Notice = async () => {
 
 export {
     Staff_Home,
+    Staff_Total_StudentsName,
     Staff_Take_Student_Attendence,
     Staff_Update_Student_Attendence,
     Staff_Apply_Leave,

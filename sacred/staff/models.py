@@ -4,6 +4,7 @@ from django.utils.timezone import now
 from classes.models import ClassModel
 
 
+
 class Staffs(models.Model):
     name = models.OneToOneField(
         to='customuser.CustomUser', on_delete=models.CASCADE
@@ -12,6 +13,7 @@ class Staffs(models.Model):
     teaches_classes = models.ManyToManyField(
         'classes.ClassModel', related_name='teachers'
     )
+    subject_teaches=models.ForeignKey('subjects.Subjects',on_delete=models.CASCADE,null=True,blank=True)
     address = models.TextField()
     contact_number = models.CharField(max_length=10)
     image = models.ImageField(upload_to="staff_img/",blank=True, null=True)

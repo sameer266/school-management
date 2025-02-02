@@ -6,6 +6,10 @@ urlpatterns = [
     path('', views.StaffHomePage.as_view()),
 
     # ===================== Attendance Routes ===================== 
+    
+    # Route to Get all Stundents name 
+    path('staff_Total_StudentsName/',views.StaffTotalStudentsName.as_view()),
+    
     # Route to take attendance for staff
     path('staff_take_attendance/', views.StaffAddAttendanceView.as_view()),
 

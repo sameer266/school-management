@@ -3,6 +3,7 @@ from datetime import datetime
 from django.utils.dateparse import parse_date
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from attendence.models import Attendence
 from subjects.models import Subjects
 from students.models import Students
@@ -12,26 +13,32 @@ from sacred.serializer import *
 
 # ===================== Staff Home Page =====================
 class StaffHomePage(APIView):
+    authentication_classes = [BasicAuthentication, SessionAuthentication]
+
     def get(self, request):
         try:
-            user = request.user
+            user = request.user  # Logged-in user
+            print(user)  # Debugging
+
+            # Fetch staff by user, NOT by name
             staff = Staffs.objects.get(name=user)
-            total_subjects = staff.teaches_classes.all().count()
+            serializer = StaffsSerializer(staff)
+
             total_classes = staff.teaches_classes.count()
             total_leaves = LeaveReportStaff.objects.filter(staff=staff).count()
-            students_taught = Students.objects.filter(class_id__in=staff.teaches_classes.all()).count()
+            students_taught = Students.objects.filter(class_id__in=staff.teaches_classes.all()).distinct().count()
 
             return Response({
+                "success": True,
                 "message": f"Welcome {staff.name}",
-                "user": staff.name,
-                "total_subjects": total_subjects,
+                "user": serializer.data,
                 "total_classes": total_classes,
                 "total_leaves": total_leaves,
                 "total_students": students_taught
             }, status=status.HTTP_200_OK)
 
-        except Exception as e:
-            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Staffs.DoesNotExist:
+            return Response({"error": "Staff profile not found"}, status=status.HTTP_404_NOT_FOUND)
 
 # ===================== Get Total Students that Staff Teaches =====================
 class StaffTeachesTotalStudent(APIView):
@@ -62,23 +69,36 @@ class StaffTeachesTotalSubject(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 
+# ===================== Get Total Students Name =====================
+class StaffTotalStudentsName(APIView):
+    def get(self, request):
+        try:
+            user = request.user
+            print(user)
+            staff = Staffs.objects.get(name=user)
+            class_id = staff.class_teacher
+            print(class_id)
+            students = Students.objects.filter(class_id=class_id)
+            students_data = StudentsSerializer(students, many=True).data
+
+            return Response({"success": True, "message": students_data}, status=200)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=400)
+
 # ===================== Add or Update Attendance =====================
 class StaffAddAttendanceView(APIView):
     def post(self, request):
         try:
-            student_id=request.data.get('student_id')
-            student=Students.objects.get(id=student_id)
-            status=request.data.get('status')
-            remarks=request.data.get('remarks','')
-            attendance=Attendence.objects.create(student=student,status=status,remarks=remarks)
-            serializer =AttendenceSerializer(attendance,many=True)
-            return Response({"success":True,"message":"Attendance Created Succesfully","data":serializer.data},status=200)
+            student_id = request.data.get('student_id')
+            student = Students.objects.get(id=student_id)
+            status = request.data.get('status')
+            remarks = request.data.get('remarks', '')
+            attendance = Attendence.objects.create(student=student, status=status, remarks=remarks)
+            serializer = AttendenceSerializer(attendance, many=True)
+            return Response({"success": True, "message": "Attendance Created Successfully", "data": serializer.data}, status=200)
         except Exception as e:
-            return Response({"success":False,"message":str(e)},status=400)
-            
-         
+            return Response({"success": False, "message": str(e)}, status=400)
 
-       
 # ===================== Get Students Attendance by Date Range =====================
 class StaffAttendanceByDateRangeView(APIView):
     def get(self, request):
@@ -194,7 +214,7 @@ class StaffAddExamNotice(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request,id):
+    def delete(self, request, id):
         try:
             exam_id = id
             exam = Exam.objects.get(id=exam_id)
@@ -229,9 +249,9 @@ class StaffAddExamResultView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request,id):
+    def delete(self, request, id):
         try:
-            exam_id =id
+            exam_id = id
             exam_result = ExamResult.objects.get(exam_id=exam_id)
             exam_result.delete()
 
@@ -263,20 +283,18 @@ class StaffAddLibraryView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 
-    def patch(self,request,id):
+    def patch(self, request, id):
         try:
-            user=request.user
-            staff=Staffs.objects.get(name=user)
-            title=request.data.get('title')
-            pdf_file=request.data.FILES('file')
-            library=Library.objects.update(title=title,pdf_file=pdf_file,uploaded_by=staff)
-            serializer=LibrarySerializer(library,many=True)
-            return Response({"success":True,"message":"Library updated Succesfully","data":serializer.data})
+            user = request.user
+            staff = Staffs.objects.get(name=user)
+            title = request.data.get('title')
+            pdf_file = request.data.FILES('file')
+            library = Library.objects.update(title=title, pdf_file=pdf_file, uploaded_by=staff)
+            serializer = LibrarySerializer(library, many=True)
+            return Response({"success": True, "message": "Library updated Successfully", "data": serializer.data})
         except Exception as e:
-            return Response({"success":False,"message":str(e)})
-            
-            
-    
+            return Response({"success": False, "message": str(e)})
+
     def delete(self, request, id):
         try:
             library = Library.objects.get(id=id)

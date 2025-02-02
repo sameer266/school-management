@@ -20,21 +20,7 @@ const Student_Home = async () => {
     }
 };
 
-// Function to update student profile
-const Student_Update_Profile = async (data) => {
-    try {
-        const response = await axios.post(`${baseUrl}/student/student_update_profile`, data, {
-            headers: {
-                "X-CSRFToken": csrfToken,
-                "Content-Type": "application/json",
-            },
-            withCredentials: true,
-        });
-        return response.data;
-    } catch (error) {
-        console.error("Error in updating student profile", error.response?.data?.message);
-    }
-};
+
 
 // Function to view student attendance
 const Student_View_Attendance = async () => {
@@ -177,7 +163,6 @@ const Student_Submit_HomeWork = async (homeworkId, files) => {
 // Export all functions
 export {
     Student_Home,
-    Student_Update_Profile,
     Student_View_Attendance,
     Student_View_Result,
     Student_View_Bill,
