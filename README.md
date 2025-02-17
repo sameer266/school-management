@@ -1,4 +1,4 @@
-Based on the provided information, here is an updated README for your repository:
+
 
 # School Management System
 
