@@ -12,7 +12,14 @@ class Exam(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateField(auto_now=True)
     
-    
+    def delete(self, *args, **kwargs):
+        # Check if an image exists and delete it
+        if self.image:
+            self.image.delete(save=False)  # Delete the file from storage without saving the model again
+        super(Exam, self).delete(*args, **kwargs)  # Call the parent class's delete method
+        
+    def __str__(self):
+        return f" Exam of class {self.class_id.name}"
     
 class ExamResult(models.Model):
     exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)  # Exam for which the result is

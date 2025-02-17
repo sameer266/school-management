@@ -19,7 +19,7 @@
   }
   
   /* Leave Form */
-  .leave-form {
+ .apply-leave-container .leave-form {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -27,11 +27,11 @@
     margin-bottom: 40px;
   }
   
-  .form-group {
+ .apply-leave-container .form-group {
     margin-bottom: 20px;
   }
   
-  .form-group label {
+  .apply-leave-container  .form-group label {
     font-size: 1.1rem;
     color: #333;
     display: flex;
@@ -40,7 +40,7 @@
     margin-bottom: 5px;
   }
   
-  .form-group input,
+  .apply-leave-container .form-group input,
   .form-group textarea {
     width: 100%;
     padding: 10px;
@@ -50,18 +50,18 @@
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .form-group input:focus,
+  .apply-leave-container.form-group input:focus,
   .form-group textarea:focus {
     border-color: #2575fc;
     box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
     outline: none;
   }
   
-  .form-group textarea {
+  .apply-leave-container  .form-group textarea {
     resize: vertical;
   }
   
-  .submit-btn {
+  .apply-leave-container .submit-btn {
     background: #2575fc;
     color: white;
     border: none;
@@ -72,7 +72,7 @@
     transition: background 0.3s ease, transform 0.3s ease;
   }
   
-  .submit-btn:hover {
+  .apply-leave-container .submit-btn:hover {
     background: #1a5bbf;
     transform: translateY(-2px);
   }
@@ -91,43 +91,43 @@
     margin-bottom: 20px;
   }
   
-  table {
+  .apply-leave-container table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  table th,
+  .apply-leave-container table th,
   table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
   
-  table th {
+  .apply-leave-container table th {
     background: #f9f9f9;
     font-weight: bold;
     color: #333;
   }
   
-  table td {
+  .apply-leave-container table td {
     color: #555;
   }
   
-  .status-approved {
+  .apply-leave-container  .status-approved {
     color: green;
     display: flex;
     align-items: center;
     gap: 5px;
   }
   
-  .status-pending {
+  .apply-leave-container  .status-pending {
     color: #ff9800;
     display: flex;
     align-items: center;
     gap: 5px;
   }
   
-  .status-rejected {
+  .apply-leave-container  .status-rejected {
     color: red;
     display: flex;
     align-items: center;
@@ -140,20 +140,20 @@
       font-size: 2rem;
     }
   
-    .leave-form {
+    .apply-leave-container  .leave-form {
       padding: 15px;
     }
   
-    .form-group label {
+    .apply-leave-container .form-group label {
       font-size: 1rem;
     }
   
-    .form-group input,
+    .apply-leave-container .form-group input,
     .form-group textarea {
       font-size: 0.9rem;
     }
   
-    .submit-btn {
+    .apply-leave-container .submit-btn {
       font-size: 0.9rem;
       padding: 8px 16px;
     }
@@ -162,7 +162,7 @@
       font-size: 1.5rem;
     }
   
-    table th,
+    .apply-leave-container table th,
     table td {
       padding: 8px;
     }
@@ -173,20 +173,20 @@
       font-size: 1.8rem;
     }
   
-    .leave-form {
+    .apply-leave-container   .leave-form {
       padding: 10px;
     }
   
-    .form-group label {
+    .apply-leave-container  .form-group label {
       font-size: 0.9rem;
     }
   
-    .form-group input,
+    .apply-leave-container .form-group input,
     .form-group textarea {
       font-size: 0.8rem;
     }
   
-    .submit-btn {
+    .apply-leave-container .submit-btn {
       font-size: 0.8rem;
       padding: 6px 12px;
     }
@@ -195,7 +195,7 @@
       font-size: 1.3rem;
     }
   
-    table th,
+    .apply-leave-container table th,
     table td {
       padding: 6px;
     }

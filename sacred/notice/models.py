@@ -16,6 +16,11 @@ class Notice(models.Model):
     published_date=models.DateTimeField(auto_now_add=True)
     is_active=models.BooleanField(default=True)
     
-    
+    def delete(self, *args, **kwargs):
+        # Check if an image exists and delete it
+        if self.image:
+            self.image.delete(save=False)  # Delete the file from storage without saving the model again
+        super(Notice, self).delete(*args, **kwargs)  # Call the parent class's delete method
+        
     def __str__(self):
         return f"{self.title}" 

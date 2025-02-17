@@ -1,0 +1,136 @@
+
+  
+  /* Container */
+  .exam-container .container {
+    max-width: 500px;
+    margin:100px auto 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading */
+  .exam-container .heading {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Form Group */
+  .exam-container .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .exam-container .label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .exam-container .input,
+  .exam-container .file-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .exam-container .file-input {
+    border: none;
+  }
+  
+  /* Submit Button */
+  .exam-container .button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .exam-container .button:hover {
+    background: #0056b3;
+  }
+  
+  /* Exam List */
+  .exam-container .exam-list {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .exam-container .exam-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .exam-container .exam-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Exam Image */
+  .exam-container .exam-image {
+    width: 100%;
+    max-width: 250px; /* Medium-sized on large screens */
+    display: block;
+    margin: 8px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Delete Button */
+  .exam-container .delete-button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .exam-container .delete-button:hover {
+    background: #a71d2a;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .exam-container .container {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .exam-container .heading {
+      font-size: 20px;
+    }
+  
+    .exam-container .input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .exam-container .button {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .exam-container .exam-image {
+      max-width: 100%; /* Full width on small screens */
+    }
+  }
+  

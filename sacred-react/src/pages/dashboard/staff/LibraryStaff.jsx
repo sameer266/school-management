@@ -1,162 +1,85 @@
-import React, { useState } from "react";
-import "../../../style/pages_css/dashboard/staff_css/libraryStaff.css"; // External CSS
-import { FaPlus, FaTrash, FaEdit, FaSave } from "react-icons/fa"; // Icons for add, delete, edit, and save
+import React, { useState, useEffect } from "react";
+import { FaPlus, FaTrash, FaEdit, FaSave } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
 import BackButton from "../../../components/BackButton";
+import { Staff_List_Libaray, Staff_Add_Library, Staff_Delete_Library, Staff_Update_Library } from "../../../api_Data/staff_api";
+import "../../../style/pages_css/dashboard/staff_css/libraryStaff.css";
 
 function LibraryStaff() {
-  const [libraryItems, setLibraryItems] = useState([]); // State to store library items
-  const [newItem, setNewItem] = useState({
-    title: "",
-    author: "",
-    category: "",
-    quantity: "",
-  }); // State for new item input
-  const [editingItemId, setEditingItemId] = useState(null); // State to track which item is being edited
+  const [libraryItems, setLibraryItems] = useState([]);
+  const [newItem, setNewItem] = useState({ title: "", pdf_file: null });
+  const [editingItemId, setEditingItemId] = useState(null);
 
-  // Handle input change for new/updated item
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewItem({ ...newItem, [name]: value });
-  };
+  useEffect(() => { fetchLibraryItems(); }, []);
 
-  // Add new library item
-  const handleAddItem = () => {
-    if (newItem.title && newItem.author && newItem.category && newItem.quantity) {
-      setLibraryItems([...libraryItems, { ...newItem, id: Date.now() }]);
-      setNewItem({ title: "", author: "", category: "", quantity: "" }); // Reset form
-    } else {
-      alert("Please fill in all fields.");
+  const fetchLibraryItems = async () => {
+    try {
+      const response = await Staff_List_Libaray();
+      setLibraryItems(response.message);
+    } catch (error) {
+      toast.error("Failed to fetch library items");
     }
   };
 
-  // Delete library item
-  const handleDeleteItem = (id) => {
-    setLibraryItems(libraryItems.filter((item) => item.id !== id));
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setNewItem({ ...newItem, [name]: files ? files[0] : value });
   };
 
-  // Start editing an item
-  const handleEditItem = (item) => {
-    setEditingItemId(item.id);
-    setNewItem(item); // Populate the form with the item's data
+  const handleSave = async () => {
+    if (!newItem.title || (!editingItemId && !newItem.pdf_file)) {
+      return toast.error("Please fill in all fields");
+    }
+    
+    const formData = new FormData();
+    formData.append("title", newItem.title);
+    if (newItem.pdf_file) formData.append("pdf_file", newItem.pdf_file);
+    
+    try {
+      editingItemId ? await Staff_Update_Library(editingItemId, formData) : await Staff_Add_Library(formData);
+      toast.success(editingItemId ? "Item updated successfully" : "Item added successfully");
+      setNewItem({ title: "", pdf_file: null });
+      setEditingItemId(null);
+      fetchLibraryItems();
+    } catch (error) {
+      toast.error("Failed to save library item");
+    }
   };
 
-  // Save updated item
-  const handleUpdateItem = () => {
-    if (newItem.title && newItem.author && newItem.category && newItem.quantity) {
-      setLibraryItems(
-        libraryItems.map((item) =>
-          item.id === editingItemId ? { ...newItem, id: editingItemId } : item
-        )
-      );
-      setNewItem({ title: "", author: "", category: "", quantity: "" }); // Reset form
-      setEditingItemId(null); // Exit edit mode
-    } else {
-      alert("Please fill in all fields.");
+  const handleDelete = async (id) => {
+    try {
+      await Staff_Delete_Library(id);
+      toast.success("Item deleted successfully");
+      fetchLibraryItems();
+    } catch (error) {
+      toast.error("Failed to delete item");
     }
   };
 
   return (
-
-
-        <>
-        <BackButton/>
-
-    <div className="library-staff-page">
-      <h1>Library Management</h1>
-
-      {/* Form to add/update library items */}
-      <div className="library-form">
-        <h2>{editingItemId ? "Update Library Item" : "Add New Library Item"}</h2>
-        <div className="form-group">
-          <label>Title</label>
-          <input
-            type="text"
-            name="title"
-            value={newItem.title}
-            onChange={handleInputChange}
-            placeholder="Enter book title"
-          />
+    <>
+      <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+      <BackButton />
+      <div className="library-staff-page">
+        <h2>Library </h2>
+        <div className="library-form">
+          <input type="text" name="title" value={newItem.title} onChange={handleChange} placeholder="Enter title" />
+          <input type="file" name="pdf_file" onChange={handleChange} />
+          <button onClick={handleSave}>{editingItemId ? <FaSave /> : <FaPlus />} {editingItemId ? "Update" : "Add"}</button>
         </div>
-        <div className="form-group">
-          <label>Author</label>
-          <input
-            type="text"
-            name="author"
-            value={newItem.author}
-            onChange={handleInputChange}
-            placeholder="Enter author name"
-          />
-        </div>
-        <div className="form-group">
-          <label>Category</label>
-          <input
-            type="text"
-            name="category"
-            value={newItem.category}
-            onChange={handleInputChange}
-            placeholder="Enter category"
-          />
-        </div>
-        <div className="form-group">
-          <label>Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            value={newItem.quantity}
-            onChange={handleInputChange}
-            placeholder="Enter quantity"
-          />
-        </div>
-        {editingItemId ? (
-          <button className="save-button" onClick={handleUpdateItem}>
-            <FaSave /> Update Item
-          </button>
-        ) : (
-          <button className="add-button" onClick={handleAddItem}>
-            <FaPlus /> Add Item
-          </button>
-        )}
-      </div>
 
-      {/* List of library items */}
-      <div className="library-list">
         <h2>Library Items</h2>
-        {libraryItems.length === 0 ? (
-          <p>No library items added yet.</p>
-        ) : (
-          libraryItems.map((item) => (
-            <div key={item.id} className="library-item">
-              <div className="item-details">
-                <h3>{item.title}</h3>
-                <p>
-                  <strong>Author:</strong> {item.author}
-                </p>
-                <p>
-                  <strong>Category:</strong> {item.category}
-                </p>
-                <p>
-                  <strong>Quantity:</strong> {item.quantity}
-                </p>
-              </div>
-              <div className="item-actions">
-                <button
-                  className="edit-button"
-                  onClick={() => handleEditItem(item)}
-                >
-                  <FaEdit /> Edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDeleteItem(item.id)}
-                >
-                  <FaTrash /> Delete
-                </button>
-              </div>
+        {libraryItems.length === 0 ? <p>No library items added yet.</p> :
+          libraryItems.map(({ id, title, pdf_file }) => (
+            <div key={id} className="library-item">
+              <h3>{title}</h3>
+              <a href={`http://127.0.0.1:8000/${pdf_file}`} target="_blank" rel="noopener noreferrer">View PDF</a>
+              <button onClick={() => { setEditingItemId(id); setNewItem({ title }); }}><FaEdit /> Edit</button>
+              <button onClick={() => handleDelete(id)}><FaTrash /> Delete</button>
             </div>
           ))
-        )}
+        }
       </div>
-    </div>
     </>
   );
 }

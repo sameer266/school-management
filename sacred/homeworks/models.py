@@ -15,6 +15,13 @@ class Homework(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     
+    
+    def delete(self, *args, **kwargs):
+        # Check if image exists and delete it
+        if self.image:
+            self.image.delete(save=False)  # Deletes the file associated with the model instance
+        super(Homework, self).delete(*args, **kwargs)  # Call the parent class's delete method
+
     def __str__(self):
         return f"Homework: {self.subject} Subject for Class {self.class_id.name}"
     
@@ -23,7 +30,7 @@ class Homework(models.Model):
 class HomeworkSubmission(models.Model):
     student=models.ForeignKey(Students,on_delete=models.CASCADE)
     homework=models.ForeignKey(Homework,on_delete=models.CASCADE)
-    submssion_date = models.DateTimeField(default=timezone.now)  # ✅ Correct
+    submission_date = models.DateTimeField(default=timezone.now)  # ✅ Correct
 
     image=models.ImageField(upload_to="hw_submitted_img/",null=True,blank=True)
     status=models.BooleanField(default=False)

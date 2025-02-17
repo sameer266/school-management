@@ -44,12 +44,17 @@ urlpatterns = [
     #
 
     # ===================== Exam Routes ===================== 
+    
+    #route to get all exams  routine data
+    path('staff_get_examnotice/',views.StaffAddExamNotice.as_view()),
+    
     # Route to add an exam notice
     path('staff_add_exam_notice/', views.StaffAddExamNotice.as_view()),
 
     # Route to delete an exam notice
     path('staff_delete_exam_notice/<id>/', views.StaffAddExamNotice.as_view()),  # Same view as 'staff_add_exam_notice' for DELETE request
 
+    # ================= Exam REsults =================
     # Route to add exam results
     path('staff_add_exam_result/', views.StaffAddExamResultView.as_view()),
 
@@ -68,11 +73,17 @@ urlpatterns = [
     path('staff_list_homework/',views.StaffHomeworkList.as_view()),
     
     #route to list and Check Submitted Homework by Student
-    path('staff_check_homeworklist/',views.StaffCheckHomeworkList.as_view()),
+    path('staff_submitted_homeworklist/',views.StaffCheckHomeworkList.as_view()),
+    
+    #rote to check homework 
+    path('staff_check_homework/',views.StaffCheckHomeworkList.as_view()),
     
     # ===================== Library Routes ===================== 
     # Route to view the library information
     path('staff_view_library/', views.StaffViewLibraryView.as_view()),
+    
+    #Route to upload Libraray books
+    path('staff_add_library/',views.StaffAddLibraryView.as_view()),
 
     # Route to update the library (add/update details)
     path('staff_update_library/<int:id>/', views.StaffAddLibraryView.as_view()),

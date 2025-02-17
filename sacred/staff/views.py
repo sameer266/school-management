@@ -254,6 +254,21 @@ class StaffProfileUpdateView(APIView):
 
 # ===================== Add or Delete Exam Notice =====================
 class StaffAddExamNotice(APIView):
+    
+    def get(self,request):
+        try:
+            user=request.user
+            staff=Staffs.objects.get(name=user)
+            classes=staff.teaches_classes.all()
+            exams=Exam.objects.filter(class_id__in=classes)
+            serializers=ExamSerializer(exams,many=True)
+            return Response({"success":True,"exam_data":serializers.data},status=200)    
+            
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+        
+        
+        
     def post(self, request):
         try:
             class_id = request.data.get('class_id')
@@ -278,6 +293,7 @@ class StaffAddExamNotice(APIView):
 
 # ===================== Add or Delete Exam Result =====================
 class StaffAddExamResultView(APIView):
+    
     def post(self, request):
         try:
             exam_id = request.data.get('exam_id')
@@ -323,27 +339,37 @@ class StaffViewLibraryView(APIView):
 class StaffAddLibraryView(APIView):
     def post(self, request):
         try:
+            print(request.data)
             user = request.user
-            staff = Staffs.objects.get(name=user)
             title = request.data.get('title')
-            pdf_file = request.data.file('file')
+            pdf_file = request.FILES.get('pdf_file')
 
-            library = Library.objects.update_or_create(title=title, pdf_file=pdf_file, uploaded_by=staff)
-            serializer = LibrarySerializer(library, many=True)
-
-            return Response({"success": True, "message": "Create or Update Library Data Success", "data": serializer.data}, status=201)
+            Library.objects.create(title=title, pdf_file=pdf_file, uploaded_by=user)
+        
+            return Response({"success": True, "message": "Create Library Data Success",}, status=201)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 
     def patch(self, request, id):
         try:
             user = request.user
-            staff = Staffs.objects.get(name=user)
-            title = request.data.get('title')
-            pdf_file = request.data.FILES('file')
-            library = Library.objects.update(title=title, pdf_file=pdf_file, uploaded_by=staff)
-            serializer = LibrarySerializer(library, many=True)
-            return Response({"success": True, "message": "Library updated Successfully", "data": serializer.data})
+            print(request.data)
+
+            # Retrieve the library item to update
+            library = Library.objects.get(id=id)
+
+            # Update fields if provided
+            title = request.data.get('title', library.title)
+            pdf_file = request.FILES.get('pdf_file', library.pdf_file)
+
+            # Update the instance with the new data
+            library.title = title
+            library.pdf_file = pdf_file if pdf_file else library.pdf_file
+            library.uploaded_by = user
+
+            # Save the updated instance
+            library.save()
+            return Response({"success": True, "message": "Library updated Successfully"})
         except Exception as e:
             return Response({"success": False, "message": str(e)})
 
@@ -459,7 +485,7 @@ class StaffCheckHomeworkList(APIView):
             hw_list = Homework.objects.filter(created_by=staff)
 
             # Fetch all submissions for these homeworks
-            hwsubmit = HomeworkSubmission.objects.filter(homework__in=hw_list)
+            hwsubmit = HomeworkSubmission.objects.filter(homework__in=hw_list).order_by('submission_date')
 
             serializers = HomeworkSubmissionSerializer(hwsubmit, many=True)
 
@@ -468,3 +494,11 @@ class StaffCheckHomeworkList(APIView):
             return Response({"success": False, "message": "Staff not found"}, status=404)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
+    
+    def post(self,request):
+        try:
+            id=request.data.get("id")
+            HomeworkSubmission.objects.update(id=id,status=True)
+            return Response({"success":True,"message":"Homework Checked Successfully"})
+        except Exception as e:
+            return Response({"success":True,"message":str(e)})

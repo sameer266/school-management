@@ -1,73 +1,156 @@
+/* submitted_hw.css */
+
+/* General Styles */
 .submitted-homework-container {
     padding: 20px;
     max-width: 1200px;
-    margin:100px auto  0 auto;
+    margin:100px 0 auto;
   }
   
-  .homework-list {
+  .submitted-homework-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Homework List Styles */
+  .submitted-homework-container  .homework-list {
     list-style: none;
     padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
   }
   
-  .homework-item {
+  .submitted-homework-container  .homework-item {
+    background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .submitted-homework-container  .homework-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .student-info h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #333;
+    color: #444;
   }
   
   .student-info p {
     margin: 5px 0;
+    font-size: 0.9rem;
     color: #666;
   }
-  
-  .homework-details p {
-    margin: 5px 0;
-    color: #444;
+
+  /* Styling for filter buttons */
+.filter-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
   }
   
-  .homework-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+  .filter-options button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .filter-options button:hover {
+    background-color: #45a049;
+  }
+  
+  
+  .submitted-homework-container .homework-details {
     margin-top: 10px;
   }
   
-  .check-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    align-self: flex-start;
+  .submitted-homework-container .homework-details p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
   }
   
-  .check-button:hover {
+  .homework-details strong {
+    color: #333;
+  }
+  
+  .submitted-homework-container .homework-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  .submitted-homework-container  .check-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submitted-homework-container .check-button:hover {
     background-color: #218838;
   }
   
+  /* Responsive Styles */
   @media (max-width: 768px) {
-    .homework-item {
-      padding: 15px;
+    .submitted-homework-container  .homework-list {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  
+    .submitted-homework-container  .student-info h2 {
+      font-size: 1.3rem;
+    }
+  
+    .submitted-homework-container   .student-info p,
+    .homework-details p {
+      font-size: 0.85rem;
+    }
+  
+    .submitted-homework-container .check-button {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .submitted-homework-container    .homework-list {
+      grid-template-columns: 1fr;
+    }
+  
+    .submitted-homework-container h1 {
+      font-size: 1.8rem;
     }
   
     .student-info h2 {
       font-size: 1.2rem;
     }
   
+    .student-info p,
+    .homework-details p {
+      font-size: 0.8rem;
+    }
+  
     .check-button {
-      width: 100%;
-      text-align: center;
+      font-size: 0.8rem;
+      padding: 5px 8px;
     }
   }

@@ -118,7 +118,7 @@ const Staff_Update_Student_Attendence = async (data, id) => {
         const response = await axios.patch(`${baseUrl}/staff/staff_update_attendance/${id}`, { data }, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -154,7 +154,7 @@ const Staff_Apply_Leave = async () => {
         const response = await axios.post(`${baseUrl}/staff/staff_apply_leave/`, {}, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -173,7 +173,7 @@ const Staff_Delete_Leave = async (id) => {
         const response = await axios.delete(`${baseUrl}/staff/staff_delete_leave/${id}`, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -187,16 +187,31 @@ const Staff_Delete_Leave = async (id) => {
 
 /// ====== Staff Exam ======
 
+
+//--- Get Exam Notice ---
+const Staff_ExamNotice=async ()=>{
+    try {
+        const response = await axios.get(`${baseUrl}/staff/staff_get_examnotice/`,
+            {withCredentials:true}
+        );
+        return response.data;
+    } catch (error) {
+        console.log("Error in Fetching Exam notice ",error.response.data.message)
+        
+    }
+}
+
 /**
  * Add exam notice
- * @param {Object} data - Exam data
  */
 const Staff_Add_Exam = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/staff/staff_add_exam_notice/`, data, {
+        const response = await axios.post(`${baseUrl}/staff/staff_add_exam_notice/`,
+             data, 
+             {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -212,10 +227,10 @@ const Staff_Add_Exam = async (data) => {
  */
 const Staff_Delete_Exam = async (id) => {
     try {
-        const response = await axios.delete(`${baseUrl}/staff/staff_delete_exam_notice/${id}`, {
+        const response = await axios.delete(`${baseUrl}/staff/staff_delete_exam_notice/${id}/`, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -236,7 +251,7 @@ const Staff_Add_Result = async (data) => {
         const response = await axios.post(`${baseUrl}/staff/staff_add_exam_result/`, data, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -255,7 +270,7 @@ const Staff_Delete_Result = async (id) => {
         const response = await axios.delete(`${baseUrl}/staff/staff_delete_exam/${id}/`, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -270,9 +285,9 @@ const Staff_Delete_Result = async (id) => {
 /**
  * View library data
  */
-const Staff_View_Libaray = async () => {
+const Staff_List_Libaray = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/staff/satff_view_library/`, {
+        const response = await axios.get(`${baseUrl}/staff/staff_view_library/`, {
             withCredentials: true
         });
         return response.data;
@@ -281,17 +296,38 @@ const Staff_View_Libaray = async () => {
     }
 };
 
-/**
- * Update library data
- * @param {Object} data - Library data
- * @param {string} id - Library ID
- */
-const Staff_Update_Library = async (data, id) => {
+
+// ----- Staff  Upload Library ----------
+
+const Staff_Add_Library= async (data)=>{
+
     try {
-        const response = await axios.patch(`${baseUrl}/staff/staff_update_library/${id}/`, { data }, {
+        const response = await axios.post(`${baseUrl}/staff/staff_add_library/`,
+            data,
+            {
+                headers:{
+                    "X-CSRFToken":csrfToken,
+                   "Content-Type":"multipart/form-data"
+
+                },
+                withCredentials:true
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.log("Error in Uplaoding Library", error.response.data.message)
+    }
+    
+}
+
+// ----- Staff Update Libaray ------------
+const Staff_Update_Library = async ( id,data) => {
+    try {
+        const response = await axios.patch(`${baseUrl}/staff/staff_update_library/${id}/`, 
+            data , {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+               "Content-Type":"multipart/form-data"
             },
             withCredentials: true
         });
@@ -303,14 +339,13 @@ const Staff_Update_Library = async (data, id) => {
 
 /**
  * Delete library data
- * @param {number} id - Library ID
  */
 const Staff_Delete_Library = async (id) => {
     try {
         const response = await axios.delete(`${baseUrl}/staff/staff_delete_library/${id}/`, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials: true
         });
@@ -346,7 +381,7 @@ const Staff_Add_Homework=async (data)=>{
             {
                 headers: {
                     "X-CSRFToken": csrfToken,
-                    "Content-Type": "application-json"
+                    "Content-Type": "application/json"
                 },
                 withCredentials: true
             }
@@ -366,7 +401,7 @@ const Staff_Delete_Homework= (id)=>{
         {
             headers:{
                 "X-CSRFToken":csrfToken,
-                "Content-Type": "application-json"
+                "Content-Type": "application/json"
             },
             withCredentials:true
         }
@@ -399,7 +434,7 @@ console.log("Error in fetching homework list ",error.response.data.message);
 // ---- List all Submitted Homework of students ------
 const Staff_Submitted_HomeworkList= async ()=>{
     try{
-    const response = await axios.get(`${baseUrl}/staff/staff_check_homeworklist/`,
+    const response = await axios.get(`${baseUrl}/staff/staff_submitted_homeworklist/`,
         {
             withCredentials:true
         }
@@ -414,6 +449,30 @@ catch(error){
 }
 
 
+// ---- Home Check status making True -------
+const Staff_Check_Homework=async (id)=>{
+    try {
+        const response= await axios.post(`${baseUrl}/staff/staff_check_homework/`,
+            {
+                id:id
+            },
+            {
+                headers:{
+                    "X-CSRFToken":csrfToken,
+                    "Content-Type": "application/json"
+                },
+                withCredentials:true
+
+            }
+            
+        );
+        return  response.data;
+    } catch (error) {
+        console.log("error in updating status",error.response.data.message)
+        
+    }
+}
+
 
 
 export {
@@ -427,12 +486,20 @@ export {
     Staff_Update_Student_Attendence,
     Staff_Apply_Leave,
     Staff_Delete_Leave,
+    
+    Staff_ExamNotice,
     Staff_Add_Exam,
     Staff_Delete_Exam,
+
     Staff_Add_Homework,
     Staff_List_Homework,
     Staff_Delete_Homework,
     Staff_Submitted_HomeworkList,
+    Staff_Check_Homework,
 
+    Staff_Add_Library,
+    Staff_List_Libaray,
+    Staff_Delete_Library,
+    Staff_Update_Library,
     
 };
