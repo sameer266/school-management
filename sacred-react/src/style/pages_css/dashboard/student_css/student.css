@@ -153,7 +153,7 @@
   
   @media (max-width: 768px) {
     .main-content {
-      margin-left: 0; /* Full width for small screens */
+      margin:100px auto 0 auto; /* Full width for small screens */
       padding: 10px; /* Reduce padding for small screens */
     }
   

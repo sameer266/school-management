@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from students.models import Students
 
 from classes.models import ClassModel
@@ -21,7 +21,7 @@ class Homework(models.Model):
 class HomeworkSubmission(models.Model):
     student=models.ForeignKey(Students,on_delete=models.CASCADE)
     homework=models.ForeignKey(Homework,on_delete=models.CASCADE)
-    submssion_date=models.DateTimeField(default=datetime.now())
+    submssion_date=models.DateTimeField(default=timezone.now().date())
     image=models.ImageField(upload_to="hw_submitted_img/",null=True,blank=True)
     status=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)

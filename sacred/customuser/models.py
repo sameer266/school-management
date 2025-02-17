@@ -3,10 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from staff.models import Staffs
-from adminHOD.models import AdminHOD
-from students.models import Students
-from classes.models import ClassModel
+
 
 # Create your models here.
 

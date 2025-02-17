@@ -1,8 +1,4 @@
 from django.db import models
-
-
-from classes.models import ClassModel
-from staff.models import Staffs
 # Create your models here.
 
 

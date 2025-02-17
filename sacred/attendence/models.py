@@ -1,8 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from datetime import datetime
-
+from django.utils import timezone
 
 from classes.models import ClassModel
 from students.models import Students
@@ -11,7 +10,7 @@ from students.models import Students
 
 class Attendence(models.Model):
     student = models.ForeignKey(Students, on_delete=models.CASCADE)
-    attendence_date = models.DateField(default=datetime.now())
+    attendence_date = models.DateField(default=timezone.now().date())
     status = models.BooleanField(default=False)
     remarks = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -23,7 +22,7 @@ class Attendence(models.Model):
 
 class AttendanceReport(models.Model):
     class_id = models.ForeignKey(ClassModel, on_delete=models.CASCADE)  # Track the class
-    report_date = models.DateField(default=datetime.now())  # Date for the report
+    report_date = models.DateField(default=timezone.now().date())  # Date for the report
     total_present = models.IntegerField(default=0)  # Total number of students present
     total_absent = models.IntegerField(default=0)  # Total number of students absent
     created_at = models.DateTimeField(auto_now_add=True)

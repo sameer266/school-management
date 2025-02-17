@@ -63,7 +63,7 @@ class StaffTeachesTotalSubject(APIView):
             subjects = Subjects.objects.filter(staff_id=staff)
             subjects_names = [subject.name for subject in subjects]
 
-            return Response({"success": True, "total_subjects": len(subjects), "subject_names": subjects_names}, status=200)
+            return Response({"success": True, "total_subjects": len(subjects), "subject_names": subjects_names}, status=status.HTTP_201_CREATED)
         except Staffs.DoesNotExist:
             return Response({"success": False, "message": "Staff user not found"}, status=404)
         except Exception as e:
@@ -89,13 +89,16 @@ class StaffTotalStudentsName(APIView):
 class StaffAddAttendanceView(APIView):
     def post(self, request):
         try:
-            student_id = request.data.get('student_id')
-            student = Students.objects.get(id=student_id)
-            status = request.data.get('status')
-            remarks = request.data.get('remarks', '')
-            attendance = Attendence.objects.create(student=student, status=status, remarks=remarks)
-            serializer = AttendenceSerializer(attendance, many=True)
-            return Response({"success": True, "message": "Attendance Created Successfully", "data": serializer.data}, status=200)
+            students_attendance = request.data
+            serializer_data = []
+            for student in students_attendance:
+                student_id = student.get('id')
+                student_obj = Students.objects.get(id=student_id)
+                status = student.get('status')
+                remarks = student.get('remarks', '')
+                attendance = Attendence.objects.update_or_create(student=student_obj, status=status, remarks=remarks)
+                serializer_data.append(AttendenceSerializer(attendance).data)
+            return Response({"success": True, "message": "Attendance Created Successfully", "data": serializer_data}, status=201)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/comp_css/popup.css'; // Import CSS file for styling
-import BackgroundImage from '../images/admission.jpg';
+import BackgroundImage from '../images/img3.jpg';
 
 function PopUp() {
   const [isVisible, setIsVisible] = useState(false);

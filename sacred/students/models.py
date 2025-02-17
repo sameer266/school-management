@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 
 from classes.models import ClassModel
 # Create your models here.
@@ -21,8 +21,8 @@ class Students(models.Model):
 
 class LeaveReportStudent(models.Model):
     student=models.ForeignKey(Students,on_delete=models.CASCADE)
-    leave_start_date=models.DateField(default=datetime.now())
-    leave_end_date=models.DateField(default=datetime.now())
+    leave_start_date=models.DateField(default=timezone.now().date())
+    leave_end_date=models.DateField(default=timezone.now().date())
     leave_message=models.TextField()
     leave_status_choices=[
         ('pending','Pending'),

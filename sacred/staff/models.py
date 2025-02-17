@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.timezone import now
+from django.utils import timezone
 
 from classes.models import ClassModel
 
@@ -26,8 +26,8 @@ class Staffs(models.Model):
 
 class LeaveReportStaff(models.Model):
     staff = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    leave_start_date = models.DateTimeField(default=now)
-    leave_end_date = models.DateTimeField(default=now)
+    leave_start_date = models.DateTimeField(default=timezone.now().date())
+    leave_end_date = models.DateTimeField(default=timezone.now().date())
     leave_message = models.TextField()
     leave_status_choices = [
         ('pending', 'Pending'),
@@ -41,4 +41,4 @@ class LeaveReportStaff(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Leave for Staff {self.staff.admin.username}"
+        return f"Leave for Staff {self.staff.first_name}"

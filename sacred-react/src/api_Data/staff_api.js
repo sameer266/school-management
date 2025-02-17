@@ -51,12 +51,10 @@ const Staff_Total_StudentsName=async ()=>{
  */
 const Staff_Take_Student_Attendence = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/staff/staff_take_attendance/`,
-            data,
-             {
+        const response = await axios.post(`${baseUrl}/staff/staff_take_attendance/`, data, {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application-json"
+                
             },
             withCredentials: true
         });

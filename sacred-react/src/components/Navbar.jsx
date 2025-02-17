@@ -5,6 +5,7 @@ import Logo from "../images/logo.jpg";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { FaHome, FaInfoCircle, FaBook, FaNewspaper, FaEnvelope, FaSignInAlt, FaSignOutAlt, FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { Loader } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ const Navbar = () => {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user_type = useSelector((state) => state.auth.user_type);
+  const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
   // Navigate to the appropriate dashboard based on user type
@@ -27,11 +29,16 @@ const Navbar = () => {
 
   // Handle user logout
   const handleOnLogout = async () => {
+    setLoader(true);
     try {
-      await axios.post("http://127.0.0.1:8000/logout/");
+
+      const response = await axios.post("http://127.0.0.1:8000/logout/");
+      if (response && response.data.success){
       localStorage.clear();
+      setLoader(false);
       navigate("/"); // Navigate to home page after logout
       window.location.reload();
+      }
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -75,6 +82,12 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
+    <>
+    {
+      loader? 
+      <Loader/> :
+      
+    
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="logo">
@@ -140,6 +153,8 @@ const Navbar = () => {
         onClick={closeMenu}
       ></div>
     </nav>
+}
+    </>
   );
 };
 

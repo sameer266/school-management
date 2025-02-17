@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../../style/pages_css/dashboard/staff_css/hwStaff.css"; // External CSS
 import { FaPlus, FaTrash } from "react-icons/fa"; // Icons for add and delete
+import BackButton from "../../../components/BackButton";
 
 function HomeworkStaff() {
   const [homeworkList, setHomeworkList] = useState([]); // State to store homework list
@@ -32,7 +33,11 @@ function HomeworkStaff() {
   };
 
   return (
-    <div className="add-homework-page">
+
+    <>
+  <BackButton/>
+    
+       <div className="add-homework-page">
       <h1>Add Homework</h1>
 
       {/* Form to add new homework */}
@@ -97,6 +102,8 @@ function HomeworkStaff() {
         )}
       </div>
     </div>
+    </>
+
   );
 }
 

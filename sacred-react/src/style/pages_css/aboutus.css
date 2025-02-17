@@ -1,7 +1,6 @@
 /* General Styles */
 .about-us-container {
  
-  font-family: 'Arial', sans-serif;
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
@@ -12,7 +11,7 @@
 .about-us-hero {
   margin-top: 100px;
   display: flex;
-  align-items: center;
+  align-items: center ;
   justify-content: space-between;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
@@ -21,9 +20,17 @@
   margin-bottom: 40px;
 }
 
+.about-us-container .hero-content {
+  text-align: center;
+}
+
+
+
+
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 10px;
+  
 }
 
 .hero-content p {
