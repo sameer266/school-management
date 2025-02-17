@@ -30,6 +30,7 @@ import WhiteFadeOverlay from "./components/WhiteFadeOverlay";
 import ChatBot from "./components/ChatBot";
 import ProfileStaff from "./pages/dashboard/staff/ProfileStaff";
 import TakeAttendance from "./pages/dashboard/staff/TakeAttendance";
+import SubmittedHomework from "./pages/dashboard/staff/SubmittedHomework";
 
 
 // it automatically scrolls to the top instead of staying at the bottom.
@@ -76,8 +77,9 @@ function App() {
           <Route path="staff-profile" element={<ProfileStaff/>}/>
           <Route path="/staff-dashboard" element={<Staff />} />
           <Route path="/staff-add-homework" element={<HomeworkStaff/>}/>
+          <Route path="/staff-submitted-homework" element={<SubmittedHomework/>}/>
           <Route path="/staff-take-attendance" element={<TakeAttendance/>}/>
-          <Route path="/staff-add-attendance" element={<AttendanceStaff/>}/>
+          <Route path="/staff-view-attendance" element={<AttendanceStaff/>}/>
           <Route path="/staff-manage-library" element={<LibraryStaff/>}/>
           <Route path="/staff-notice" element={<NoticeStaff/>}/>
 

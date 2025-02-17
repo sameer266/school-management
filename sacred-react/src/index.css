@@ -1,17 +1,50 @@
+/* In src/index.css */
 @import "tailwindcss";
 
-/* In src/index.css */
+/* Importing the Poppins font */
 @import "~@fontsource/poppins/400.css";  /* Regular weight */
 @import "~@fontsource/poppins/700.css";  /* Bold weight */
 
-
+/* Global styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* In src/index.css */
   font-family: 'Poppins', sans-serif;
-
-
 }
 
+/* Responsive Font Sizes */
+body {
+  font-size: 1rem;  /* Default font size for larger screens (non-mobile) */
+}
+
+h1 {
+  font-size: 2rem;  /* Font size for h1 on larger screens */
+}
+
+h2 {
+  font-size: 1.5rem;  /* Font size for h2 on larger screens */
+}
+
+h3 {
+  font-size: 1.25rem;  /* Font size for h3 on larger screens */
+}
+
+/* Responsive font adjustments for mobile view (screens 768px and below) */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.875rem;  /* Smaller font size for mobile screens */
+  }
+
+  h1 {
+    font-size: 1.5rem;  /* Smaller font size for h1 on mobile */
+  }
+
+  h2 {
+    font-size: 1.25rem;  /* Smaller font size for h2 on mobile */
+  }
+
+  h3 {
+    font-size: 1rem;  /* Smaller font size for h3 on mobile */
+  }
+}

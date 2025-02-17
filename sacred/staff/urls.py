@@ -10,6 +10,12 @@ urlpatterns = [
     # Route to Get all Stundents name 
     path('staff_Total_StudentsName/',views.StaffTotalStudentsName.as_view()),
     
+    #Route to Get students name based on seelcted class
+    path('staff_ClassBased_StudentsName/<id>/',views.StaffSelectedClassStudents.as_view()),
+    
+    #Route to Get One students Attendance record
+    path('staff_GetOne_Student_Attendance/',views.StaffGetOneStudentAttendance.as_view()),
+    
     # Route to take attendance for staff
     path('staff_take_attendance/', views.StaffAddAttendanceView.as_view()),
 
@@ -18,6 +24,9 @@ urlpatterns = [
 
     # Route to search for attendance by a specific date range
     path('get_attendance_search/', views.StaffAttendanceByDateRangeView.as_view()),
+    
+    #route to get all attendance of students ============
+    path('get_all_students_attendance/<id>/',views.StaffAllStudentsAttendance.as_view()),
 
 
 
@@ -48,7 +57,19 @@ urlpatterns = [
     path('staff_delete_exam_result/<int:id>/', views.StaffAddExamResultView.as_view()),  # Same view as 'staff_add_exam_result' for DELETE request
 
 
+    #======================= HomeWork ===========================
+    #Rooute to add HomeWork
+    path('staff_add_homework/',views.StaffAddHomework.as_view()),
+    
+    #route to delete Homework 
+    path('staff_delete_homework/<id>/',views.StaffAddHomework.as_view()),
 
+    #route to list  homework 
+    path('staff_list_homework/',views.StaffHomeworkList.as_view()),
+    
+    #route to list and Check Submitted Homework by Student
+    path('staff_check_homeworklist/',views.StaffCheckHomeworkList.as_view()),
+    
     # ===================== Library Routes ===================== 
     # Route to view the library information
     path('staff_view_library/', views.StaffViewLibraryView.as_view()),

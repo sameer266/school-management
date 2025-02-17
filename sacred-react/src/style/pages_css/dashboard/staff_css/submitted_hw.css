@@ -1,0 +1,73 @@
+.submitted-homework-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin:100px auto  0 auto;
+  }
+  
+  .homework-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .homework-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .student-info h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .student-info p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .homework-details p {
+    margin: 5px 0;
+    color: #444;
+  }
+  
+  .homework-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .check-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  
+  .check-button:hover {
+    background-color: #218838;
+  }
+  
+  @media (max-width: 768px) {
+    .homework-item {
+      padding: 15px;
+    }
+  
+    .student-info h2 {
+      font-size: 1.2rem;
+    }
+  
+    .check-button {
+      width: 100%;
+      text-align: center;
+    }
+  }

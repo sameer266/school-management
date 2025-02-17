@@ -25,11 +25,26 @@ const Staff_Home = async () => {
 /// ====== Staff Attendance ======
 
 
+
+// Staff get All Students attendance 
+const Staff_TotalAttendance_Students=async (id)=>{
+try {
+    const response= await axios.get(`${baseUrl}/staff/get_all_students_attendance/${id}/`,
+        { withCredentials:true}
+    );
+    return response.data;
+} catch (error) {
+    console.log("Error in fetching total attendance of Students",error.response.data.message)
+    
+}
+}
+
+
 /**
  *  Staff Total Students Data 
  */
 
-const Staff_Total_StudentsName=async ()=>{
+const Staff_Total_StudentsName=async (class_name)=>{
 
     try {
         const response= await axios.get(`${baseUrl}/staff/staff_Total_StudentsName/`,
@@ -45,6 +60,37 @@ const Staff_Total_StudentsName=async ()=>{
     }
 }
 
+// ----Get students name based on  selected class---
+const Staff_Selected_Class_StudentName=async (id)=>{
+try{
+    const response = await axios.get(`${baseUrl}/staff/staff_ClassBased_StudentsName/${id}`,
+        {  withCredentials:true}
+    );
+    return response.data;
+}
+catch(error){
+
+    console.log("Error in Getting Data of students based on selected Class ",error.response.data.message);
+}
+}
+
+const Staff_Total_SubjectTeach=async ()=>{
+    try{
+
+        const response = await axios.get(`${baseUrl}/staff/staff_teaches_total_subjects/`,
+            {
+                withCredentials:true
+            }
+        );
+        return response.data;
+        
+    }
+    catch(error){
+        console.log("Error in fetching Staff Subjects" ,error.response.data.message);
+    }
+
+
+}
 
 /**
  * Take student attendance
@@ -81,6 +127,22 @@ const Staff_Update_Student_Attendence = async (data, id) => {
         console.log("Error in Updating attendance", error.response.data.message);
     }
 };
+
+// ---Get one Students Attendance ---
+const Staff_GetOne_Student_Attendance=async ()=>{
+
+try {
+    const response= await axios.get(`${baseUrl}/staff/staff_GetOne_Student_Attendance/`,
+        {
+            withCredentials:true
+        }
+    );
+    return response.data;
+} catch (error) {
+    console.log("Error in Getting One Student Attendance ", error.response.data.message);
+    
+}
+}
 
 /// ====== Staff Leave ======
 
@@ -121,21 +183,7 @@ const Staff_Delete_Leave = async (id) => {
     }
 };
 
-/// ====== Staff Profile ======
 
-/**
- * Fetch staff profile data
- */
-const Staff_Profile = async () => {
-    try {
-        const response = await axios.get(`${baseUrl}/staff/staff_profile/`, {
-            withCredentials: true
-        });
-        return response.data;
-    } catch (error) {
-        console.log("Error in Fetching staff profile data", error.response.data.message);
-    }
-};
 
 /// ====== Staff Exam ======
 
@@ -289,14 +337,102 @@ const Staff_Notice = async () => {
     }
 };
 
+// =========== Staff Homeworks ========
+
+const Staff_Add_Homework=async (data)=>{
+    try {
+        const response = await axios.post(`${baseUrl}/staff/staff_add_homework/`,
+            data,
+            {
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "Content-Type": "application-json"
+                },
+                withCredentials: true
+            }
+        );
+        return response.data;
+        
+    } catch (error) {
+        console.log("error in Uploading Homework ",error.response.data.message)
+        
+    }
+}
+
+// --- Staff delete homework ------
+const Staff_Delete_Homework= (id)=>{
+    try{
+    const response= axios.delete(`${baseUrl}/staff/staff_delete_homework/${id}/`,
+        {
+            headers:{
+                "X-CSRFToken":csrfToken,
+                "Content-Type": "application-json"
+            },
+            withCredentials:true
+        }
+    );
+    return response.data;
+    }
+
+    catch(error){
+        console.log("Error in deleting homework",error.response.data.message)
+
+    }
+    
+}
+
+
+//---- List all Homeworks --------
+const Staff_List_Homework=async ()=>{
+    try{
+    const response = await axios.get(`${baseUrl}/staff/staff_list_homework/`,
+        { withCredentials:true}
+    );
+    return response.data;
+
+}
+catch(error){
+
+console.log("Error in fetching homework list ",error.response.data.message);
+}
+}
+// ---- List all Submitted Homework of students ------
+const Staff_Submitted_HomeworkList= async ()=>{
+    try{
+    const response = await axios.get(`${baseUrl}/staff/staff_check_homeworklist/`,
+        {
+            withCredentials:true
+        }
+    );
+    return response.data;
+}
+catch(error){
+    console.log("error in fetching submitted Homeworks" , error.response.data.message);
+
+}
+
+}
+
+
+
+
 export {
     Staff_Home,
     Staff_Total_StudentsName,
+    Staff_Selected_Class_StudentName,
+    Staff_Total_SubjectTeach,
+    Staff_GetOne_Student_Attendance,
     Staff_Take_Student_Attendence,
+    Staff_TotalAttendance_Students,
     Staff_Update_Student_Attendence,
     Staff_Apply_Leave,
     Staff_Delete_Leave,
-    Staff_Profile,
     Staff_Add_Exam,
-    Staff_Delete_Exam
+    Staff_Delete_Exam,
+    Staff_Add_Homework,
+    Staff_List_Homework,
+    Staff_Delete_Homework,
+    Staff_Submitted_HomeworkList,
+
+    
 };

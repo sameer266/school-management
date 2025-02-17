@@ -1,15 +1,16 @@
 /* General Styles */
 .add-homework-page {
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 100px auto 0 auto;
   font-family: 'Arial', sans-serif;
+  background-color: #f4f6f9;
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .add-homework-page {
-      padding: 10px; /* Reduce padding for smaller screens */
+      padding: 15px; /* Reduce padding for smaller screens */
       margin-top: 80px; /* Adjust margin for smaller screens */
   }
 }
@@ -17,134 +18,125 @@
 .add-homework-page h1 {
   text-align: center;
   color: #2c3e50;
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
 /* Responsive font sizes for smaller screens */
 @media (max-width: 480px) {
   .add-homework-page h1 {
-      font-size: 1.5rem; /* Smaller font size for smaller screens */
+      font-size: 2rem; /* Adjust font size for smaller screens */
   }
 }
 
 .add-homework-page h2 {
   color: #34495e;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
-/* Responsive font sizes for smaller screens */
-@media (max-width: 480px) {
-  .add-homework-page h2 {
-      font-size: 1.2rem; /* Smaller font size for smaller screens */
-  }
+.add-homework-page h2 + .form-group {
+  margin-bottom: 20px;
 }
 
 /* Add Homework Form */
 .add-homework-form {
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .add-homework-form {
-      padding: 15px; /* Reduce padding for smaller screens */
-  }
-}
-
+/* Form Group Styles */
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2c3e50;
+  font-size: 1.1rem;
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 1rem;
+  background-color: #fafafa;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
   border-color: #3498db;
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .add-button {
   background: #3498db;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 1rem;
+  gap: 10px;
+  justify-content: center;
   transition: background 0.3s ease;
+  width: 100%;
 }
 
 .add-button:hover {
   background: #2980b9;
 }
 
+.add-button svg {
+  font-size: 1.2rem;
+}
+
 /* Responsive adjustments for smaller screens */
 @media (max-width: 480px) {
   .add-button {
-      width: 100%; /* Full-width button on smaller screens */
-      justify-content: center; /* Center button text */
-      padding: 12px; /* Slightly larger padding for easier tapping */
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 }
 
 /* Homework List */
 .homework-list {
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .homework-list {
-      padding: 15px; /* Reduce padding for smaller screens */
-  }
+.homework-list h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
 }
 
 .homework-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 20px;
   border-bottom: 1px solid #ddd;
   transition: background 0.3s ease;
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 480px) {
-  .homework-item {
-      flex-direction: column; /* Stack content vertically on smaller screens */
-      align-items: flex-start; /* Align items to the start */
-      gap: 10px; /* Add gap between stacked items */
-  }
 }
 
 .homework-item:last-child {
@@ -155,35 +147,32 @@
   background: #f9f9f9;
 }
 
-.homework-details h3 {
-  margin: 0;
-  color: #2c3e50;
-}
-
-/* Responsive font sizes for smaller screens */
-@media (max-width: 480px) {
-  .homework-details h3 {
-      font-size: 1.1rem; /* Smaller font size for smaller screens */
-  }
+.homework-details {
+  flex-grow: 1;
+  padding-right: 20px;
 }
 
 .homework-details p {
-  margin: 5px 0;
   color: #333;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
 }
 
-/* Responsive font sizes for smaller screens */
-@media (max-width: 480px) {
-  .homework-details p {
-      font-size: 0.9rem; /* Smaller font size for smaller screens */
-  }
+.homework-details p strong {
+  font-weight: bold;
+}
+
+.homework-image {
+  max-width: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
 .delete-button {
   background: #e74c3c;
   color: #fff;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
@@ -196,11 +185,27 @@
   background: #c0392b;
 }
 
+.delete-button svg {
+  font-size: 1.2rem;
+}
+
 /* Responsive adjustments for smaller screens */
 @media (max-width: 480px) {
-  .delete-button {
-      width: 100%; /* Full-width button on smaller screens */
-      justify-content: center; /* Center button text */
-      padding: 10px; /* Slightly larger padding for easier tapping */
+  .homework-item {
+    flex-direction: column; /* Stack content vertically on smaller screens */
+    gap: 15px; /* Add space between stacked items */
+    align-items: flex-start;
+  }
+
+  .homework-details p {
+    font-size: 1rem;
+  }
+
+  .homework-details {
+    padding-right: 0;
+  }
+
+  .homework-image {
+    max-width: 80px;
   }
 }

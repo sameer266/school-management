@@ -1,118 +1,249 @@
+/* General Styles */
 .attendance-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin:100px auto 0 auto;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 80px auto 0 auto;
+  font-family: Arial, sans-serif;
+  background: #fdfdfd;
+  border-radius: 10px;
+}
+
+.attendance-container h2, 
+.attendance-container h3, 
+.attendance-container h4 {
+  color: #333;
+  text-align: center;
+}
+
+/* Class Selection Dropdown */
+.attendance-container .class-selection {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.attendance-container .class-selection label {
+  font-weight: bold;
+}
+
+.attendance-container .class-selection select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  transition: border 0.3s ease-in-out;
+}
+
+.attendance-container .class-selection select:hover,
+.attendance-container .class-selection select:focus {
+  border-color: #007bff;
+}
+
+/* Students List */
+.attendance-container .students-list {
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-container .students-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.students-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s;
+}
+
+.students-list li:hover {
+  background: #f8f9fa;
+}
+
+.students-list li:last-child {
+  border-bottom: none;
+}
+
+.attendance-container .students-list .attendance-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.attendance-container .students-list .attendance-status .present {
+  color: green;
+}
+
+.attendance-container .students-list .attendance-status .absent {
+  color: red;
+}
+
+/* Calendar Section */
+.calendar-section {
+  margin-bottom: 20px;
+}
+
+.custom-calendar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.attendance-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.attendance-tile .holiday {
+  color: #888;
+  font-size: 12px;
+}
+
+.attendance-tile .present {
+  color: green;
+  font-weight: bold;
+}
+
+.attendance-tile .absent {
+  color: red;
+  font-weight: bold;
+}
+
+/* Attendance Summary */
+.attendance-summary {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-card {
+  margin-bottom: 20px;
+}
+
+.status-card h4 {
+  margin-bottom: 10px;
+}
+
+.edit-status {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.status-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.status-button:hover {
+  transform: scale(1.05);
+}
+
+.status-button.active {
+  background: #007bff;
+  color: white;
+}
+
+.status-button:not(.active) {
+  background: #f1f1f1;
+  color: #333;
+}
+
+.remarks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.remarks textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.save-button, .edit-button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.save-button {
+  background: #28a745;
+  color: white;
+}
+
+.edit-button {
+  background: #ffc107;
+  color: white;
+}
+
+.save-button:hover,
+.edit-button:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .class-selection {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .calendar-section {
-    margin-bottom: 30px;
-  }
-  
-  .custom-calendar {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  .attendance-tile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .holiday {
-    color: #e74c3c;
-    font-weight: bold;
-  }
-  
-  .present {
-    color: #2ecc71;
-  }
-  
-  .absent {
-    color: #e74c3c;
-  }
-  
-  .present-text,
-  .absent-text {
-    font-weight: bold;
-  }
-  
-  .attendance-summary {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .status-card {
-    margin-bottom: 20px;
-  }
-  
-  .status-card h4 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .edit-status {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .status-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: background 0.3s ease;
-  }
-  
-  .status-button.active {
-    background: #3498db;
-    color: #fff;
-  }
-  
-  .remarks textarea {
+
+  .class-selection select {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    resize: vertical;
   }
-  
-  .edit-button,
-  .save-button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+
+  .students-list li {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 5px;
-    transition: background 0.3s ease;
   }
-  
-  .edit-button {
-    background: #3498db;
-    color: #fff;
+
+  .custom-calendar {
+    padding: 10px;
   }
-  
-  .save-button {
-    background: #2ecc71;
-    color: #fff;
+
+  .status-card h4 {
+    font-size: 16px;
   }
-  
-  .edit-button:hover,
-  .save-button:hover {
-    opacity: 0.9;
+
+  .status-button, .save-button, .edit-button {
+    font-size: 12px;
+    padding: 8px 10px;
   }
-  
-  .absences-summary {
-    margin-top: 20px;
-  }
+}

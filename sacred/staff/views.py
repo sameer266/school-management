@@ -60,10 +60,8 @@ class StaffTeachesTotalSubject(APIView):
         try:
             user = request.user
             staff = Staffs.objects.get(name=user)
-            subjects = Subjects.objects.filter(staff_id=staff)
-            subjects_names = [subject.name for subject in subjects]
-
-            return Response({"success": True, "total_subjects": len(subjects), "subject_names": subjects_names}, status=status.HTTP_201_CREATED)
+            subject_name=staff.subject_teaches.subject_name
+            return Response({"success": True, "subject_names": subject_name}, status=status.HTTP_201_CREATED)
         except Staffs.DoesNotExist:
             return Response({"success": False, "message": "Staff user not found"}, status=404)
         except Exception as e:
@@ -84,6 +82,22 @@ class StaffTotalStudentsName(APIView):
             return Response({"success": True, "message": students_data}, status=200)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
+
+
+#============= Get Selected class  Students name ============
+
+class StaffSelectedClassStudents(APIView):
+    def get(self,request,id):
+        try:
+            class_obj=ClassModel.objects.get(id=id)
+            students_obj=Students.objects.filter(class_id=class_obj)
+            serializers=StudentsSerializer(students_obj,many=True)
+            return Response({"success":True,"students_data":serializers.data},status=200)
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+        
+
+
 
 # ===================== Add or Update Attendance =====================
 class StaffAddAttendanceView(APIView):
@@ -133,6 +147,41 @@ class StaffAttendanceByDateRangeView(APIView):
             return Response({"success": True, "attendance_records": attendance_data}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+#================ Get all students attendance To check it is oresent or not ========
+class StaffAllStudentsAttendance(APIView):
+    def get(self, request, id):
+        try:
+            # Get the class object
+            class_obj = ClassModel.objects.get(id=id)
+            
+            # Get all students in that class
+            student_objs = Students.objects.filter(class_id=class_obj)
+            
+            # Get attendance records only for these students
+            attendance_objs = Attendence.objects.filter(student__in=student_objs)
+            
+            # Serialize the filtered attendance records
+            serializers = AttendenceSerializer(attendance_objs, many=True)
+            
+            return Response({"success": True, "students_attendance": serializers.data}, status=200)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=400)
+
+
+# ================ Get one Student Attendance Records ==============
+class StaffGetOneStudentAttendance(APIView):
+    def get(self, request, id):
+        try:
+            student = Students.objects.get(id=id)
+            attendance = Attendence.objects.filter(student=student)
+            serializer = AttendenceSerializer(attendance, many=True)
+            
+            return Response({"success": True, "student": serializer.data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 
 # ===================== Staff Apply and Delete Leave =====================
 class StaffApplyLeaveView(APIView):
@@ -321,3 +370,101 @@ class StaffNoticeView(APIView):
 
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+#================= Staff Homework ========
+
+#add Homework and delete homework
+
+class StaffAddHomework(APIView):
+    def post(self, request):  # Use POST instead of GET
+        try:
+            user=request.user
+            staff=Staffs.objects.get(name=user)
+            subject_name = request.data.get('subject')
+            description = request.data.get('description', '')
+            image = request.FILES.get('image', None)
+            class_id = request.data.get('class_id')
+            due_date_str = request.data.get('due_date')
+            
+            # Convert due_date from string to Python date object
+            if due_date_str:
+                due_date = datetime.strptime(due_date_str, "%Y-%m-%d").date()  # Convert to date
+            else:
+                return Response({"success": False, "message": "Due date is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Get the subject object
+            subject_obj = Subjects.objects.get(subject_name=subject_name)
+            
+            # Get the class object
+            class_obj = ClassModel.objects.get(id=class_id)
+
+            # Create the homework entry
+            Homework.objects.create(
+                subject=subject_obj,
+                description=description,
+                image=image,
+                class_id=class_obj,
+                due_date=due_date ,
+                created_by=staff
+            )
+
+            return Response(
+                {"success": True, "message": "Homework added successfully"},
+                status=status.HTTP_201_CREATED
+            )
+
+        except Subjects.DoesNotExist:
+            return Response({"success": False, "message": "Subject not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        except ClassModel.DoesNotExist:
+            return Response({"success": False, "message": "Class not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        except ValueError:
+            return Response({"success": False, "message": "Invalid due date format"}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,id):
+        try:
+            homework=Homework.objects.get(id=id)
+            homework.delete()
+            return Response({"success":True,"message":"Homework Delete Successfully"},status=200)
+        
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+    
+    
+# =======  Staff Homework List =========
+class StaffHomeworkList(APIView):
+    def get(self,request):
+        try:
+            homework=Homework.objects.all().order_by('-created_at')
+            serializers=HomeworkSerializer(homework,many=True)
+            return Response({"success":True,"homework_list":serializers.data},status=200)
+        
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+   
+#========== Staff Check Submitted Homework ========
+
+class StaffCheckHomeworkList(APIView):
+    def get(self, request):
+        try:
+            user = request.user
+            staff = Staffs.objects.get(name=user)  # Get staff based on the user
+
+            # Fetch all homeworks created by this staff
+            hw_list = Homework.objects.filter(created_by=staff)
+
+            # Fetch all submissions for these homeworks
+            hwsubmit = HomeworkSubmission.objects.filter(homework__in=hw_list)
+
+            serializers = HomeworkSubmissionSerializer(hwsubmit, many=True)
+
+            return Response({"success": True, "submitted_hw": serializers.data}, status=200)
+        except Staffs.DoesNotExist:
+            return Response({"success": False, "message": "Staff not found"}, status=404)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=400)

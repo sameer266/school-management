@@ -10,7 +10,7 @@
   
   .attendance-container h2 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #2575fc;
     margin-bottom: 20px;
   }
@@ -48,15 +48,18 @@
     color: green;
   }
   
-  .absent {
+  .attendance-container .absent {
     color: red;
   }
-  
-  .holiday {
+  .attendance-container .absent:hover{
+    background-color:white;
+  }
+   
+  .attendance-container .holiday {
     color: #ff9800;
   }
   
-  .present-text,
+  .attendance-container  .present-text,
   .absent-text {
     font-weight: bold;
   }
