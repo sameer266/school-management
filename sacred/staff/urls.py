@@ -32,6 +32,7 @@ urlpatterns = [
 
     # ===================== Leave Routes ===================== 
     # Route for staff to apply for leave
+    path('staff_get_all_leave_requests/',views.StaffApplyLeaveView.as_view()),
     path('staff_apply_leave/', views.StaffApplyLeaveView.as_view()),
     path('staff_delete_leave/<int:id>/',views.StaffApplyLeaveView.as_view()),
 
@@ -90,6 +91,8 @@ urlpatterns = [
 
     # Route to delete a specific library item based on its ID
     path('staff_delete_library/<int:id>/', views.StaffAddLibraryView.as_view()),
+    
+    
 
 
 

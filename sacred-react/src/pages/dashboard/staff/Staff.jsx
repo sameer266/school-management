@@ -80,7 +80,7 @@ function Staff() {
       {/* Sidebar component with navigation links */}
       <Sidebar links={staffNavigationLinks} />
 
-      <div className="main-content">
+      <div className="main-content-staff">
         <h1>Welcome Staff {staffdata.first_name} {staffdata.last_name}</h1>
 
         {/* Metric cards displaying various statistics */}

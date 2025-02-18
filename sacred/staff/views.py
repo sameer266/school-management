@@ -185,14 +185,42 @@ class StaffGetOneStudentAttendance(APIView):
 
 # ===================== Staff Apply and Delete Leave =====================
 class StaffApplyLeaveView(APIView):
+    
+    def get(self,request):
+        try:    
+            user=request.user
+            staff=Staffs.objects.get(name=user)
+            leave_requests=LeaveReportStaff.objects.filter(staff=staff)
+            serializer=LeaveReportStaffSerializer(leave_requests,many=True)
+            return Response({"success":True,"leave_requests":serializer.data},status=200)
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+        
+        
     def post(self, request):
         try:
             user = request.user
             message = request.data.get('message')
+            start_date = request.data.get('leave_start_date')  # Get the start date
+            end_date = request.data.get('leave_end_date')  # Get the end date
+
+            # Parse the dates from string to datetime (Ensure the format matches the frontend format)
+            start_date_parsed = datetime.strptime(start_date, '%Y-%m-%d')  # Example format: '2025-02-18'
+            end_date_parsed = datetime.strptime(end_date, '%Y-%m-%d')  # Example format: '2025-02-20'
+
+            # Fetch the staff using the logged-in user
             staff = Staffs.objects.get(name=user)
-            LeaveReportStaff.objects.create(staff=staff, message=message)
+
+            # Create a new leave report with parsed dates
+            LeaveReportStaff.objects.create(
+                staff=staff,
+                leave_message=message,
+                leave_start_date=start_date_parsed,
+                leave_end_date=end_date_parsed
+            )
 
             return Response({"success": True, "message": "Leave applied successfully"}, status=status.HTTP_201_CREATED)
+
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
 

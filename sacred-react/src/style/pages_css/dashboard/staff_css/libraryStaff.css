@@ -1,15 +1,13 @@
-/* libraryStaff.library-staff-page  .css */
-
 /* General Styles */
 .library-staff-page {
   max-width: 1200px;
-  margin:100px auto 0 auto;
+  margin: 100px auto 0;
   padding: 20px;
   font-family: 'Arial', sans-serif;
   color: #333;
 }
 
-.library-staff-page  h2 {
+.library-staff-page h2 {
   text-align: center;
   font-size: 1.9rem;
   margin-bottom: 20px;
@@ -17,14 +15,14 @@
 }
 
 /* Form Styles */
-.library-staff-page  .library-form {
+.library-staff-page .library-form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
 }
 
-.library-staff-page  .library-form input[type="text"] {
+.library-staff-page .library-form input {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
@@ -32,34 +30,33 @@
   font-size: 1rem;
 }
 
-.library-staff-page  .library-form input[type="file"] {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+.library-staff-page .library-form input[type="file"] {
   background-color: #f9f9f9;
 }
 
-.library-staff-page  .library-form button {
+/* Button Styles */
+.library-staff-page button {
   padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  color: white;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.library-staff-page  .library-form button:hover {
+.library-staff-page .library-form button {
+  background-color: #3498db;
+  font-size: 1rem;
+}
+
+.library-staff-page .library-form button:hover {
   background-color: #2980b9;
 }
 
 /* Library Items List */
-.library-staff-page  .library-item {
+.library-staff-page .library-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,73 +67,64 @@
   background-color: #f9f9f9;
 }
 
-.library-staff-page  .library-item h3 {
+.library-staff-page .library-item h3 {
   margin: 0;
-  font-size: 1.library-staff-page  .2rem;
+  font-size: 1.2rem;
   color: #2c3e50;
 }
 
-.library-staff-page  .library-item a {
+.library-staff-page .library-item a {
   color: #3498db;
   text-decoration: none;
 }
 
-.library-staff-page  .library-item a:hover {
+.library-staff-page .library-item a:hover {
   text-decoration: underline;
 }
 
-.library-staff-page  .library-item button {
+.library-staff-page .library-item button {
   padding: 8px 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.library-staff-page  .9rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  font-size: 0.9rem;
 }
 
-.library-staff-page  .library-item button:first-of-type {
+.library-staff-page .library-item button:first-of-type {
   background-color: #f1c40f;
-  color: white;
 }
 
-.library-staff-page  .library-item button:first-of-type:hover {
+.library-staff-page .library-item button:first-of-type:hover {
   background-color: #f39c12;
 }
 
-.library-staff-page  .library-item button:last-of-type {
+.library-staff-page .library-item button:last-of-type {
   background-color: #e74c3c;
-  color: white;
 }
 
-.library-staff-page  .library-item button:last-of-type:hover {
+.library-staff-page .library-item button:last-of-type:hover {
   background-color: #c0392b;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .library-staff-page  .library-form {
+  .library-staff-page .library-form {
     flex-direction: column;
   }
 
-  .library-staff-page  .library-form input[type="text"],
-  .library-staff-page  .library-form input[type="file"],
-  .library-staff-page  .library-form button {
+  .library-staff-page .library-form input,
+  .library-staff-page .library-form button {
     width: 100%;
   }
 
-  .library-staff-page  .library-item {
+  .library-staff-page .library-item {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .library-staff-page  .library-item h3 {
+  .library-staff-page .library-item h3 {
     margin-bottom: 10px;
   }
 
-  .library-staff-page  .library-item a,
-  .library-staff-page  .library-item button {
+  .library-staff-page .library-item a,
+  .library-staff-page .library-item button {
     width: 100%;
     margin-bottom: 5px;
     text-align: center;
@@ -144,19 +132,15 @@
 }
 
 @media (max-width: 480px) {
-  .library-staff-page  h2 {
-    font-size: 1.library-staff-page  .5rem;
+  .library-staff-page h2 {
+    font-size: 1.5rem;
   }
 
-  .library-staff-page  .library-form button {
-    font-size: 0.library-staff-page  .9rem;
+  .library-staff-page button {
+    font-size: 0.9rem;
   }
 
-  .library-staff-page  .library-item h3 {
+  .library-staff-page .library-item h3 {
     font-size: 1rem;
-  }
-
-  .library-staff-page  .library-item button {
-    font-size: 0.library-staff-page  .8rem;
   }
 }

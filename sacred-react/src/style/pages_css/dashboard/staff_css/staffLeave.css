@@ -1,0 +1,220 @@
+/* General Styles */
+:where(.staff-leave-container) {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 30px;
+    color: #2d3748;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+:where(.staff-leave-container) .title {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 30px;
+    color: #1a202c;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+/* Leave Request Form */
+:where(.staff-leave-container) .leave-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
+
+:where(.staff-leave-container) .leave-form input {
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+:where(.staff-leave-container) .leave-form input:focus {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    background-color: #ffffff;
+}
+
+:where(.staff-leave-container) .leave-form button {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #3182ce, #4299e1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+:where(.staff-leave-container) .leave-form button:hover {
+    background: linear-gradient(145deg, #2c5282, #3182ce);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
+}
+
+/* Leave List */
+:where(.staff-leave-container) .leave-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 10px 0;
+}
+
+/* Leave Card */
+:where(.staff-leave-container) .leave-card {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+:where(.staff-leave-container) .leave-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: #cbd5e0;
+}
+
+:where(.staff-leave-container) .card-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+:where(.staff-leave-container) .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+:where(.staff-leave-container) p {
+    margin: 6px 0;
+    color: #4a5568;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+:where(.staff-leave-container) strong {
+    color: #1a202c;
+    font-weight: 600;
+}
+
+/* Delete Button */
+:where(.staff-leave-container) .delete-btn {
+    background: linear-gradient(145deg, #e53e3e, #f56565);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    min-width: 120px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+:where(.staff-leave-container) .delete-btn:hover {
+    background: linear-gradient(145deg, #c53030, #e53e3e);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    :where(.staff-leave-container) {
+        max-width: 90%;
+        margin: 100px auto;
+        padding: 25px;
+    }
+
+    :where(.staff-leave-container) .leave-form {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    :where(.staff-leave-container) {
+        margin: 100px auto;
+        padding: 20px;
+    }
+
+    :where(.staff-leave-container) .title {
+        font-size: 28px;
+    }
+
+    :where(.staff-leave-container) .leave-card {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    :where(.staff-leave-container) .card-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    :where(.staff-leave-container) .delete-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    :where(.staff-leave-container) {
+        margin: 100px auto;
+        padding: 15px;
+    }
+
+    :where(.staff-leave-container) .title {
+        font-size: 24px;
+    }
+
+    :where(.staff-leave-container) .leave-form {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    :where(.staff-leave-container) .leave-form input,
+    :where(.staff-leave-container) .leave-form button {
+        padding: 12px 16px;
+        font-size: 15px;
+    }
+
+    :where(.staff-leave-container) .leave-card {
+        padding: 20px;
+    }
+
+    :where(.staff-leave-container) .card-title {
+        font-size: 18px;
+    }
+
+    :where(.staff-leave-container) p {
+        font-size: 14px;
+    }
+}

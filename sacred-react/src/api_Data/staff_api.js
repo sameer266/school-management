@@ -146,12 +146,28 @@ try {
 
 /// ====== Staff Leave ======
 
+
+// --- Get All Leave Requests ---
+const Staff_Get_All_Leave_Requests=async ()=>{
+    try {
+        const response= await axios.get(`${baseUrl}/staff/staff_get_all_leave_requests/`,
+            {
+                withCredentials:true
+            }
+        );
+        return response.data;
+    } catch (error) {
+        console.log("Error in Getting All Leave Requests",error.response.data.message)
+    }
+}
 /**
  * Apply for leave
  */
-const Staff_Apply_Leave = async () => {
+const Staff_Apply_Leave = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/staff/staff_apply_leave/`, {}, {
+        const response = await axios.post(`${baseUrl}/staff/staff_apply_leave/`,
+            data,
+             {
             headers: {
                 "X-CSRFToken": csrfToken,
                 "Content-Type": "application/json"
@@ -484,6 +500,8 @@ export {
     Staff_Take_Student_Attendence,
     Staff_TotalAttendance_Students,
     Staff_Update_Student_Attendence,
+
+    Staff_Get_All_Leave_Requests,
     Staff_Apply_Leave,
     Staff_Delete_Leave,
     
