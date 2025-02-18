@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Staff_Add_Exam, Staff_Delete_Exam ,Staff_ExamNotice } from "../../../api_Data/staff_api";
+import { Staff_Add_Exam, Staff_Delete_Exam, Staff_ExamNotice } from "../../../api_Data/staff_api";
 import toast, { Toaster } from "react-hot-toast";
 import "../../../style/pages_css/dashboard/staff_css/examAdd.css";
 import BackButton from "../../../components/BackButton";
 
+/**
+ * ExamAdd Component
+ * This component allows staff members to:
+ * - Add new exam notices with images
+ * - View existing exam notices
+ * - Delete exam notices
+ */
 function ExamAdd() {
-  const [formData, setFormData] = useState({ classId: "", image: null });
-  const [examData, setExamData] = useState([]);
+  // State Management
+  const [formData, setFormData] = useState({ classId: "", image: null }); // Form input state
+  const [examData, setExamData] = useState([]); // List of exam notices
 
+  // Load exam data when component mounts
   useEffect(() => {
     fetchExamData();
   }, []);
 
+  /**
+   * Fetches all exam notices from the server
+   * Updates examData state with the response
+   */
   const fetchExamData = async () => {
     try {
       const response = await Staff_ExamNotice();
@@ -23,14 +36,27 @@ function ExamAdd() {
     }
   };
 
+  /**
+   * Updates form state when text inputs change
+   * @param {Event} e - Input change event
+   */
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Updates form state when file input changes
+   * @param {Event} e - File input change event
+   */
   const handleFileChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
+  /**
+   * Handles form submission to add new exam notice
+   * Creates FormData object and sends to server
+   * @param {Event} e - Form submission event
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -43,8 +69,8 @@ function ExamAdd() {
       const response = await Staff_Add_Exam(formDataToSend);
       if (response?.success) {
         toast.success("Exam Notice added successfully");
-        setFormData({ classId: "", image: null });
-        fetchExamData();
+        setFormData({ classId: "", image: null }); // Reset form
+        fetchExamData(); // Refresh exam list
       } else {
         toast.error("Failed to add exam");
       }
@@ -54,6 +80,11 @@ function ExamAdd() {
     }
   };
 
+  /**
+   * Deletes an exam notice by ID
+   * Updates exam list on successful deletion
+   * @param {string} id - ID of exam notice to delete
+   */
   const handleDelete = async (id) => {
     try {
       const response = await Staff_Delete_Exam(id);
@@ -74,6 +105,7 @@ function ExamAdd() {
       <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       <BackButton />
 
+      {/* Form Section - Add New Exam Notice */}
       <div className="container">
         <h2 className="heading">Add Exam</h2>
         <form onSubmit={handleSubmit}>
@@ -101,6 +133,7 @@ function ExamAdd() {
         </form>
       </div>
 
+      {/* Display Section - Existing Exam Notices */}
       <div className="exam-list">
         <h2 className="heading">Existing Exams</h2>
         <ul>

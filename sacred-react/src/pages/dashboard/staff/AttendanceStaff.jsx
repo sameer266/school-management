@@ -2,20 +2,27 @@ import React, { useState, useEffect } from "react";
 import "../../../style/pages_css/dashboard/staff_css/attendanceStaff.css";
 import {
   Staff_Selected_Class_StudentName,
-  Staff_TotalAttendance_Students,
+  Staff_TotalAttendance_Students, 
   Staff_Home,
 } from "../../../api_Data/staff_api";
 import BackButton from "../../../components/BackButton";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
+/**
+ * AttendanceStaff Component
+ * Displays and manages student attendance for staff members
+ */
 const AttendanceStaff = () => {
-  const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState(null);
-  const [students, setStudents] = useState([]);
-  const [studentAttendance, setStudentAttendance] = useState({});
-  const todayDate = new Date().toISOString().split("T")[0];
+  // State Management
+  const [classes, setClasses] = useState([]); // List of classes taught by staff
+  const [selectedClass, setSelectedClass] = useState(null); // Currently selected class
+  const [students, setStudents] = useState([]); // Students in selected class
+  const [studentAttendance, setStudentAttendance] = useState({}); // Attendance records
+  const todayDate = new Date().toISOString().split("T")[0]; // Today's date in YYYY-MM-DD format
 
-  // Fetch classes on component load
+  /**
+   * Fetch classes taught by staff member on component mount
+   */
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -28,14 +35,18 @@ const AttendanceStaff = () => {
     fetchClasses();
   }, []);
 
-  // Fetch students and today's attendance when a class is selected
+  /**
+   * Fetch students and their attendance when a class is selected
+   */
   useEffect(() => {
     if (selectedClass) {
       const fetchStudentsAndAttendance = async () => {
         try {
+          // Get students in selected class
           const studentsResponse = await Staff_Selected_Class_StudentName(selectedClass);
           setStudents(studentsResponse.students_data);
 
+          // Get attendance records and map them by student ID
           const attendanceResponse = await Staff_TotalAttendance_Students(selectedClass);
           const attendanceMap = {};
 
@@ -54,7 +65,9 @@ const AttendanceStaff = () => {
     }
   }, [selectedClass]);
 
-  // Handle class selection
+  /**
+   * Handle class selection from dropdown
+   */
   const handleClassChange = (e) => {
     setSelectedClass(e.target.value);
   };
@@ -78,7 +91,7 @@ const AttendanceStaff = () => {
           </select>
         </div>
 
-        {/* Display Students and Their Attendance */}
+        {/* Students List with Attendance Status */}
         {selectedClass && (
           <div className="students-list">
             <h3>Students in Class</h3>
