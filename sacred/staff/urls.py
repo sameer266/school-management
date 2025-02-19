@@ -55,6 +55,8 @@ urlpatterns = [
     # Route to delete an exam notice
     path('staff_delete_exam_notice/<id>/', views.StaffAddExamNotice.as_view()),  # Same view as 'staff_add_exam_notice' for DELETE request
 
+
+
     # ================= Exam REsults =================
     # Route to add exam results
     path('staff_add_exam_result/', views.StaffAddExamResultView.as_view()),
@@ -78,6 +80,7 @@ urlpatterns = [
     
     #rote to check homework 
     path('staff_check_homework/',views.StaffCheckHomeworkList.as_view()),
+    
     
     # ===================== Library Routes ===================== 
     # Route to view the library information
@@ -105,6 +108,6 @@ urlpatterns = [
 
 
     # ======================= Staff Notice =========
-     path('staff/notices/', views.StaffNoticeView.as_view()),
+     path('staff_notices/', views.StaffNoticeView.as_view()),
 ]
 

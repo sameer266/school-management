@@ -186,7 +186,7 @@ const Staff_Apply_Leave = async (data) => {
  */
 const Staff_Delete_Leave = async (id) => {
     try {
-        const response = await axios.delete(`${baseUrl}/staff/staff_delete_leave/${id}`, {
+        const response = await axios.delete(`${baseUrl}/staff/staff_delete_leave/${id}/`, {
             headers: {
                 "X-CSRFToken": csrfToken,
                 "Content-Type": "application/json"
@@ -379,7 +379,7 @@ const Staff_Delete_Library = async (id) => {
  */
 const Staff_Notice = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/staff/notices/`, {
+        const response = await axios.get(`${baseUrl}/staff/staff_notices/`, {
             withCredentials: true
         });
         return response.data;
@@ -520,4 +520,5 @@ export {
     Staff_Delete_Library,
     Staff_Update_Library,
     
+    Staff_Notice,
 };

@@ -1,28 +1,28 @@
-/* General Styles */
-.main-content {
-    margin-top: 100px;
-    margin-left: 250px; /* Adjust based on sidebar width */
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    transition: margin-left 0.3s ease; /* Smooth transition for sidebar toggle */
-  }
+.main-content-student {
+  margin-top: 100px;
+  /* Changed from 50px to accommodate a wider sidebar */
+  margin-left: 300px; 
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  transition: margin-left 0.3s ease;
+}
   
-  .dashboard-title {
+  .main-content-student .dashboard-title {
     font-size: 2.5rem;
-    color: #2575fc;
+    color: #1d1d1de0;
     margin-bottom: 20px;
   }
   
   /* Metric Cards */
-  .metric-cards {
+  .main-content-student .metric-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     margin-bottom: 40px;
   }
   
-  .card {
+  .main-content-student .card {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -31,30 +31,30 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .card:hover {
+  .main-content-student .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
   }
   
-  .card-icon {
+  .main-content-student .card-icon {
     font-size: 2rem;
     color: #2575fc;
     margin-bottom: 10px;
   }
   
-  .card h2 {
+  .main-content-student .card h2 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
   }
   
-  .card p {
+  .main-content-student .card p {
     font-size: 1.8rem;
     color: #555;
     margin-bottom: 15px;
   }
   
-  .info-button {
+  .main-content-student .info-button {
     background: #2575fc;
     color: white;
     border: none;
@@ -69,20 +69,20 @@
     gap: 5px;
   }
   
-  .info-button:hover {
+  .main-content-student .info-button:hover {
     background: #1a5bbf;
     transform: translateY(-2px);
   }
   
   /* Charts Section */
-  .charts {
+  .main-content-student .charts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     margin-bottom: 40px;
   }
   
-  .chart-container {
+  .main-content-student .chart-container {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -90,32 +90,32 @@
     text-align: center;
   }
   
-  .chart-container h2 {
+  .main-content-student .chart-container h2 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 20px;
   }
   
   /* Additional Content */
-  .additional-content {
+  .main-content-student .additional-content {
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
   
-  .additional-content h2 {
+  .main-content-student .additional-content h2 {
     font-size: 1.8rem;
     color: #2575fc;
     margin-bottom: 15px;
   }
   
-  .additional-content ul {
+  .main-content-student .additional-content ul {
     list-style: none;
     padding: 0;
   }
   
-  .additional-content ul li {
+  .main-content-student .additional-content ul li {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 10px;
@@ -126,101 +126,124 @@
   
   /* Responsive Design */
   @media (max-width: 1024px) {
-    .main-content {
+    .main-content-student .main-content {
       margin-left: 60px; /* Adjust for collapsed sidebar */
     }
   
-    .dashboard-title {
+    .main-content-student .dashboard-title {
       font-size: 2rem; /* Smaller font size for medium screens */
     }
   
-    .metric-cards {
+    .main-content-student .metric-cards {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust card size */
     }
   
-    .card h2 {
+    .main-content-student .card h2 {
       font-size: 1.3rem; /* Smaller heading for medium screens */
     }
   
-    .card p {
+    .main-content-student .card p {
       font-size: 1.5rem; /* Smaller text for medium screens */
     }
   
-    .charts {
+    .main-content-student .charts {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust chart size */
     }
   }
-  
-  @media (max-width: 768px) {
-    .main-content {
-      margin:100px auto 0 auto; /* Full width for small screens */
+  /* Your existing CSS for .main-content-student */
+
+/* Existing media queries */
+
+@media (max-width: 768px) {
+  .main-content-student {
+      /* Center the content horizontally */
+      margin: 100px auto;
+      width: 70%; /* Ensure full width */
+      max-width: 600px; /* Optional, defines max width for content */
       padding: 10px; /* Reduce padding for small screens */
-    }
-  
-    .dashboard-title {
+  }
+
+  .main-content-student .dashboard-title {
       font-size: 1.8rem; /* Smaller font size for small screens */
-    }
-  
-    .metric-cards {
+      text-align: center; /* Center-align the title */
+  }
+
+  .main-content-student .metric-cards {
       grid-template-columns: 1fr; /* Single column for small screens */
-    }
-  
-    .card {
+      justify-content: center; /* Center the grid items */
+  }
+
+  .main-content-student .card {
       padding: 15px; /* Reduce padding for small screens */
-    }
-  
-    .card h2 {
+  }
+
+  .main-content-student .card h2 {
       font-size: 1.2rem; /* Smaller heading for small screens */
-    }
-  
-    .card p {
+  }
+
+  .main-content-student .card p {
       font-size: 1.4rem; /* Smaller text for small screens */
-    }
-  
-    .charts {
+  }
+
+  .main-content-student .charts {
       grid-template-columns: 1fr; /* Single column for small screens */
-    }
-  
-    .chart-container {
+      justify-content: center; /* Center the chart containers */
+  }
+
+  .main-content-student .chart-container {
       padding: 15px; /* Reduce padding for small screens */
-    }
-  
-    .additional-content {
+  }
+
+  .main-content-student .additional-content {
       padding: 15px; /* Reduce padding for small screens */
-    }
-  
-    .additional-content h2 {
+  }
+
+  .main-content-student .additional-content h2 {
       font-size: 1.5rem; /* Smaller heading for small screens */
-    }
-  
-    .additional-content ul li {
+      text-align: center; /* Center-align the title if needed */
+  }
+
+  .main-content-student .additional-content ul li {
       font-size: 1rem; /* Smaller text for small screens */
-    }
+      justify-content: center; /* Center content within the list items */
   }
-  
-  @media (max-width: 480px) {
-    .dashboard-title {
-      font-size: 1.5rem; /* Smaller font size for extra small screens */
-    }
-  
-    .card h2 {
-      font-size: 1.1rem; /* Smaller heading for extra small screens */
-    }
-  
-    .card p {
-      font-size: 1.3rem; /* Smaller text for extra small screens */
-    }
-  
-    .info-button {
-      padding: 8px 16px; /* Smaller button for extra small screens */
+}
+
+@media (max-width: 480px) {
+  .main-content-student {
+      /* Keep the same centering logic */
+      margin: 100px auto;
+      width: 70%;
+      max-width: 400px; /* Adjust if necessary for even smaller screens */
+      padding: 10px;
+  }
+
+  .main-content-student .dashboard-title {
+      font-size: 1.5rem; 
+      text-align: center; /* Ensure centered text */
+  }
+
+  /* Other adjustments for elements within .main-content-student */
+  .main-content-student .card h2 {
+      font-size: 1.1rem;
+  }
+
+  .main-content-student .card p {
+      font-size: 1.3rem;
+  }
+
+  .main-content-student .info-button {
+      padding: 8px 16px;
       font-size: 0.9rem;
-    }
-  
-    .additional-content h2 {
-      font-size: 1.3rem; /* Smaller heading for extra small screens */
-    }
-  
-    .additional-content ul li {
-      font-size: 0.9rem; /* Smaller text for extra small screens */
-    }
   }
+
+  .main-content-student .additional-content h2 {
+      font-size: 1.3rem;
+      text-align: center;
+  }
+
+  .main-content-student .additional-content ul li {
+      font-size: 0.9rem;
+      justify-content: center;
+  }
+}

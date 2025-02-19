@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from '../../../components/BackButton';
 import { Staff_Get_All_Leave_Requests, Staff_Apply_Leave, Staff_Delete_Leave } from '../../../api_Data/staff_api';
+import toast , { Toaster } from 'react-hot-toast';
 import '../../../style/pages_css/dashboard/staff_css/staffLeave.css';
 
 function StaffLeave() {
@@ -10,6 +11,7 @@ function StaffLeave() {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [submitting, setSubmitting] = useState(false);
+
 
     useEffect(() => {
         fetchLeaveRequests();
@@ -37,16 +39,14 @@ function StaffLeave() {
         setSubmitting(true);
         try {
             const response = await Staff_Apply_Leave({
-                leave_message: leaveMessage,
+                message: leaveMessage,
                 leave_start_date: startDate, // Send date as YYYY-MM-DD format
                 leave_end_date: endDate      // Send date as YYYY-MM-DD format
             });
 
-            console.log("Leave Applied Successfully", response);
-            alert("Leave Applied Successfully!");
+            toast.success("Leave Applied Successfully!");
             fetchLeaveRequests(); // Refresh the leave requests
         } catch (error) {
-            console.error("Error Applying Leave", error?.response?.data?.message || error.message);
             alert("Error Applying Leave!");
         } finally {
             setSubmitting(false);
@@ -60,17 +60,20 @@ function StaffLeave() {
         if (!window.confirm("Are you sure you want to delete this leave request?")) return;
 
         try {
-            await Staff_Delete_Leave(id);
-            alert("Leave Deleted Successfully!");
+            const response = await Staff_Delete_Leave(id);
+            if (response.success) {
+            toast.success("Leave Deleted Successfully!");
             setLeaveRequests(prev => prev.filter(leave => leave.id !== id));
+            }
         } catch (error) {
             console.error("Error Deleting Leave", error?.response?.data?.message || error.message);
-            alert("Error Deleting Leave!");
+            toast.error("Error Deleting Leave!");
         }
     };
 
     return (
         <>  
+        <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
             <BackButton />
             <div className="staff-leave-container">
                 <h1 className="title">Leave Requests</h1>
@@ -114,7 +117,7 @@ function StaffLeave() {
                                     <h5 className="card-title">
                                         {data.staff.name.first_name} {data.staff.name.last_name || ""}
                                     </h5>
-                                    <p><strong>Reason:</strong> {data.leave_message}</p>
+                                    <p><strong>Reason:</strong> {data.message}</p>
                                     <p><strong>Status:</strong> {data.leave_status}</p>
                                     <p><strong>From:</strong> {new Date(data.leave_start_date).toLocaleDateString()}</p>
                                     <p><strong>To:</strong> {new Date(data.leave_end_date).toLocaleDateString()}</p>

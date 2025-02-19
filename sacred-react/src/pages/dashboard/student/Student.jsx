@@ -86,7 +86,7 @@ function Student() {
   return (
     <>
       <Sidebar links={studentNavigationLink} />
-      <div className="main-content">
+      <div className="main-content-student">
         <h1 className="dashboard-title">
           Welcome, {studentdata.message.name?.first_name} {studentdata.message.name?.last_name}!
         </h1>

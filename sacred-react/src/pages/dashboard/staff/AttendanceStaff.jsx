@@ -95,9 +95,13 @@ const AttendanceStaff = () => {
         {selectedClass && (
           <div className="students-list">
             <h3>Students in Class</h3>
+            <b>Date: {todayDate}  </b>
             <ul>
               {students.map((student) => (
                 <li key={student.id}>
+                  <span>
+                    Roll No: {student.roll_no}
+                  </span>
                   <span>
                     {student.name.first_name} {student.name.last_name}
                   </span>

@@ -73,7 +73,7 @@ const Student_View_Library = async () => {
 // Function to fetch student notices
 const Student_Notice = async () => {
     try {
-        const response = await axios.get(`${baseUrl}/student/student_notice`, {
+        const response = await axios.get(`${baseUrl}/student/student_notice/`, {
             withCredentials: true,
         });
         return response.data;
