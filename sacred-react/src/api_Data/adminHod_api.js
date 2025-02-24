@@ -4,15 +4,10 @@ import axios from "axios";
 const base_URL = "http://127.0.0.1:8000";
 
 // Extract CSRF token from cookies
-const csrfToken = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("csrftoken"))
-    ?.split("=")[1];
+const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
 
-// Function to handle API errors
-const handleError = (error, message) => {
-    alert(`${message}: ${error.response?.data?.message || error.message}`);
-};
+
+
 
 //=========================================
 // =========== AdminHod API functions ================
@@ -20,12 +15,23 @@ const handleError = (error, message) => {
 // Fetch AdminHod home data
 const AdminHod_Home = async () => {
     try {
-        const response = await axios.get(`${base_URL}/adminHod/`, { withCredentials: true });
+        const response = await axios.get(`${base_URL}/adminHod/`, 
+            { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
+
+// Get Admin profile
+const Admin_Profile = async () => {
+    try {
+        const response = await axios.get(`${base_URL}/adminHod/admin_profile/`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        console.log(error, "Error in getting data");
+    }
+}   
 
 // Update Admin profile
 const Admin_Profile_Update = async (data) => {
@@ -36,12 +42,12 @@ const Admin_Profile_Update = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating profile");
+        console.log(error, "Error in updating profile");
     }
 };
 
 // ==============================================  
-//================= Staff  Api functions =============
+//=================Admin  Staff  Api functions =============
 
 // Add new staff
 const AdminHod_Add_Staff = async (data) => {
@@ -52,7 +58,7 @@ const AdminHod_Add_Staff = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in adding staff");
+        console.log(error, "Error in adding staff");
     }
 };
 
@@ -62,7 +68,7 @@ const AdminHod_View_Staff = async () => {
         const response = await axios.get(`${base_URL}/adminHod/view_all_staff/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -75,7 +81,7 @@ const AdminHod_Delete_Staff = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in deleting staff");
+        console.log(error, "Error in deleting staff");
     }
 };
 
@@ -88,7 +94,7 @@ const AdminHod_Update_Staff = async (id, data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating staff");
+        console.log(error, "Error in updating staff");
     }
 };
 
@@ -105,7 +111,7 @@ const AdminHod_Add_Student = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in adding student");
+        console.log(error, "Error in adding student");
     }
 };
 
@@ -115,7 +121,7 @@ const AdminHod_View_Student = async () => {
         const response = await axios.get(`${base_URL}/adminHod/view_all_student/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -128,7 +134,7 @@ const AdminHod_Delete_Student = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in deleting student");
+        console.log(error, "Error in deleting student");
     }
 };
 
@@ -141,7 +147,7 @@ const AdminHod_Update_Student = async (id, data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating student");
+        console.log(error, "Error in updating student");
     }
 };
 
@@ -158,7 +164,7 @@ const AdminHod_Add_Subject = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in adding subject");
+        console.log(error, "Error in adding subject");
     }
 };
 
@@ -168,7 +174,7 @@ const AdminHod_View_Subject = async () => {
         const response = await axios.get(`${base_URL}/adminHod/view_all_subject/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -181,7 +187,7 @@ const AdminHod_Delete_Subject = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in deleting subject");
+        console.log(error, "Error in deleting subject");
     }
 };
 
@@ -194,7 +200,7 @@ const AdminHod_Update_Subject = async (id, data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating subject");
+        console.log(error, "Error in updating subject");
     }
 };
 
@@ -208,7 +214,7 @@ const Admin_Student_Attendence_View = async () => {
         const response = await axios.get(`${base_URL}/adminHod/student_view_attendence/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -221,7 +227,7 @@ const Admin_Student_Get_Attendence_By_Date = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -231,7 +237,7 @@ const Admin_Student_Leave_View = async () => {
         const response = await axios.get(`${base_URL}/adminHod/student_view_leave/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -244,7 +250,7 @@ const Admin_Student_Leave_Approve = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -261,7 +267,7 @@ const Admin_Student_Leave_Reject = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -271,7 +277,7 @@ const Admin_Staff_Leave_View = async () => {
         const response = await axios.get(`${base_URL}/adminHod/staff_view_leave/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -281,7 +287,7 @@ const Admin_Staff_Leave_Approve = async (id) => {
         const response = await axios.get(`${base_URL}/adminHod/staff_leave_approve/${id}/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -291,7 +297,7 @@ const Admin_Staff_Leave_Reject = async (id) => {
         const response = await axios.get(`${base_URL}/adminHod/staff_leave_reject/${id}/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -306,7 +312,7 @@ const Admin_ViewAll_Fee = async () => {
         const response = await axios.get(`${base_URL}/adminHod/view_all_fee/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -319,7 +325,7 @@ const Admin_Add_Fee = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in adding fee");
+        console.log(error, "Error in adding fee");
     }
 };
 
@@ -334,7 +340,7 @@ const Admin_Update_Fee = async (id, data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating fee");
+        console.log(error, "Error in updating fee");
     }
 };
 
@@ -347,7 +353,7 @@ const Admin_Delete_Fee = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in deleting fee");
+        console.log(error, "Error in deleting fee");
     }
 };
 
@@ -363,7 +369,7 @@ const Admin_ViewAll_Bill = async () => {
         const response = await axios.get(`${base_URL}/adminHod/view_all_bill/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
@@ -376,7 +382,7 @@ const Admin_Add_Bill = async (data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in adding bill");
+        console.log(error, "Error in adding bill");
     }
 };
 
@@ -389,7 +395,7 @@ const Admin_Update_Bill = async (id, data) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in updating bill");
+        console.log(error, "Error in updating bill");
     }
 };
 
@@ -402,7 +408,7 @@ const Admin_Delete_Bill = async (id) => {
         });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in deleting bill");
+        console.log(error, "Error in deleting bill");
     }
 };
 
@@ -418,13 +424,15 @@ const Admin_Student_PerClass_View = async () => {
         const response = await axios.get(`${base_URL}/adminHod/student_per_class/`, { withCredentials: true });
         return response.data;
     } catch (error) {
-        handleError(error, "Error in getting data");
+        console.log(error, "Error in getting data");
     }
 };
 
 export {
     AdminHod_Home,
+    Admin_Profile,
     Admin_Profile_Update,
+
     AdminHod_Add_Staff,
     AdminHod_View_Staff,
     AdminHod_Delete_Staff,

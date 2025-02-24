@@ -1,7 +1,8 @@
 import {
   FaUser,
   FaCalendarAlt,
-  FaBook,
+
+  FaClipboardList,
   FaMoneyBillWave,
   FaBell,
   FaBookOpen,
@@ -17,6 +18,7 @@ const studentNavigationLink = [
   { to: "/view-notice", label: "View Notice", icon: <FaBell /> }, // Bell for notices
   { to: "/view-bill", label: "View Bill", icon: <FaMoneyBillWave /> }, // Money bill for fees
   { to: "/view-library", label: "View Library", icon: <FaBookOpen /> }, // Open book for library
+  { to: "/view-result", label: "View Result", icon: <FaClipboardList /> }, // Open book for library
   { to: "/apply-leave", label: "Apply Leave", icon: <FaSignOutAlt /> }, // Sign out for leave
 ];
 

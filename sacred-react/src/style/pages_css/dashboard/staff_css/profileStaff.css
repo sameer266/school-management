@@ -1,5 +1,5 @@
 /* General Styles */
-.profile-container {
+.staff-profile-container {
   max-width: 1200px;
   margin: 100px auto 0 auto;
   padding: 30px;
@@ -11,14 +11,14 @@
 }
 
 /* Profile Header */
-.profile-container .profile-header {
+.staff-profile-container .profile-header {
   display: flex;
   align-items: center;
   gap: 30px;
   margin-bottom: 50px;
 }
 
-.profile-container .profile-picture {
+.staff-profile-container .profile-picture {
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -27,13 +27,13 @@
   border: 5px solid #ffffff;
 }
 
-.profile-container .profile-img {
+.staff-profile-container .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.profile-container .profile-name h1 {
+.staff-profile-container .profile-name h1 {
   font-size: 3rem;
   color: #2575fc;
   margin-bottom: 10px;
@@ -44,14 +44,14 @@
   letter-spacing: 1px;
 }
 
-.profile-container .profile-name p {
+.staff-profile-container .profile-name p {
   font-size: 1.2rem;
   color: #555;
   font-weight: 400;
 }
 
 /* Profile Sections */
-.profile-container .profile-section {
+.staff-profile-container .profile-section {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -60,11 +60,11 @@
   transition: box-shadow 0.3s ease;
 }
 
-.profile-container .profile-section:hover {
+.staff-profile-container .profile-section:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.profile-container .profile-section h2 {
+.staff-profile-container .profile-section h2 {
   font-size: 2rem;
   color: #2575fc;
   margin-bottom: 20px;
@@ -72,7 +72,7 @@
   position: relative;
 }
 
-.profile-container .profile-section h2::after {
+.staff-profile-container .profile-section h2::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -82,7 +82,7 @@
   background: #2575fc;
 }
 
-.profile-container .profile-details p {
+.staff-profile-container .profile-details p {
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 15px;
@@ -92,12 +92,12 @@
 }
 
 /* Update Button */
-.profile-container .update-button-container {
+.staff-profile-container .update-button-container {
   text-align: center;
   margin-top: 30px;
 }
 
-.profile-container .update-btn {
+.staff-profile-container .update-btn {
   background: #2575fc;
   color: white;
   border: none;
@@ -113,14 +113,14 @@
   letter-spacing: 1px;
 }
 
-.profile-container .update-btn:hover {
+.staff-profile-container .update-btn:hover {
   background: #1a5bbf;
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Loading Message */
-.profile-container .loading-message {
+.staff-profile-container .loading-message {
   text-align: center;
   font-size: 1.4rem;
   color: #555;
@@ -129,47 +129,47 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .profile-container {
+  .staff-profile-container {
       padding: 20px;
   }
   
-  .profile-container .profile-header {
+  .staff-profile-container .profile-header {
       flex-direction: column;
       text-align: center;
   }
 
-  .profile-container .profile-picture {
+  .staff-profile-container .profile-picture {
       width: 150px;
       height: 150px;
   }
 
-  .profile-container .profile-name h1 {
+  .staff-profile-container .profile-name h1 {
       font-size: 2.2rem;
   }
 
-  .profile-container .profile-section h2 {
+  .staff-profile-container .profile-section h2 {
       font-size: 1.8rem;
   }
 
-  .profile-container .profile-details p {
+  .staff-profile-container .profile-details p {
       font-size: 1.1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .profile-container .profile-name h1 {
+  .staff-profile-container .profile-name h1 {
       font-size: 2rem;
   }
 
-  .profile-container .profile-section h2 {
+  .staff-profile-container .profile-section h2 {
       font-size: 1.6rem;
   }
 
-  .profile-container .profile-details p {
+  .staff-profile-container .profile-details p {
       font-size: 1rem;
   }
 
-  .profile-container .update-btn {
+  .staff-profile-container .update-btn {
       font-size: 1rem;
       padding: 10px 20px;
   }

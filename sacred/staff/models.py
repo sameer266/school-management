@@ -20,6 +20,12 @@ class Staffs(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def delete(self, *args, **kwargs):
+        # Check if image exists and delete it
+        if self.image:
+            self.image.delete(save=False)  # Deletes the file associated with the model instance
+        super(Staffs, self).delete(*args, **kwargs)  # Call the parent class's delete method
+
     def __str__(self):
         return f"Staff: {self.name}"
 

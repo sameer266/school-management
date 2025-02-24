@@ -34,6 +34,8 @@ import SubmittedHomework from "./pages/dashboard/staff/SubmittedHomework";
 import ExamAdd from "./pages/dashboard/staff/ExamAdd";
 import StaffLeave from "./pages/dashboard/staff/StaffLeave";
 import ResultAdd from "./pages/dashboard/staff/ResultAdd";
+import Result from "./pages/dashboard/student/Result";
+import ProfileAdmin from "./pages/dashboard/adminHod/ProfileAdmin";
 
 
 // it automatically scrolls to the top instead of staying at the bottom.
@@ -73,10 +75,12 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           {/* Dashboard routes    */}
-          <Route path="/adminHod-dashboard" element={<AdminHod />} />
+          <Route path="/adminHod-dashboard" element={<AdminHod />}/>
+
+          <Route path="/adminHod-profile" element={<ProfileAdmin/>}/>
 
 
-
+         {/* Staff Dashboard routes */}
           <Route path="staff-profile" element={<ProfileStaff/>}/>
           <Route path="/staff-dashboard" element={<Staff />} />
           <Route path="/staff-add-homework" element={<HomeworkStaff/>}/>
@@ -97,6 +101,7 @@ function App() {
           <Route path="/view-notice" element={<NoticePage />} />
           <Route path="/view-bill" element={<BillPage />} />
           <Route path="/view-library" element={<LibraryPage/>} />
+          <Route path="/view-result" element={<Result/>} />
           <Route path="/apply-leave" element={<ApplyLeave/>} />
 
           {/* Catch-all route for 404 Not Found */}

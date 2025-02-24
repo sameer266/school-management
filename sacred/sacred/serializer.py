@@ -125,6 +125,7 @@ class LeaveReportStaffSerializer(serializers.ModelSerializer):
 
 # AdminHOD Serializer
 class AdminHODSerializer(serializers.ModelSerializer):
+    admin=CustomUserSerializer()
     class Meta:
         model = AdminHOD
         fields = '__all__'

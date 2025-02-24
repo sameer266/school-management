@@ -1,0 +1,176 @@
+/* General Styles */
+.adminHod-profile-container {
+    max-width: 1200px;
+    margin: 100px auto 0 auto;
+    padding: 30px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background: #fafafa;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Header */
+  .adminHod-profile-container .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .adminHod-profile-container .profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    border: 5px solid #ffffff;
+  }
+  
+  .adminHod-profile-container .profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .adminHod-profile-container .profile-name h1 {
+    font-size: 3rem;
+    color: #2575fc;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  
+  .adminHod-profile-container .profile-name p {
+    font-size: 1.2rem;
+    color: #555;
+    font-weight: 400;
+  }
+  
+  /* Profile Sections */
+  .adminHod-profile-container .profile-section {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .adminHod-profile-container .profile-section:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .adminHod-profile-container .profile-section h2 {
+    font-size: 2rem;
+    color: #2575fc;
+    margin-bottom: 20px;
+    font-weight: 400;
+    position: relative;
+  }
+  
+  .adminHod-profile-container .profile-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #2575fc;
+  }
+  
+  .adminHod-profile-container .profile-details p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  /* Update Button */
+  .adminHod-profile-container .update-button-container {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .adminHod-profile-container .update-btn {
+    background: #2575fc;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .adminHod-profile-container .update-btn:hover {
+    background: #1a5bbf;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Loading Message */
+  .adminHod-profile-container .loading-message {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #555;
+    font-style: italic;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .adminHod-profile-container {
+        padding: 20px;
+    }
+    
+    .adminHod-profile-container .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+  
+    .adminHod-profile-container .profile-picture {
+        width: 150px;
+        height: 150px;
+    }
+  
+    .adminHod-profile-container .profile-name h1 {
+        font-size: 2.2rem;
+    }
+  
+    .adminHod-profile-container .profile-section h2 {
+        font-size: 1.8rem;
+    }
+  
+    .adminHod-profile-container .profile-details p {
+        font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .adminHod-profile-container .profile-name h1 {
+        font-size: 2rem;
+    }
+  
+    .adminHod-profile-container .profile-section h2 {
+        font-size: 1.6rem;
+    }
+  
+    .adminHod-profile-container .profile-details p {
+        font-size: 1rem;
+    }
+  
+    .adminHod-profile-container .update-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+  }
