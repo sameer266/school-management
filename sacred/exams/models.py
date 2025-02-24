@@ -22,8 +22,8 @@ class Exam(models.Model):
         return f" Exam of class {self.class_id.name}"
     
 class ExamResult(models.Model):
-    exam_id = models.ForeignKey(Exam, on_delete=models.CASCADE)  # Exam for which the result is
-    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)  # Student taking the exam
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)  # Exam for which the result is
+    student= models.ForeignKey(Students, on_delete=models.CASCADE)  # Student taking the exam
     subject = models.ForeignKey(Subjects, on_delete=models.CASCADE)  # Subject for the marks
     marks_obtained = models.FloatField()  # Marks scored by the student in the subject
     grade = models.CharField(max_length=2, blank=True, null=True)  # Grade based on marks (e.g., A, B, C, etc.)

@@ -36,27 +36,16 @@ function ExamAdd() {
     }
   };
 
-  /**
-   * Updates form state when text inputs change
-   * @param {Event} e - Input change event
-   */
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  /**
-   * Updates form state when file input changes
-   * @param {Event} e - File input change event
-   */
   const handleFileChange = (e) => {
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
-  /**
-   * Handles form submission to add new exam notice
-   * Creates FormData object and sends to server
-   * @param {Event} e - Form submission event
-   */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -80,11 +69,6 @@ function ExamAdd() {
     }
   };
 
-  /**
-   * Deletes an exam notice by ID
-   * Updates exam list on successful deletion
-   * @param {string} id - ID of exam notice to delete
-   */
   const handleDelete = async (id) => {
     try {
       const response = await Staff_Delete_Exam(id);

@@ -11,7 +11,7 @@ const staffNavigationLinks = [
     { to: "/staff-add-homework", label: "Manage Homework", icon: <FaBook /> },
     { to: "/staff-submitted-homework", label: "Submitted Homework", icon: <FaPenAlt /> },
     { to: "/staff-add-exam", label: "Add Exam", icon: <FaClipboardList /> },
-    { to: "/staff-add-results", label: "Add  Results ", icon: <FaChartBar /> }, // Updated icon
+    { to: "/staff-add-result", label: "Add  Results ", icon: <FaChartBar /> }, // Updated icon
     { to: "/staff-manage-library", label: "Manage Library", icon: <FaBookOpen /> },
     { to: "/staff-leave", label: "Apply Leave", icon: <FaSignOutAlt /> },
     { to: "/staff-notice", label: "View Notice", icon: <FaBell /> }

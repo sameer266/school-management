@@ -33,6 +33,7 @@ import TakeAttendance from "./pages/dashboard/staff/TakeAttendance";
 import SubmittedHomework from "./pages/dashboard/staff/SubmittedHomework";
 import ExamAdd from "./pages/dashboard/staff/ExamAdd";
 import StaffLeave from "./pages/dashboard/staff/StaffLeave";
+import ResultAdd from "./pages/dashboard/staff/ResultAdd";
 
 
 // it automatically scrolls to the top instead of staying at the bottom.
@@ -86,6 +87,7 @@ function App() {
           <Route path="/staff-notice" element={<NoticeStaff/>}/>
           <Route path="/staff-add-exam" element={<ExamAdd/>}/>
           <Route path="/staff-leave" element={<StaffLeave/>}/>
+          <Route path="/staff-add-result" element={<ResultAdd/>}/>
 
           {/* Student Dashboard routes */}
           <Route path="/student-dashboard" element={<Student />} />

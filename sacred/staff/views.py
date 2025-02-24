@@ -82,6 +82,18 @@ class StaffTotalStudentsName(APIView):
             return Response({"success": True, "message": students_data}, status=200)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=400)
+        
+# ===================== Get Staff Teaches Classes =====================
+class StaffTeachesClasses(APIView):
+    def get(self, request):
+        try:
+            user= request.user
+            staff= Staffs.objects.get(name=user)
+            classes= staff.teaches_classes.all()
+            serializer=ClassModelSerializer(classes,many=True)
+            return Response({"success":True,"message":serializer.data},status=200)
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
 
 # ===================== Get Selected Class Students Name =====================
 class StaffSelectedClassStudents(APIView):
@@ -270,8 +282,9 @@ class StaffAddExamNotice(APIView):
 
     def post(self, request):
         try:
+            print(request.data)
             class_id = request.data.get('class_id')
-            image = request.data.get('image')
+            image = request.FILES.get('image')
 
             class_instance = ClassModel.objects.get(id=class_id)
             exam = Exam.objects.create(class_id=class_instance, image=image)
@@ -289,19 +302,39 @@ class StaffAddExamNotice(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
+
 # ===================== Add or Delete Exam Result =====================
 class StaffAddExamResultView(APIView):
+    
+    def get(self, request,id):
+        try:
+            class_id=id
+            user= request.user
+            staff= Staffs.objects.get(name=user)
+            staff_subject= staff.subject_teaches
+            exam=ExamResult.objects.filter(subject=staff_subject).order_by('-created_at','student__roll_no')
+            exam_data=ExamResultSerializer(exam,many=True).data
+            
+            students=Students.objects.filter(class_id=class_id)
+            student_data=StudentsSerializer(students,many=True).data
+            
+            return Response({"success":True,"exams_data":exam_data,"students_data":student_data},status=200)
+            
+        except Exception as e:
+            return Response({"success":False,"message":str(e)},status=400)
+    
     def post(self, request):
         try:
-            exam_id = request.data.get('exam_id')
-            student_id = request.data.get('student_id')
-            subject_id = request.data.get('subject_id')
+            exam = request.data.get('exam_id')
+            student = request.data.get('student_id')
+            subject = request.data.get('subject_id')
             marks_obtained = request.data.get('marks_obtained')
             image = request.data.get('image', '')
 
-            exam = Exam.objects.get(id=exam_id)
-            student = Students.objects.get(id=student_id)
-            subject = Subjects.objects.get(id=subject_id)
+            exam = Exam.objects.get(id=exam)
+            student = Students.objects.get(id=student)
+            subject = Subjects.objects.get(id=subject)
 
             ExamResult.objects.update_or_create(
                 exam_id=exam,

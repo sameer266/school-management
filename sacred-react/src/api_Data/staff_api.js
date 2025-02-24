@@ -92,6 +92,20 @@ const Staff_Total_SubjectTeach=async ()=>{
 
 }
 
+// ---- Get Staff Teaches Classes ----
+const Staff_Teaches_Classes=async ()=>{
+    try {
+        const response= await axios.get(`${baseUrl}/staff/staff_teaches_classes/`,
+            {
+                withCredentials:true
+            }
+        );
+        return response.data;
+
+    } catch (error) {
+        console.log("Error in fetching Staff Teaches Classes",error.response.data.message);
+    }
+}   
 /**
  * Take student attendance
  */
@@ -227,7 +241,8 @@ const Staff_Add_Exam = async (data) => {
              {
             headers: {
                 "X-CSRFToken": csrfToken,
-                "Content-Type": "application/json"
+                 "Content-Type":"multipart/form-data"
+
             },
             withCredentials: true
         });
@@ -258,13 +273,28 @@ const Staff_Delete_Exam = async (id) => {
 
 /// ====== Staff Exam Results ======
 
+// ---- Get All Exam Results ----
+const Staff_Get_All_Exam_Results=async (id)=>{
+    try {
+        const response= await axios.get(`${baseUrl}/staff/staff_get_all_exam_results/${id}/`,   
+            {
+                withCredentials:true
+            }
+        );
+        return response.data;
+        
+    } catch (error) {
+        console.log("Error in fetching All Exam Results",error.response.data.message);
+    }
+}   
 /**
  * Add exam result
  * @param {Object} data - Exam result data
  */
 const Staff_Add_Result = async (data) => {
     try {
-        const response = await axios.post(`${baseUrl}/staff/staff_add_exam_result/`, data, {
+        const response = await axios.post(`${baseUrl}/staff/staff_add_exam_result/`, 
+            data, {
             headers: {
                 "X-CSRFToken": csrfToken,
                 "Content-Type": "application/json"
@@ -494,8 +524,11 @@ const Staff_Check_Homework=async (id)=>{
 export {
     Staff_Home,
     Staff_Total_StudentsName,
-    Staff_Selected_Class_StudentName,
     Staff_Total_SubjectTeach,
+    Staff_Teaches_Classes,
+
+    Staff_Selected_Class_StudentName,
+  
     Staff_GetOne_Student_Attendance,
     Staff_Take_Student_Attendence,
     Staff_TotalAttendance_Students,
@@ -508,6 +541,10 @@ export {
     Staff_ExamNotice,
     Staff_Add_Exam,
     Staff_Delete_Exam,
+
+    Staff_Get_All_Exam_Results,
+    Staff_Add_Result,
+    Staff_Delete_Result,
 
     Staff_Add_Homework,
     Staff_List_Homework,

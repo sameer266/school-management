@@ -58,8 +58,11 @@ urlpatterns = [
 
 
     # ================= Exam REsults =================
+    #Route to get all exam results
+    path('staff_get_all_exam_results/<id>/', views.StaffAddExamResultView.as_view()),
+
     # Route to add exam results
-    path('staff_add_exam_result/', views.StaffAddExamResultView.as_view()),
+    path('staff_add_exam_result/<id>/', views.StaffAddExamResultView.as_view()),
 
     # Route to delete exam results
     path('staff_delete_exam_result/<int:id>/', views.StaffAddExamResultView.as_view()),  # Same view as 'staff_add_exam_result' for DELETE request
@@ -106,6 +109,8 @@ urlpatterns = [
     # Route to view the total number of subjects taught by a staff member
     path('staff_teaches_total_subjects/', views.StaffTeachesTotalSubject.as_view()),
 
+    #Route to view the Staff teaches classes
+    path('staff_teaches_classes/',views.StaffTeachesClasses.as_view()),
 
     # ======================= Staff Notice =========
      path('staff_notices/', views.StaffNoticeView.as_view()),
