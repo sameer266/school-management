@@ -105,9 +105,9 @@ class AllStaffAPIView(APIView):
     """
     def get(self, request):
         try:
-            staff = Staffs.objects.all()
+            staff = Staffs.objects.all().order_by('-class_teacher')
             serializer = StaffsSerializer(staff, many=True)
-            return Response({"success": True, "message": "Staff fetched successfully", "data": serializer.data}, status=status.HTTP_200_OK)
+            return Response({"success": True, "message":  serializer.data}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -157,6 +157,8 @@ class DeleteStaffAPIView(APIView):
         try:    
             staff = get_object_or_404(Staffs, id=staff_id)
             staff.delete()
+            user=CustomUser.objects.get(id=staff.name.id)
+            user.delete()
             return Response({"success": True, "message": "Staff deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)

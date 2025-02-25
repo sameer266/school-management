@@ -81,9 +81,20 @@ class NotificationStudentSerializer(serializers.ModelSerializer):
         model = NotificationStudent
         fields = '__all__'
 
+
+# Subjects Serializer
+class SubjectsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subjects
+        fields = '__all__'
+        
+        
 # Staffs Serializer
 class StaffsSerializer(serializers.ModelSerializer):
     name=CustomUserSerializer()
+    class_teacher=ClassModelSerializer()
+    teaches_classes=ClassModelSerializer(many=True)
+    subject_teaches=SubjectsSerializer()
     class Meta:
         model = Staffs
         fields = '__all__'
@@ -102,6 +113,7 @@ class StaffsSerializer(serializers.ModelSerializer):
             username=name_data.get('username',instance.name.username)
             first_name=name_data.get('first_name',instance.name.first_name)
             last_name=name_data.get('last_name',instance.name.last_name)
+            
             
             instance.name.username=username
             instance.name.first_name=first_name
@@ -141,11 +153,6 @@ class LeaveReportStudentSerializer(serializers.ModelSerializer):
     
         
 
-# Subjects Serializer
-class SubjectsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Subjects
-        fields = '__all__'
 
 # Attendence Serializer
 class AttendenceSerializer(serializers.ModelSerializer):

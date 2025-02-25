@@ -1,0 +1,124 @@
+/* General container styling */
+.staff-manage-container {
+    max-width: 1200px;
+    margin: 90px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  .staff-manage-container .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  
+  /* Staff List - Responsive Grid */
+  .staff-manage-container .staff-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Staff Card */
+  .staff-manage-container .staff-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    position: relative;
+  }
+  
+  .staff-manage-container .staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Staff Name */
+  .staff-manage-container .staff-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  /* Staff Details */
+  .staff-manage-container .staff-card p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  /* Button Styling */
+  .staff-manage-container .info-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+  
+  .staff-manage-container .info-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Detailed Information */
+  .staff-manage-container .staff-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .staff-manage-container .staff-details p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .staff-manage-container {
+      padding: 15px;
+    }
+  
+    .staff-manage-container .title {
+      font-size: 24px;
+    }
+  
+    .staff-manage-container .staff-card {
+      padding: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .staff-manage-container .title {
+      font-size: 20px;
+    }
+  
+    .staff-manage-container .staff-card h3 {
+      font-size: 18px;
+    }
+  
+    .staff-manage-container .staff-card p {
+      font-size: 14px;
+    }
+  
+    .staff-manage-container .info-button {
+      font-size: 13px;
+      padding: 6px 10px;
+    }
+  }

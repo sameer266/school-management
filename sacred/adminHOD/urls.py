@@ -5,9 +5,11 @@ urlpatterns = [
     # AdminHOD URLs
     path('', views.AdminHomeAPIView.as_view(), name='admin_home'),
     path('add_staff/', views.AddStaffAPIView.as_view(), name='add_staff'),
+    
+    # Staff 
     path('view_all_staff/', views.AllStaffAPIView.as_view(), name='view_all_staff'),
-      path('view_one_staff/<id>/',views.ViewOneStaffAPIView.as_view()),
-    path('edit_staff/<int:staff_id>/', views.EditStaffAPIView.as_view(), name='edit_staff'),
+    path('view_one_staff/<id>/',views.ViewOneStaffAPIView.as_view()),
+    path('edit_staff/<staff_id>/', views.EditStaffAPIView.as_view(), name='edit_staff'),
     path('delete_staff/<int:staff_id>/', views.DeleteStaffAPIView.as_view(), name='delete_staff'),
 
 

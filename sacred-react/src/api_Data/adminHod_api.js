@@ -49,6 +49,29 @@ const Admin_Profile_Update = async (data) => {
 // ==============================================  
 //=================Admin  Staff  Api functions =============
 
+
+// View all staff
+const AdminHod_View_Staff = async () => {
+    try {
+        const response = await axios.get(`${base_URL}/adminHod/view_all_staff/`, { withCredentials: true });
+        return response.data;
+    } catch (error) {
+        console.log(error, "Error in getting data");
+    }
+};
+
+// View one staff
+const AdminHod_View_One_Staff = async (id) => {
+    try{
+        const response = await axios.get(`${base_URL}/adminHod/view_one_staff/${id}/`, { withCredentials: true });
+        return response.data;
+
+    }
+    catch(error){
+        console.log(error, "Error in getting data");
+    }};
+
+
 // Add new staff
 const AdminHod_Add_Staff = async (data) => {
     try {
@@ -62,15 +85,7 @@ const AdminHod_Add_Staff = async (data) => {
     }
 };
 
-// View all staff
-const AdminHod_View_Staff = async () => {
-    try {
-        const response = await axios.get(`${base_URL}/adminHod/view_all_staff/`, { withCredentials: true });
-        return response.data;
-    } catch (error) {
-        console.log(error, "Error in getting data");
-    }
-};
+
 
 // Delete staff by ID
 const AdminHod_Delete_Staff = async (id) => {
@@ -435,31 +450,40 @@ export {
 
     AdminHod_Add_Staff,
     AdminHod_View_Staff,
+    AdminHod_View_One_Staff,
     AdminHod_Delete_Staff,
     AdminHod_Update_Staff,
+
     AdminHod_Add_Student,
     AdminHod_View_Student,
     AdminHod_Delete_Student,
     AdminHod_Update_Student,
+
     AdminHod_Add_Subject,
     AdminHod_View_Subject,
     AdminHod_Delete_Subject,
     AdminHod_Update_Subject,
+
     Admin_Student_Attendence_View,
     Admin_Student_Get_Attendence_By_Date,
+
     Admin_Student_Leave_View,
     Admin_Student_Leave_Approve,
     Admin_Student_Leave_Reject,
+
     Admin_Staff_Leave_View,
     Admin_Staff_Leave_Approve,
     Admin_Staff_Leave_Reject,
+
     Admin_ViewAll_Fee,
     Admin_Add_Fee,
     Admin_Update_Fee,
     Admin_Delete_Fee,
+
     Admin_ViewAll_Bill,
     Admin_Add_Bill,
     Admin_Update_Bill,
     Admin_Delete_Bill,
+    
     Admin_Student_PerClass_View,
 };
