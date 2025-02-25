@@ -36,11 +36,13 @@ import StaffLeave from "./pages/dashboard/staff/StaffLeave";
 import ResultAdd from "./pages/dashboard/staff/ResultAdd";
 import Result from "./pages/dashboard/student/Result";
 import ProfileAdmin from "./pages/dashboard/adminHod/ProfileAdmin";
-import StaffManage from "./pages/dashboard/adminHod/StaffManage";
+import StaffManage from "./pages/dashboard/adminHod/StaffManage/StaffManage";
 import StudentManage from "./pages/dashboard/adminHod/StudentManage";
 import SubjectManage from "./pages/dashboard/adminHod/SubjectManage";
 import ViewAttendance from "./pages/dashboard/adminHod/ViewAttendance";
-import OneStaffDetails from "./pages/dashboard/adminHod/OneStaffDetails";
+import OneStaffDetails from "./pages/dashboard/adminHod/StaffManage/OneStaffDetails";
+import UpdateStaff from "./pages/dashboard/adminHod/StaffManage/UpdateStaff";
+import AddStaff from "./pages/dashboard/adminHod/StaffManage/AddStaff";
 
 
 // it automatically scrolls to the top instead of staying at the bottom.
@@ -83,8 +85,11 @@ function App() {
 
           {/* AdminHod Dashboard routes */}
           <Route path="/adminHod-dashboard" element={<AdminHod />}/>
+
           <Route path="/manage-staff" element={<StaffManage/>}/>
           <Route path="/staff-details/:id" element={<OneStaffDetails/>}/>
+          <Route path="/update-staff/:id" element={<UpdateStaff/>}/>
+          <Route path="/add-staff" element={<AddStaff/>}/>
 
           <Route path="/manage-student" element={<StudentManage/>}/>
           <Route path="/manage-subject" element={<SubjectManage/>}/>

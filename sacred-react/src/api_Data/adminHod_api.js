@@ -53,7 +53,8 @@ const Admin_Profile_Update = async (data) => {
 // View all staff
 const AdminHod_View_Staff = async () => {
     try {
-        const response = await axios.get(`${base_URL}/adminHod/view_all_staff/`, { withCredentials: true });
+        const response = await axios.get(`${base_URL}/adminHod/view_all_staff/`,
+             { withCredentials: true });
         return response.data;
     } catch (error) {
         console.log(error, "Error in getting data");
@@ -75,22 +76,40 @@ const AdminHod_View_One_Staff = async (id) => {
 // Add new staff
 const AdminHod_Add_Staff = async (data) => {
     try {
-        const response = await axios.post(`${base_URL}/adminHod/add_staff/`, data, {
-            headers: { "X-CSRFToken": csrfToken },
-            withCredentials: true,
+        // Sending the FormData with correct headers
+        const response = await axios.post(`${base_URL}/adminHod/add_staff/`,
+             data,
+              {
+            headers: {
+                "X-CSRFToken": csrfToken, // Ensure the CSRF token is correctly passed
+                "Content-Type": "multipart/form-data" // This is important when sending files
+            },
+            withCredentials: true, // Include credentials for authentication
         });
         return response.data;
     } catch (error) {
-        console.log(error, "Error in adding staff");
+        console.error("Error in adding staff:", error); // Better error handling
+        return { success: false }; // Return a fallback response in case of an error
     }
 };
 
-
+// Get classes and subjects
+const AdminHod_Get_Classes_And_Subjects = async () => {
+    try {
+        const response = await axios.get(`${base_URL}/adminHod/get_classes_and_subjects/`, 
+            { withCredentials: true });
+        return response.data;
+    }
+    catch(error){
+        console.log(error, "Error in getting data");
+    }
+}   
 
 // Delete staff by ID
 const AdminHod_Delete_Staff = async (id) => {
     try {
-        const response = await axios.delete(`${base_URL}/adminHod/delete_staff/${id}/`, {
+        const response = await axios.delete(`${base_URL}/adminHod/delete_staff/${id}/`,
+             {
             headers: { "X-CSRFToken": csrfToken },
             withCredentials: true,
         });
@@ -110,6 +129,22 @@ const AdminHod_Update_Staff = async (id, data) => {
         return response.data;
     } catch (error) {
         console.log(error, "Error in updating staff");
+    }
+};
+
+// Update staff image
+const AdminHod_Update_Staff_Image = async (id, data) => {
+    try {
+        const response = await axios.post(`${base_URL}/adminHod/update_staff_image/${id}/`, data, {
+            headers: {
+                 "X-CSRFToken": csrfToken,
+                 "Content-Type": "multipart/form-data",
+                 },  
+            withCredentials: true,
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error, "Error in updating staff image");
     }
 };
 
@@ -449,10 +484,12 @@ export {
     Admin_Profile_Update,
 
     AdminHod_Add_Staff,
+    AdminHod_Get_Classes_And_Subjects,
     AdminHod_View_Staff,
     AdminHod_View_One_Staff,
     AdminHod_Delete_Staff,
     AdminHod_Update_Staff,
+    AdminHod_Update_Staff_Image,
 
     AdminHod_Add_Student,
     AdminHod_View_Student,

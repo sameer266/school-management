@@ -1,9 +1,22 @@
 /* General Styles */
 .footer {
-  background: #2c3e50;
+  background: #1a1a2e; /* Darker, more modern background */
   color: white;
-  padding: 40px 20px;
+  padding: 60px 20px; /* Increased padding for more breathing space */
   font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  pointer-events: none;
 }
 
 .footer-content {
@@ -12,7 +25,9 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 20px;
+  gap: 40px; /* Increased gap for better spacing */
+  position: relative;
+  z-index: 1;
 }
 
 .footer-section {
@@ -23,14 +38,28 @@
 
 .footer-section h3 {
   font-size: 1.5rem;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin for better spacing */
   color: #f1c40f;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #f1c40f;
+  border-radius: 2px;
 }
 
 .footer-section p {
   font-size: 0.9rem;
-  line-height: 1.6;
+  line-height: 1.8; /* Increased line height for better readability */
   color: #ecf0f1;
+  opacity: 0.9;
 }
 
 .footer-section ul {
@@ -39,7 +68,7 @@
 }
 
 .footer-section ul li {
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Increased margin for better spacing */
 }
 
 .footer-section ul li a {
@@ -49,21 +78,27 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-section ul li a:hover {
   color: #f1c40f;
+  transform: translateX(10px); /* Subtle hover animation */
 }
 
 .footer-icon {
   font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-section ul li a:hover .footer-icon {
+  transform: rotate(360deg); /* Fun icon rotation on hover */
 }
 
 /* Social Icons */
 .social-icons {
   display: flex;
-  gap: 15px;
+  gap: 20px; /* Increased gap for better spacing */
 }
 
 .social-icon {
@@ -74,17 +109,28 @@
 
 .social-icon:hover {
   color: #f1c40f;
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.1); /* More dynamic hover effect */
 }
 
 /* Footer Bottom */
 .footer-bottom {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px; /* Increased margin for better spacing */
   padding-top: 20px;
-  border-top: 1px solid #34495e;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
   font-size: 0.9rem;
   color: #ecf0f1;
+  opacity: 0.8;
+}
+
+.footer-bottom a {
+  color: #f1c40f;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  opacity: 0.8;
 }
 
 /* Responsive Design */
@@ -93,13 +139,35 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 30px; /* Adjusted gap for mobile */
   }
 
   .footer-section {
-    max-width: 300px;
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%); /* Center the underline on mobile */
   }
 
   .social-icons {
     justify-content: center;
   }
+}
+
+/* Additional Modern Touches */
+.footer-section ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #f1c40f;
+  transition: width 0.3s ease;
+}
+
+.footer-section ul li a:hover::after {
+  width: 100%; /* Animated underline effect */
 }

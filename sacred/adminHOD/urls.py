@@ -4,14 +4,16 @@ from . import views
 urlpatterns = [
     # AdminHOD URLs
     path('', views.AdminHomeAPIView.as_view(), name='admin_home'),
-    path('add_staff/', views.AddStaffAPIView.as_view(), name='add_staff'),
+
     
     # Staff 
     path('view_all_staff/', views.AllStaffAPIView.as_view(), name='view_all_staff'),
+    path('add_staff/', views.AddStaffAPIView.as_view(), name='add_staff'),
+    path('get_classes_and_subjects/', views.GetClassesAndSubjectsAPIView.as_view(), name='get_classes_and_subjects'),
     path('view_one_staff/<id>/',views.ViewOneStaffAPIView.as_view()),
     path('edit_staff/<staff_id>/', views.EditStaffAPIView.as_view(), name='edit_staff'),
-    path('delete_staff/<int:staff_id>/', views.DeleteStaffAPIView.as_view(), name='delete_staff'),
-
+    path('delete_staff/<staff_id>/', views.DeleteStaffAPIView.as_view(), name='delete_staff'),
+    path('update_staff_image/<staff_id>/', views.UpdateStaffImageAPIView.as_view(), name='update_staff_image'),
 
  # Admin profile
     path('admin_profile/', views.AdminProfileView.as_view(), name='admin_profile'),

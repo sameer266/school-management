@@ -1,91 +1,156 @@
 /* General Styles */
 .sidebar {
-    padding-top: 80px;
-    width: 250px;
-    height: 100vh;
-    background: #2c3e50;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: width 0.3s ease;
-    /* z-index: 1000; */
+  padding-top: 80px;
+  width: 250px;
+  height: 100vh;
+  background: #1a1a2e; /* Darker, modern background */
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease, background 0.3s ease;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* Hover effect for collapsed sidebar */
+.sidebar.collapsed:hover {
+  width: 250px; /* Expand on hover */
+  background: #2c3e50; /* Slightly lighter background on hover */
+}
+
+.sidebar.collapsed:hover .sidebar-label {
+  opacity: 1; /* Show labels on hover */
+  width: auto; /* Restore width */
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  background: #34495e;
+  border: none;
+  color: white;
+  padding: 15px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between icon and text */
+}
+
+.sidebar-toggle:hover {
+  background: #1abc9c; /* Highlight color */
+  transform: scale(1.05); /* Slight scale effect */
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .toggle-icon {
+  transform: rotate(180deg); /* Rotate icon when collapsed */
+}
+
+/* Sidebar Links */
+.sidebar-links {
+  padding: 20px 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.sidebar-link:hover {
+  background: #34495e; /* Hover background */
+  transform: translateX(10px); /* Slide effect on hover */
+}
+
+.sidebar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #1abc9c; /* Accent color */
+  transition: width 0.3s ease;
+}
+
+.sidebar-link:hover::after {
+  width: 100%; /* Animated underline effect */
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  margin-right: 15px;
+  transition: margin 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-icon {
+  margin-right: 0;
+}
+
+.sidebar-label {
+  font-size: 1rem;
+  transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-label {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
   }
-  
+
   .sidebar.collapsed {
     width: 60px;
   }
-  
-  /* Toggle Button */
-  .sidebar-toggle {
-    background: #34495e;
-    border: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    transition: background 0.3s ease;
-  }
-  
-  .sidebar-toggle:hover {
-    background: #1abc9c;
-  }
-  
-  .toggle-icon {
-    font-size: 1.5rem;
-  }
-  
-  /* Sidebar Links */
-  .sidebar-links {
-    padding: 20px 0;
-  }
-  
-  .sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    color: white;
-    text-decoration: none;
-    transition: background 0.3s ease, padding 0.3s ease;
-  }
-  
-  .sidebar-link:hover {
-    background: #34495e;
-  }
-  
-  .sidebar-icon {
-    font-size: 1.2rem;
-    margin-right: 15px;
-    transition: margin 0.3s ease;
-  }
-  
-  .sidebar.collapsed .sidebar-icon {
-    margin-right: 0;
-  }
-  
+
   .sidebar-label {
-    font-size: 1rem;
-    transition: opacity 0.3s ease;
+    display: none;
   }
-  
-  .sidebar.collapsed .sidebar-label {
-    opacity: 0;
-    width: 0;
-    overflow: hidden;
+
+  .sidebar-toggle {
+    justify-content: center; /* Center toggle icon on mobile */
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 60px;
-    }
-  
-    .sidebar.collapsed {
-      width: 60px;
-    }
-  
-    .sidebar-label {
-      display: none;
-    }
+
+  .sidebar.collapsed:hover {
+    width: 60px; /* Disable hover effect on mobile */
   }
+
+  .sidebar.collapsed:hover .sidebar-label {
+    opacity: 0; /* Keep labels hidden on mobile */
+  }
+}
+
+/* Modern Scrollbar (Optional) */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #1abc9c; /* Accent color */
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #34495e; /* Track color */
+}

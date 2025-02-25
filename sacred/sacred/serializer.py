@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from accounts.models import Bill, Fee
+from classes.models import ClassModel
+from subjects.models import Subjects
 from customuser.models import CustomUser
 from classes.models import ClassModel
 from exams.models import Exam, ExamResult
@@ -99,33 +101,7 @@ class StaffsSerializer(serializers.ModelSerializer):
         model = Staffs
         fields = '__all__'
         
-    def create(self, validated_data):
-        name_data=validated_data.pop('name')
-        user=CustomUser.objects.create(**name_data)
-        staff=Staffs.objects.create(name=user,**validated_data)
-        return staff
-        
-        
-    def update(self,instance,data):
-        name_data=data.pop('name',None)
-        
-        if name_data:
-            username=name_data.get('username',instance.name.username)
-            first_name=name_data.get('first_name',instance.name.first_name)
-            last_name=name_data.get('last_name',instance.name.last_name)
-            
-            
-            instance.name.username=username
-            instance.name.first_name=first_name
-            instance.name.last_name=last_name
-            instance.name.save()
-        
-        # Update the remaining fields of the Staffs instance and return the updated instance
-        return super().update(instance,data)
-            
-            
-        
-    
+
 
 # LeaveReportStaff Serializer
 class LeaveReportStaffSerializer(serializers.ModelSerializer):

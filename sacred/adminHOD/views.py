@@ -84,19 +84,85 @@ class AdminProfileUpdateView(APIView):
 # ---------------->>> Staff <<-------------------
 
 # =================  Add  Staff Views ======================
+
 class AddStaffAPIView(APIView):
     """
     API view to add a new staff member.
     """
+    
     def post(self, request):
         try:
-            serializer = StaffsSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"success": True, "message": "Staff added successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)
-            return Response({"success": False, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            first_name = request.data.get('first_name')
+            last_name = request.data.get('last_name')
+            email = request.data.get('email')
+            phone = request.data.get('phone')
+            address = request.data.get('address')
+            subject_teaches = request.data.get('subjects')
+            class_teacher = request.data.get('class_teacher')
+            class_teaches = request.data.get('class_teaches', [])  # Assuming class_teaches is a list
+            image = request.data.get('image')   
+            
+            # Check if the email already exists
+            if CustomUser.objects.filter(email=email).exists():
+                return Response({"success": False, "message": "Email already exists"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            if Staffs.objects.filter(contact_number=phone).exists():
+                return Response({"success": False, "message": "Phone number already exists"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Create the user
+            user = CustomUser.objects.create_user(
+                first_name=first_name, 
+                last_name=last_name, 
+                email=email, 
+                username=email,
+                user_type='2'
+            )
+            
+            # Get the Subject object (assuming it's a foreign key)
+            subject = Subjects.objects.get(subject_name=subject_teaches)
+
+            # Get the class_teacher object (assuming it's a foreign key)
+            teacher_class = ClassModel.objects.get(name=class_teacher)
+            staff = Staffs.objects.create(
+                name=user, 
+                contact_number=phone,
+                address=address,
+                subject_teaches=subject, 
+                class_teacher=teacher_class, 
+                image=image
+            )        
+            # Handle the many-to-many relationship for class_teaches
+            classes = ClassModel.objects.filter(id__in=class_teaches)  # Get the classes based on the IDs provided
+            staff.class_teaches.set(classes)  # This sets the many-to-many relationship
+
+            return Response({
+                "success": True, 
+                "message": "Staff added successfully", 
+                "data": {
+                    "staff_id": staff.id, 
+                    "staff_name": staff.name.first_name + " " + staff.name.last_name,  # Example: Full Name
+                }
+            }, status=status.HTTP_201_CREATED)
+        
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+# ================= Get Classes and Subjects API View ======================
+class GetClassesAndSubjectsAPIView(APIView):
+    """
+    API view to get all classes and subjects.
+    """
+    def get(self, request):
+        try:
+            classes = ClassModel.objects.all()
+            subjects = Subjects.objects.all()
+            serializer = ClassModelSerializer(classes, many=True)
+            serializer2 = SubjectsSerializer(subjects, many=True)
+            return Response({"success": True, "classes": serializer.data, "subjects": serializer2.data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 
 # ======= Get all Staff data ==========
 class AllStaffAPIView(APIView):
@@ -125,18 +191,6 @@ class ViewOneStaffAPIView(APIView):
 
 # ========= Edit one Staff data ================
 class EditStaffAPIView(APIView):
-    """
-    API view to edit a staff member's data.
-  """
-
-    def get(self, request, staff_id):
-        try:
-            staff = get_object_or_404(Staffs, id=staff_id)
-            serializer = StaffsSerializer(staff)
-            return Response({"success": True, "message": "Staff fetched successfully", "data": serializer.data}, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
     def patch(self, request, staff_id):
         try:
             staff = get_object_or_404(Staffs, id=staff_id)
@@ -163,6 +217,26 @@ class DeleteStaffAPIView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UpdateStaffImageAPIView(APIView):
+    """
+    API view to update a staff member's image.
+    """
+    def post(self, request, staff_id):
+        try:
+            print(request.data)
+            image=request.FILES.get('image')
+            if image:
+                staff = get_object_or_404(Staffs, id=staff_id)
+                staff.image.delete()
+                staff.image=image
+                staff.save()
+                return Response({"success": True, "message": staff.image.url}, status=status.HTTP_200_OK)
+            return Response({"success": False, "message": "No image provided"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            
+            
 # ----------->>>>> Subject <<<---------------
 
 # =================== Subject API Views =============

@@ -1,50 +1,134 @@
-/* In src/index.css */
+/* Importing Tailwind CSS */
 @import "tailwindcss";
 
-/* Importing the Poppins font */
-@import "~@fontsource/poppins/400.css";  /* Regular weight */
-@import "~@fontsource/poppins/700.css";  /* Bold weight */
 
-/* Global styles */
+
+/* Importing the Poppins font */
+@import "~@fontsource/poppins/400.css"; /* Regular weight */
+@import "~@fontsource/poppins/700.css"; /* Bold weight */
+
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
 
-/* Responsive Font Sizes */
+/* Global Typography */
 body {
-  font-size: 1rem;  /* Default font size for larger screens (non-mobile) */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem; /* Default font size */
+  line-height: 1.6; /* Improved readability */
+
 }
 
+/* Responsive Typography */
 h1 {
-  font-size: 2rem;  /* Font size for h1 on larger screens */
+  font-size: 2.5rem; /* Large font size for h1 */
+  font-weight: 700; /* Bold weight */
+ /* Darker color for headings */
+  margin-bottom: 1rem; /* Spacing below headings */
 }
 
 h2 {
-  font-size: 1.5rem;  /* Font size for h2 on larger screens */
+  font-size: 2rem; /* Medium font size for h2 */
+  font-weight: 700;
+  
+  margin-bottom: 0.75rem;
 }
 
 h3 {
-  font-size: 1.25rem;  /* Font size for h3 on larger screens */
+  font-size: 1.75rem; /* Smaller font size for h3 */
+  font-weight: 700;
+ 
+  margin-bottom: 0.5rem;
 }
 
-/* Responsive font adjustments for mobile view (screens 768px and below) */
+
+/* Responsive Design */
 @media (max-width: 768px) {
   body {
-    font-size: 0.875rem;  /* Smaller font size for mobile screens */
+    font-size: 0.875rem; /* Smaller font size for mobile */
   }
 
   h1 {
-    font-size: 1.5rem;  /* Smaller font size for h1 on mobile */
+    font-size: 2rem; /* Smaller h1 for mobile */
   }
 
   h2 {
-    font-size: 1.25rem;  /* Smaller font size for h2 on mobile */
+    font-size: 1.75rem; /* Smaller h2 for mobile */
   }
 
   h3 {
-    font-size: 1rem;  /* Smaller font size for h3 on mobile */
+    font-size: 1.5rem; /* Smaller h3 for mobile */
   }
+
+  button {
+    font-size: 0.875rem; /* Smaller button text for mobile */
+    padding: 0.5rem 1rem; /* Smaller button padding for mobile */
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 0.875rem; /* Smaller input text for mobile */
+    padding: 0.5rem; /* Smaller input padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem; /* Even smaller h1 for very small screens */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Even smaller h2 for very small screens */
+  }
+
+  h3 {
+    font-size: 1.25rem; /* Even smaller h3 for very small screens */
+  }
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.bg-white {
+  background-color: #ffffff;
 }
