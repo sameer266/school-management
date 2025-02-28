@@ -2,7 +2,7 @@
 
 # School Management System
 
-This is a comprehensive website for a school management system, designed to be applicable in real schools. The system is built using Django Rest Framework (DRF) and React, and it is currently deployed and in use in real schools.
+This is a comprehensive website for a school management system, designed to be applicable in real schools. The system is built using Django Rest Framework (DRF) and React, Interated with chat bot using deepseek R1 AI model
 
 ## Features
 
