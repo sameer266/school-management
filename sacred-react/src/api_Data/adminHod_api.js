@@ -64,7 +64,8 @@ const AdminHod_View_Staff = async () => {
 // View one staff
 const AdminHod_View_One_Staff = async (id) => {
     try{
-        const response = await axios.get(`${base_URL}/adminHod/view_one_staff/${id}/`, { withCredentials: true });
+        const response = await axios.get(`${base_URL}/adminHod/view_one_staff/${id}/`,
+             { withCredentials: true });
         return response.data;
 
     }
@@ -164,6 +165,18 @@ const AdminHod_Add_Student = async (data) => {
         console.log(error, "Error in adding student");
     }
 };
+
+// view one student
+const AdminHod_View_One_Student = async (id) => {
+    try{
+        const response = await axios.get(`http://127.0.0.1:8000/adminHod/view_one_student/${id}/`, { withCredentials: true });
+        return response.data;
+
+    }
+    catch(error){
+        console.log(error, "Error in getting data");
+    }}
+
 
 // View all students
 const AdminHod_View_Student = async () => {
@@ -492,6 +505,7 @@ export {
     AdminHod_Update_Staff_Image,
 
     AdminHod_Add_Student,
+    AdminHod_View_One_Student,
     AdminHod_View_Student,
     AdminHod_Delete_Student,
     AdminHod_Update_Student,
@@ -507,6 +521,7 @@ export {
     Admin_Student_Leave_View,
     Admin_Student_Leave_Approve,
     Admin_Student_Leave_Reject,
+
 
     Admin_Staff_Leave_View,
     Admin_Staff_Leave_Approve,

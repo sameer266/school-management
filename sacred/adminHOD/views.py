@@ -473,7 +473,7 @@ class AddStudentAPIView(APIView):
             serializer = StudentsSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                return Response({"success": True, "message":serializer.data}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -484,9 +484,9 @@ class AllStudentAPIView(APIView):
     """
     def get(self, request):
         try:
-            students = Students.objects.all()
+            students = Students.objects.all().order_by('class_id','roll_no')
             serializer = StudentsSerializer(students, many=True)
-            return Response(serializer.data)
+            return Response({"success": True, "message": serializer.data}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

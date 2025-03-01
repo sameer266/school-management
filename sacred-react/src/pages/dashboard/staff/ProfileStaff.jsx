@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Staff_Home } from "../../../api_Data/staff_api";
 import '../../../style/pages_css/dashboard/student_css/profilestudent.css';
 import BackButton from "../../../components/BackButton";
-import { FaUser, FaEnvelope, FaPhone, FaCheck, FaMapMarkerAlt, FaVenusMars, FaGraduationCap, FaCalendarAlt } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaPhone, FaCheck, FaMapMarkerAlt, FaVenusMars, FaGraduationCap, FaCalendarAlt,FaBook } from 'react-icons/fa';
 import Loader from "../../../components/Loader";
 // Component to display student profile
 function ProfileStaff() {
@@ -74,13 +74,17 @@ function ProfileStaff() {
                                     <FaGraduationCap /> <strong>Classes Teaches:</strong> {staffData.teaches_classes.map((data,index)=>
                                     (
                                         <>
-                                         <a key={index}>{data} </a> |
+                                         <a key={index}>{data.name} </a> |
                                         </>
                                     ))}
                                 </p>
 
                                 <p> 
-                                <FaCheck />  <strong>Class Teacher of class</strong> {staffData.subject_teaches} </p>
+                                <FaCheck />  <strong>Class Teacher of class</strong> {staffData.class_teacher.name} 
+                                </p>
+                                <p> 
+                                    <FaBook/> <strong>Subject Teaches</strong> {staffData.subject_teaches.subject_name}
+                                </p>
                                
                             </div>
                         </div>

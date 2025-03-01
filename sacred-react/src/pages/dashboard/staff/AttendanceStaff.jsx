@@ -84,8 +84,8 @@ const AttendanceStaff = () => {
           <select id="class-select" onChange={handleClassChange} value={selectedClass || ""}>
             <option value="">--Select a Class--</option>
             {classes.map((cls, index) => (
-              <option key={index} value={cls}>
-                {cls}
+              <option key={index} value={cls.id}>
+                {cls.id}
               </option>
             ))}
           </select>

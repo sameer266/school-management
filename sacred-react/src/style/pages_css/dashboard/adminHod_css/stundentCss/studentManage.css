@@ -1,0 +1,319 @@
+/* General container styling */
+.student-manage-container {
+    max-width: 1200px;
+    margin: 90px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Title Styling */
+  .student-manage-container .title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  
+  /* student List - Responsive Grid */
+  .student-manage-container .student-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  /* student Card */
+  .student-manage-container .student-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    position: relative;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .student-manage-container .student-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* student Name */
+  .student-manage-container .student-card h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  /* student Details */
+  .student-manage-container .student-card p {
+    font-size: 1rem;
+    color: #555;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+  
+  /* Button Styling */
+  .student-manage-container .info-button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+  
+  .student-manage-container .info-button:hover {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+  }
+  
+  .student-manage-container .info-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+  
+  /* Detailed Information */
+  .student-manage-container .student-details {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .student-manage-container .student-details p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  /* Add student Button */
+  .student-manage-container .add-student-btn {
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .student-manage-container .add-student-btn:hover {
+    background: linear-gradient(135deg, #45a049, #4caf50);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+  }
+  
+  .student-manage-container .add-student-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+  }
+  
+  .student-manage-container .add-student-btn svg {
+    font-size: 1.2rem;
+  }
+
+
+
+
+.student-manage-container .class-filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.student-manage-container .filter-button {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.student-manage-container .filter-button.active {
+  background: #2575fc;
+  color: white;
+}
+
+.student-manage-container .filter-button:hover {
+  background: #ddd;
+}
+
+.student-manage-container filter-button.active {
+    background: #2575fc;
+    color: white;
+  }
+
+  
+  .student-manage-container  .no-students {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .student-manage-container .filter-button:hover {
+    background: #ddd;
+  }
+
+.student-manage-container .student-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.student-manage-container .class-title {
+  font-size: 1.2rem;
+  color: #31972f;
+  margin-bottom: 10px;
+}
+
+.student-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.student-info h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.student-info p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.info-button {
+  background: #2575fc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.info-button:hover {
+  background: #1a5bbf;
+}
+
+.no-students {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+
+.class-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-button {
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .student-manage-container {
+      padding: 20px;
+    }
+  
+    .student-manage-container .title {
+      font-size: 2rem;
+    }
+  
+    .student-manage-container .student-card {
+      padding: 20px;
+    }
+  
+    .student-manage-container .student-card h3 {
+      font-size: 1.4rem;
+    }
+  
+    .student-manage-container .student-card p {
+      font-size: 0.95rem;
+    }
+  
+    .student-manage-container .info-button {
+      font-size: 0.95rem;
+      padding: 8px 16px;
+    }
+  
+    .student-manage-container .add-student-btn {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .student-manage-container {
+      padding: 15px;
+    }
+  
+    .student-manage-container .title {
+      font-size: 1.8rem;
+    }
+  
+    .student-manage-container .student-card h3 {
+      font-size: 1.3rem;
+    }
+  
+    .student-manage-container .student-card p {
+      font-size: 0.9rem;
+    }
+  
+    .student-manage-container .info-button {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  
+    .student-manage-container .add-student-btn {
+      padding: 8px 16px;
+      font-size: 0.95rem;
+    }
+  }

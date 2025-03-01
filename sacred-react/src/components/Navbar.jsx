@@ -45,14 +45,24 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    setLoading(true);
+
     try {
+      setLoading(true);
+  
+      // Clear local storage immediately for security
+      localStorage.clear();
+  
+      // Call logout API
       const response = await axios.post("http://127.0.0.1:8000/logout/");
+      
       if (response?.data?.success) {
+        // Navigate first
         navigate("/");
-        localStorage.clear();
-        window.location.reload();
-        
+  
+        // Then reload after a short delay
+        setTimeout(() => {
+          window.location.reload();
+        }, 100); // Short delay (100ms) ensures smooth transition
       }
     } catch (error) {
       console.error("Logout failed:", error);
@@ -60,6 +70,7 @@ const Navbar = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <>

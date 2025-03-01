@@ -1,0 +1,209 @@
+
+/* Container for student Details */
+.student-details-container {
+    max-width: 1200px;
+    margin: 100px  auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  /* Title */
+  .student-details-container .student-details-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  /* student Card */
+  .student-details-container .student-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* student Image
+   */
+  
+   /* student Image Container */
+  .student-details-container .student-image-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .student-details-container .student-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #3498db;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Image Update Icon */
+    .student-details-container .image-update-icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10; /* Ensure the icon is on top */
+      font-size: 18px;
+    }
+    
+    /* File Input - Hidden but functional */
+    .student-details-container input[type="file"] {
+      display: none;
+    }
+    
+    /* Update Image Button */
+    .student-details-container .update-image-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .student-details-container .update-image-btn:hover {
+      background-color: #0056b3;
+    }
+    
+  
+  
+  
+  /* student Name */
+  .student-details-container .student-name {
+    font-size: 2rem;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .student-details-container .student-name svg {
+    color: #3498db;
+  }
+  
+  /* student Info */
+  .student-details-container .student-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .student-details-container .student-info p {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+  }
+  
+  .student-details-container .student-info strong {
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  
+  .student-details-container .student-info svg {
+    color: #3498db;
+  }
+  
+  /* Teaches Classes List */
+  .student-details-container .teaches-classes {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .student-details-container .teaches-classes li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Loading State */
+  .student-details-container .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #3498db;
+    margin-top: 2rem;
+  }
+  
+  /*  Button of delete and Update */
+  .student-details-container .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+  }
+  
+  .student-details-container .update-btn, .delete-btn {
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      border: none;
+  }
+  
+  .student-details-container .update-btn {
+      background-color: #007BFF;
+      color: white;
+  }
+  .student-details-container 
+  .update-btn:hover {
+      background-color: #0056b3;
+  }
+  
+  .student-details-container .delete-btn {
+      background-color: #DC3545;
+      color: white;
+  }
+  
+  .student-details-container .delete-btn:hover {
+      background-color: #b02a37;
+  }
+  
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .student-details-container {
+      padding: 1rem;
+    }
+  
+    .student-details-container .student-details-title {
+      font-size: 2rem;
+    }
+  
+    .student-details-container .student-card {
+      padding: 1.5rem;
+    }
+  
+    .student-details-container .student-name {
+      font-size: 1.5rem;
+    }
+  
+    .student-details-container .student-info p {
+      font-size: 1rem;
+    }
+  }
