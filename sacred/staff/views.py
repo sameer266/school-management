@@ -110,12 +110,15 @@ class StaffSelectedClassStudents(APIView):
 class StaffAddAttendanceView(APIView):
     def post(self, request):
         try:
+            print(request.data)
             students_attendance = request.data
             serializer_data = []
             for student in students_attendance:
                 student_id = student.get('id')
                 student_obj = Students.objects.get(id=student_id)
+                print(student_obj)
                 status = student.get('status')
+                print(status)
                 remarks = student.get('remarks', '')
                 attendance = Attendence.objects.update_or_create(student=student_obj, status=status, remarks=remarks)
                 serializer_data.append(AttendenceSerializer(attendance).data)

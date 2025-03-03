@@ -1,5 +1,6 @@
 /* General Styles */
 .sidebar {
+  overflow: scroll;
   padding-top: 80px;
   width: 250px;
   height: 100vh;

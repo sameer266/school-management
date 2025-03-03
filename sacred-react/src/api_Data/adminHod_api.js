@@ -201,6 +201,25 @@ const AdminHod_Delete_Student = async (id) => {
     }
 };
 
+//update student image 
+const AdminHod_Update_Student_Image = async (id, data) => {
+
+    try{
+        const response= await axios.post(`${base_URL}/adminHod/update_student_image/${id}/`, data, {
+            headers: {
+                "X-CSRFToken": csrfToken,
+                "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true,
+        });
+        return response.data;
+
+    }
+    catch(error){
+        console.log(error, "Error in updating student image");
+    }
+}
+
 // Update student by ID
 const AdminHod_Update_Student = async (id, data) => {
     try {
@@ -219,9 +238,12 @@ const AdminHod_Update_Student = async (id, data) => {
 //================= Subject  Api functions =============
 
 // Add new subject
-const AdminHod_Add_Subject = async (data) => {
+const AdminHod_Add_Subject = async (subject) => {
     try {
-        const response = await axios.post(`${base_URL}/adminHod/add_subject/`, data, {
+        const data={subject:subject}
+        const response = await axios.post(`${base_URL}/adminHod/add_subject/`, 
+            data,
+             {
             headers: { "X-CSRFToken": csrfToken },
             withCredentials: true,
         });
@@ -274,7 +296,7 @@ const AdminHod_Update_Subject = async (id, data) => {
 // View student attendance
 const Admin_Student_Attendence_View = async () => {
     try {
-        const response = await axios.get(`${base_URL}/adminHod/student_view_attendence/`, { withCredentials: true });
+        const response = await axios.get(`${base_URL}/adminHod/admin_view_attendance/`, { withCredentials: true });
         return response.data;
     } catch (error) {
         console.log(error, "Error in getting data");
@@ -508,6 +530,7 @@ export {
     AdminHod_View_One_Student,
     AdminHod_View_Student,
     AdminHod_Delete_Student,
+    AdminHod_Update_Student_Image,
     AdminHod_Update_Student,
 
     AdminHod_Add_Subject,

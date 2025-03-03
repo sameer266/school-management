@@ -4,6 +4,7 @@ import {
   AdminHod_View_One_Student,
   AdminHod_Delete_Student,
   AdminHod_Update_Student,
+  AdminHod_Update_Student_Image,
 } from "../../../../api_Data/adminHod_api";
 import {
   FaUserCircle,
@@ -72,7 +73,7 @@ function OneStudentDetails() {
     }
   };
 
-  const handleUpdateImage = async () => {
+  const handleUpdateImage = async (id) => {
     if (!newImage) {
       notifyError("Please select an image to upload.");
       return;
@@ -82,7 +83,7 @@ function OneStudentDetails() {
     formData.append("image", newImage);
 
     try {
-      const response = await AdminHod_Update_Student(id, formData);
+      const response = await AdminHod_Update_Student_Image(id, formData);
       if (response?.success) {
         notifySuccess("Image updated successfully!");
         setStudentData((prevData) => ({
@@ -141,7 +142,7 @@ function OneStudentDetails() {
             />
             <button
               className="update-image-btn"
-              onClick={handleUpdateImage}
+              onClick={()=>handleUpdateImage(studentData.id)}
               disabled={!newImage}
             >
               Update Image

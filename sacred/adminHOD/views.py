@@ -95,6 +95,8 @@ class AddStaffAPIView(APIView):
             first_name = request.data.get('first_name')
             last_name = request.data.get('last_name')
             email = request.data.get('email')
+            if CustomUser.objects.get(email=email):
+                return Response({"success": False, "message": "Email already exists"}, status=status.HTTP_400_BAD_REQUEST)
             phone = request.data.get('phone')
             address = request.data.get('address')
             subject_teaches = request.data.get('subjects')
@@ -246,13 +248,11 @@ class AddSubjectAPIView(APIView):
     """
     def post(self, request):
         try:
-            serializer = SubjectsSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"success": True, "message": "Subject added successfully", "data": serializer.data}, status=status.HTTP_201_CREATED)
-            return Response({"success": False, "message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            subject_name=request.data.get('subject')
+            Subjects.objects.create(subject_name=subject_name)
+            return Response({"success": True, "message": "Subject Added Successfully"}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"su12ccess": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class AllSubjectAPIView(APIView):
     """
@@ -262,7 +262,7 @@ class AllSubjectAPIView(APIView):
         try:
             subjects = Subjects.objects.all()
             serializer = SubjectsSerializer(subjects, many=True)
-            return Response({"success": True, "message": "Subjects fetched successfully", "data": serializer.data}, status=status.HTTP_200_OK)
+            return Response({"success": True, "message":  serializer.data}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -391,7 +391,7 @@ class AdminViewAttendanceAPIView(APIView):
         try:
             attendance = Attendence.objects.all()
             serializer = AttendenceSerializer(attendance, many=True)
-            return Response(serializer.data)
+            return Response({"success":True,"message":serializer.data},status=200)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -470,11 +470,24 @@ class AddStudentAPIView(APIView):
     """
     def post(self, request):
         try:
-            serializer = StudentsSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({"success": True, "message":serializer.data}, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+           first_name=request.data.get('first_name')
+           last_name=request.data.get('last_name')
+           email=request.data.get('email')
+           phone=request.data.get('phone')
+           roll_no=request.data.get('roll_no')
+           gender=request.data.get('gender')
+           address=request.data.get('address')
+           class_id=request.data.get('class_id')
+           image=request.FILES.get('image')
+           class_id=request.data.get('class_id')
+           user=CustomUser.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=email)
+           user.set_password("baiju123")
+           user.save()
+           class_id=ClassModel.objects.get(id=class_id)
+           student=Students.objects.create(name=user,phone=phone,roll_no=roll_no,gender=gender,address=address,class_id=class_id,image=image)
+        
+           return Response({"success": True, "message": "Student added successfully"}, status=status.HTTP_201_CREATED)
+           
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -502,6 +515,17 @@ class ViewOneStudentAPIView(APIView):
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
+# =========== Update Student Image API View =============
+class UpdateStudentImageAPIView(APIView):
+    def post(request,id):
+        student=Students.objects.get(id=id)
+        image=request.FILES.get('image')
+        student.image=image
+        student.save()
+        return Response({"success":True,"message":"Image updated successfully"},status=200)
+        
+
 class EditStudentAPIView(APIView):
     """
     API view to edit a student's data.
@@ -516,12 +540,35 @@ class EditStudentAPIView(APIView):
 
     def patch(self, request, student_id):
         try:
-            student = get_object_or_404(Students, id=student_id)
-            serializer = StudentsSerializer(student, data=request.data, partial=True)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            first_name = request.data.get('first_name')
+            last_name = request.data.get('last_name')
+            email = request.data.get('email')
+            class_id = request.data.get('class_id')
+            gender = request.data.get('gender')
+            phone = request.data.get('phone')
+            address = request.data.get('address')  # Fixed: previously assigned `phone`
+            roll_no = request.data.get('roll_no')
+
+            # Fetch objects safely
+            class_obj = get_object_or_404(ClassModel, id=class_id)
+            student_obj = get_object_or_404(Students, id=student_id)
+            student_user = get_object_or_404(CustomUser, id=student_obj.name.id)
+
+            # Update user details
+            student_user.first_name = first_name
+            student_user.last_name = last_name
+            student_user.email = email
+            student_user.save()
+
+            # Update student details
+            student_obj.class_id = class_obj
+            student_obj.gender = gender
+            student_obj.phone = phone
+            student_obj.address = address  # Fixed: previously assigned `phone`
+            student_obj.roll_no = roll_no
+            student_obj.save()
+
+            return Response({"success": True, "message": "Student Data Updated Successfully"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"success": False, "message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

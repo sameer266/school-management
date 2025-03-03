@@ -1,0 +1,108 @@
+/* General Styles */
+.update-Student-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.update-Student-container h1 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form Styles */
+.update-Student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.update-Student-form label {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 500;
+    text-align: left;
+}
+
+.update-Student-form input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.update-Student-form input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+/* Button Styles */
+.update-btn {
+    padding: 12px;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.update-btn:hover {
+    background: linear-gradient(135deg, #45a049, #4caf50);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .update-Student-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .update-Student-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .update-Student-form input {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    .update-btn {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .update-Student-container {
+        margin: 50px auto;
+        padding: 15px;
+    }
+
+    .update-Student-container h1 {
+        font-size: 1.3rem;
+    }
+
+    .update-Student-form input {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .update-btn {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}

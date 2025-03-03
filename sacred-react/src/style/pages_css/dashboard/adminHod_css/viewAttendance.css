@@ -1,0 +1,96 @@
+/* viewAttendance.css */
+
+.admin-view-attendance {
+    
+    padding: 20px;
+    max-width: 1200px;
+    margin: 100px auto;
+  }
+  
+  .admin-view-attendance h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .admin-view-attendance-table {
+    overflow-x: auto;
+  }
+  
+  .admin-view-attendance-table label {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #555;
+  }
+  
+  .admin-view-attendance-table select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .admin-view-attendance-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .admin-view-attendance-table th,
+  .admin-view-attendance-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-view-attendance-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .admin-view-attendance-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .admin-view-attendance-table td {
+    color: #555;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-view-attendance {
+      padding: 10px;
+    }
+  
+    .admin-view-attendance h1 {
+      font-size: 20px;
+    }
+  
+    .admin-view-attendance-table select {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .admin-view-attendance-table th,
+    .admin-view-attendance-table td {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .admin-view-attendance h1 {
+      font-size: 18px;
+    }
+  
+    .admin-view-attendance-table th,
+    .admin-view-attendance-table td {
+      padding: 6px;
+      font-size: 12px;
+    }
+  }

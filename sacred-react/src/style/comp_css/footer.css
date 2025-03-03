@@ -1,5 +1,6 @@
 /* General Styles */
 .footer {
+  margin-top: 40px;
   background: #1a1a2e; /* Darker, more modern background */
   color: white;
   padding: 60px 20px; /* Increased padding for more breathing space */

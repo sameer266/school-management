@@ -40,7 +40,7 @@ const Navbar = () => {
 
   const handleDashboardClick = () => {
     const routes = { "1": "/adminHod-dashboard", "2": "/staff-dashboard", "3": "/student-dashboard" };
-    navigate(routes[user_type] || "/");
+    navigate(routes[user_type] );
     setIsMenuOpen(false);
   };
 
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <li>
                   <span  onClick={handleDashboardClick} style={{ cursor: "pointer" }}>
 
-                   <Link> <FaUser /> Dashboard</Link>
+                   <Link > <FaUser /> Dashboard</Link>
                   </span>
                 </li>
               )}

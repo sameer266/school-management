@@ -60,20 +60,7 @@ class StudentsSerializer(serializers.ModelSerializer):
         student=Students.objects.create(name=user,class_id=class_id,**validated_data)
         return student
         
-        
-    def update(self, instance, data):
-        # Handle nested 'name' field (CustomUser)
-        name_data = data.pop('name', None)
-        if name_data:
-            # Update related CustomUser instance (instance.name refers to the CustomUser instance)
-            instance.name.username = name_data.get('username', instance.name.username)
-            instance.name.first_name = name_data.get('first_name', instance.name.first_name)
-            instance.name.last_name = name_data.get('last_name', instance.name.last_name)
-            instance.name.save()
-
-        # Update the remaining fields of the Students instance
-        return super().update(instance, data)
-
+    
 
 # NotificationStudent Serializer
 class NotificationStudentSerializer(serializers.ModelSerializer):

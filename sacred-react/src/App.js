@@ -38,13 +38,15 @@ import Result from "./pages/dashboard/student/Result";
 import ProfileAdmin from "./pages/dashboard/adminHod/ProfileAdmin";
 import StaffManage from "./pages/dashboard/adminHod/StaffManage/StaffManage";
 
-import SubjectManage from "./pages/dashboard/adminHod/SubjectManage";
+import SubjectManage from "./pages/dashboard/adminHod/SubjectManage/SubjectManage";
 import ViewAttendance from "./pages/dashboard/adminHod/ViewAttendance";
 import OneStaffDetails from "./pages/dashboard/adminHod/StaffManage/OneStaffDetails";
 import UpdateStaff from "./pages/dashboard/adminHod/StaffManage/UpdateStaff";
 import AddStaff from "./pages/dashboard/adminHod/StaffManage/AddStaff";
 import StudentManage from "./pages/dashboard/adminHod/StudentManage/StudentManage";
 import OneStudentDetails from "./pages/dashboard/adminHod/StudentManage/OneStudentDetails";
+import AddStudent from "./pages/dashboard/adminHod/StudentManage/AddStudent";
+import UpdateStudent from "./pages/dashboard/adminHod/StudentManage/UpdateStudent";
 
 
 
@@ -98,8 +100,11 @@ function App() {
           <Route path="/student-details/:id" element={<OneStudentDetails/>}/>
 
           <Route path="/manage-subject" element={<SubjectManage/>}/>
-          <Route path="/view-attendance" element={<ViewAttendance/>}/>
 
+          <Route path="/view-attendance" element={<ViewAttendance/>}/>
+          
+          <Route path="/add-student" element={<AddStudent/>}/>
+          <Route path="/update-student/:id" element={<UpdateStudent/>}/>
           
 
 

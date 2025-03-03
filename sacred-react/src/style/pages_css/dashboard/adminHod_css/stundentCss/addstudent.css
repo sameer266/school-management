@@ -1,0 +1,138 @@
+
+/* General Styles */
+.add-student-container {
+    max-width: 800px;
+    margin: 90px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .add-student-container h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  
+  /* Form Styles */
+  .add-student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .add-student-form label {
+    font-size: 1.1rem;
+    color: #34495e;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+  }
+  
+  .add-student-form input,
+  .add-student-form select {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .add-student-form input:focus,
+  .add-student-form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
+    outline: none;
+    transform: scale(1.02);
+  }
+  
+  .add-student-form select[multiple] {
+    height: 140px;
+    resize: vertical;
+    padding: 10px;
+  }
+  
+  /* Button Styles */
+  .add-btn {
+    padding: 14px 24px;
+    font-size: 1.1rem;
+    color: white;
+    background: linear-gradient(135deg, #4caf50, #45a049);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+  
+  .add-btn:hover {
+    background: linear-gradient(135deg, #45a049, #4caf50);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+  }
+  
+  .add-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .add-student-container {
+      margin: 60px auto;
+      padding: 20px;
+    }
+  
+    .add-student-container h1 {
+      font-size: 2rem;
+    }
+  
+    .add-student-form label {
+      font-size: 1rem;
+    }
+  
+    .add-student-form input,
+    .add-student-form select {
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+  
+    .add-btn {
+      padding: 12px 20px;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .add-student-container {
+      margin: 40px auto;
+      padding: 15px;
+    }
+  
+    .add-student-container h1 {
+      font-size: 1.75rem;
+    }
+  
+    .add-student-form label {
+      font-size: 0.95rem;
+    }
+  
+    .add-student-form input,
+    .add-student-form select {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+  
+    .add-btn {
+      padding: 10px 16px;
+      font-size: 0.95rem;
+    }
+  }

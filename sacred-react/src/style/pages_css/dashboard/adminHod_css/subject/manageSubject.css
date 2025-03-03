@@ -1,0 +1,176 @@
+/* manageSubject.css */
+
+.admin-view-subject {
+    padding: 20px;
+    max-width: 800px;
+    margin: 100px auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-view-subject h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .admin-view-subject ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .admin-view-subject li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    color: #555;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-view-subject li:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .add-subject-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-subject-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .subject-add-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .subject-add-input label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .subject-add-input input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .subject-add-input input:focus {
+    border-color: #007bff;
+  }
+  
+  .subject-add-input button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .subject-add-input button:first-of-type {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .subject-add-input button:first-of-type:hover {
+    background-color: #0056b3;
+  }
+  
+  .subject-add-input button:last-of-type {
+    background-color: #ff4d4d;
+    color: #fff;
+  }
+  
+  .subject-add-input button:last-of-type:hover {
+    background-color: #cc0000;
+  }
+  
+  .subject-item {
+    display: flex; /* Arrange items in a row */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between text and icon */
+    padding: 8px 12px; /* Add some padding */
+    border-bottom: 1px solid #ddd; /* Optional: Add a separator */
+    font-size: 16px;
+  }
+  
+  .delete-icon {
+    color: red; /* Set the icon color */
+    font-size: 20px; /* Adjust the size */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.2s ease-in-out, color 0.2s;
+  }
+  
+  .delete-icon:hover {
+    color: darkred; /* Darker red on hover */
+    transform: scale(1.2); /* Slightly enlarge the icon */
+  }
+  
+ 
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-view-subject {
+      padding: 15px;
+    }
+  
+    .admin-view-subject h2 {
+      font-size: 20px;
+    }
+  
+    .admin-view-subject li {
+      font-size: 14px;
+      padding: 12px;
+    }
+  
+    .add-subject-button {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    .subject-add-input {
+      padding: 15px;
+    }
+  
+    .subject-add-input input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .subject-add-input button {
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+  }

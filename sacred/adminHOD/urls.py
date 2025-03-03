@@ -22,7 +22,7 @@ urlpatterns = [
 
     # Subject 
     path('add_subject/', views.AddSubjectAPIView.as_view(), name='add_subject'),
-    path('view_all_subject/', views.AllStudentAPIView.as_view(), name='view_all_subject'),
+    path('view_all_subject/', views.AllSubjectAPIView.as_view(), name='view_all_subject'),
     path('edit_subject/<int:subject_id>/', views.EditSubjectAPIView.as_view(), name='edit_subject'),
     path('delete_subject/<int:subject_id>/', views.DeleteSubjectAPIView.as_view(), name='delete_subject'),
 
@@ -30,7 +30,8 @@ urlpatterns = [
     path('add_student/', views.AddStudentAPIView.as_view(), name='add_student'),
     path('edit_student/<int:student_id>/', views.EditStudentAPIView.as_view(), name='edit_student'),
     path('view_all_student/', views.AllStudentAPIView.as_view(), name='view_all_student'),
-      path('view_one_student/<id>/',views.ViewOneStudentAPIView.as_view()),
+    path('view_one_student/<id>/',views.ViewOneStudentAPIView.as_view()),
+    path('update_student_image/<student_id>/', views.UpdateStudentImageAPIView.as_view(), name='update_student_image'),
     path('delete_student/<int:student_id>/', views.DeleteStudentAPIView.as_view(), name='delete_student'),
 
     # Email and Username checks
